@@ -1,0 +1,4 @@
+#include <windows.h>
+#define EMBED_ASSET(id, path, restore) id RCDATA path
+#include "data/embedded_assets.inc"
+#undef EMBED_ASSET

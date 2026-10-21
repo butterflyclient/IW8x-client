@@ -1,0 +1,6 @@
+# Native metadata and compressed playlists are byte-exact resources.
+config/** -text
+indices/** -text
+playlists/*.aggr -text
+# Keep embedded source hashes identical across Windows checkouts.
+lua/**/*.lua text eol=lf

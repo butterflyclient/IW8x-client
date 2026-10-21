@@ -1,0 +1,23 @@
+# Summary
+
+* [Overview](README.md)
+* [Getting Started](getting-started.md)
+* [Plugin Manifest](manifest.md)
+* [Building Plugins](building.md)
+* [C++ SDK](cpp-sdk.md)
+  * [Values and Call Context](values-and-context.md)
+  * [GSC Functions and Methods](functions-and-methods.md)
+  * [Stock GSC and Typed Dvars](stock-gsc-and-dvars.md)
+  * [Entities and Notifications](entities-and-notifications.md)
+  * [Events and Lifecycle](events-and-lifecycle.md)
+  * [Players](players.md)
+  * [Scheduling and Async Work](scheduling-and-async.md)
+  * [Native Handles](native-handles.md)
+  * [Commands](commands.md)
+* [C ABI Reference](c-abi-reference.md)
+* [Status Codes](status-codes.md)
+* [Ownership and Unloading](ownership-and-unloading.md)
+* [Native Binding IDs](native-bindings.md)
+* [Current Limitations](limitations.md)
+* [GitBook Setup](gitbook-setup.md)
+

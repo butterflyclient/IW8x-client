@@ -1,0 +1,8 @@
+{
+  "source": "C:\\Users\\Zach\\Downloads\\unified_large_playlist_tu27.aggr",
+  "sha256": "6587b704e4034cc79e5794bacba5e7bdcd3a9d6148948f6b7b71191d0a02d687",
+  "bytes": 29424,
+  "decoded_sha256": "b4af75d2255f1e358021ad27d1bd4c8a55a4ecb7b51a9513b2c9309b48c4eaaa",
+  "decoded_bytes": 261730,
+  "conversion": "Original zlib payload; native TU19 parser uses lossless long-rule adapter."
+}

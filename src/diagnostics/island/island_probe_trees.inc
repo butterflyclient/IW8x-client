@@ -1,0 +1,13 @@
+// Original Source common tree aliases; diagnostic only.
+{ "animtrees/playerasm_void.atr", "animtrees/magma_island164/playerasm_void.atr" },
+{ "animtrees/client_character.atr", "animtrees/magma_island164/client_character.atr" },
+{ "animtrees/mp_frontend.atr", "animtrees/magma_island164/mp_frontend.atr" },
+{ "animtrees/mp_vehicles_always_loaded.atr", "animtrees/magma_island164/mp_vehicles_always_loaded.atr" },
+{ "animtrees/vehicles.atr", "animtrees/magma_island164/vehicles.atr" },
+{ "animtrees/sentry_gun.atr", "animtrees/magma_island164/sentry_gun.atr" },
+{ "animtrees/animated_props.atr", "animtrees/magma_island164/animated_props.atr" },
+{ "animtrees/destructibles.atr", "animtrees/magma_island164/destructibles.atr" },
+{ "animtrees/generic_human.atr", "animtrees/magma_island164/generic_human.atr" },
+{ "animtrees/multiplayer.atr", "animtrees/magma_island164/multiplayer.atr" },
+{ "animtrees/script_model.atr", "animtrees/magma_island164/script_model.atr" },
+{ "animtrees/scriptables.atr", "animtrees/magma_island164/scriptables.atr" },

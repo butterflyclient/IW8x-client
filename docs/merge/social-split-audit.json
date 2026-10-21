@@ -1,0 +1,17 @@
+{
+  "body_preservation": true,
+  "functions": 80,
+  "expanded": [],
+  "files": [
+    "src/network/social/social_runtime.cpp",
+    "src/network/social/runtime/native_tasks.cpp",
+    "src/network/social/runtime/services.cpp",
+    "src/network/social/runtime/worker.cpp",
+    "src/network/social/runtime/internal.hpp",
+    "src/network/social/runtime/native_tasks.hpp",
+    "src/network/social/runtime/runtime.hpp",
+    "src/network/social/runtime/services.hpp",
+    "src/network/social/runtime/types.hpp",
+    "src/network/social/runtime/worker.hpp"
+  ]
+}

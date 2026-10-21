@@ -1,0 +1,22 @@
+{
+  "source": "C:\\Users\\Zach\\Downloads\\iw8-ds144\\version_.dll",
+  "source_sha256": "260b2debe25c2d4a33851b9b00bce156b51b6f1891782f588d65ccc87112039e",
+  "resource": {
+    "type": 10,
+    "id": 1119,
+    "language": 1033
+  },
+  "filename": "unified_large_playlist_tu19.aggr",
+  "compressed_bytes": 19814,
+  "decoded_bytes": 171691,
+  "sha256": "45f492de7bea978ceabb07e4ccda183b7b872b5275ea52e21d154b1920ea615e",
+  "decoded_sha256": "0a5e45d9c93d663481bca441df39970a30baf158218238a7deb590bce0b4e305",
+  "root_keys": [
+    "system",
+    "global_dvars",
+    "gametypes",
+    "playlists",
+    "categories"
+  ],
+  "evidence": "IDA version.dll VA 0x180230B10: filename pointer, length 32, resource ID 1119; resource reader 0x18010FB30; inflater 0x180118DB0"
+}

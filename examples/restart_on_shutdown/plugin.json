@@ -1,0 +1,6 @@
+{
+  "name": "Restart On Game End",
+  "version": "1.0.0",
+  "api": 1,
+  "entry": "restart_on_shutdown.dll"
+}

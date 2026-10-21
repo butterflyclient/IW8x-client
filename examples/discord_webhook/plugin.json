@@ -1,0 +1,7 @@
+{
+  "name": "Discord Map Webhook",
+  "version": "1.0.0",
+  "api": 1,
+  "entry": "discord_webhook.dll"
+}
+

@@ -1,0 +1,70 @@
+{
+  "source": "C:\\Users\\james\\Documents\\iw8-ds-prod\\src-xaratti",
+  "target": "C:\\Users\\james\\Documents\\iw8-ds-prod\\restruct-120\\project",
+  "source_files": 585,
+  "source_snapshot_unchanged": true,
+  "final_dispositions": {
+    "integrated-target-build-system": 1,
+    "excluded-research-snapshot": 17,
+    "integrated": 553,
+    "integrated-owned-module": 1,
+    "excluded-installed-python-environment": 13
+  },
+  "source_function_audit": {
+    "identical-body": 1883,
+    "adapted-body": 27,
+    "integrated-target-observer": 1
+  },
+  "function_audit_limit": "Name/body static comparison; not proof of game runtime behavior.",
+  "removed_empty_target_headers": [
+    "src/network/services/matchmaking.hpp"
+  ],
+  "target_helpers_replaced": [
+    {
+      "target_before": "src/auth/profile/local_progression.cpp",
+      "name": "ReadTable",
+      "line": 82
+    }
+  ],
+  "embedded_payloads_verified": 58,
+  "largest_production_cpp": {
+    "lines": 886,
+    "file": "src/gsc/internal/vm.cpp"
+  },
+  "products": [
+    {
+      "path": "C:\\Users\\james\\Documents\\iw8-ds-prod\\restruct-120\\project\\xmake-out\\x64\\Release\\XInput9_1_0.dll",
+      "bytes": 25745920,
+      "sha256": "bfca1798c10fcdb4ed78b8ee82a05ca1900d5785ef8be1299c67cdeb9b6355eb"
+    },
+    {
+      "path": "C:\\Users\\james\\Documents\\iw8-ds-prod\\restruct-120\\project\\xmake-out\\x64\\Release\\radmin-host\\XInput9_1_0.dll",
+      "bytes": 25745920,
+      "sha256": "1614daa79258955f7e0d8c85cdbd0fe495c524417963d32d495118721e477005"
+    },
+    {
+      "path": "C:\\Users\\james\\Documents\\iw8-ds-prod\\restruct-120\\project\\xmake-out\\x64\\Release\\radmin-client\\XInput9_1_0.dll",
+      "bytes": 25745920,
+      "sha256": "512591320983b71889d172be3726563c97fb83ecee9273296738384dbd081ac5"
+    },
+    {
+      "path": "C:\\Users\\james\\Documents\\iw8-ds-prod\\restruct-120\\project\\xmake-out\\x64\\Release\\backend\\MagmaBackend120.exe",
+      "bytes": 18639360,
+      "sha256": "a9a8c2adcbc6db6bbe928f8337cdc151d20f459fb613744ba283efc984164d73"
+    }
+  ],
+  "validation_commands_passed": 24,
+  "test_results": {
+    "merge_feature_tests": "Merge feature checks passed: 1323",
+    "backend_merge_tests": "Standalone backend checks passed: 19",
+    "gsc_core_tests": "Runtime load: 3200 nested tasks=10324us in 50 pumps; 10000 idle game+worker pairs with 4000 timers=13364us\nGSC API: 5767 checks passed (including separate DLL load/unload)",
+    "gsc_invocation_tests": "5500 invocation/script/value/dvar/table/entity checks passed",
+    "gsc_loader_tests": "Replay GSC load/postload, block-6 growth, resident reload, teardown gates, DB generations, restart routing and variadic error boundary passed",
+    "gsc_bootstrap_tests": "Replay bootstrap: 15 checks passed",
+    "gsc_restart_tests": "Restart plugin: 33 checks passed",
+    "headless_software_tests": "[INFO][Headless] WARP adapter selected: Microsoft Basic Render Driver vendor=0x1414 device=0x8C flags=0x2 LUID=00000000:0000B0AA; D3D12 work stays on CPU\n[INFO][Headless] D3D12 device intercepted before command-list creation; frame drawing disabled\n[INFO][Headless] native queue work: type=0 command_lists=1; retained copies/barriers/queries/fences execute on the selected adapter\n[INFO][Headless] queue caller[0]=00007FF6586A298D host_RVA=0x298D\n[INFO][Headless] queue caller[1]=00007FF6586A91A0 host_RVA=0x91A0\n[INFO][Headless] queue caller[2]=00007FFDE0F6CD87 host_RVA=0x0\n[INFO][Headless] queue caller[3]=00007FFDE1A6CAEC host_RVA=0x0\nPASS: WARP LUID=00000000:0000B0AA, concurrent probes, native failures, DIRECT/COMPUTE/COPY data, fences, filtering, software bot BFS"
+  },
+  "game_runtime_tested": false,
+  "rollback_snapshot": "C:\\Users\\james\\Documents\\iw8-ds-prod\\backups\\xaratti-merge-20261009-232514\\target-before.zip",
+  "build_object_cache": "D:\\CodexBuildCache\\iw8x-xaratti-merge-20261009-232514\\obj"
+}

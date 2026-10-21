@@ -1,0 +1,13 @@
+{
+  "function_bodies_identical": true,
+  "model_field_tokens_preserved": true,
+  "groups": {
+    "discord": [
+      "Discord"
+    ],
+    "authorization": [
+      "AuthorizeCommunications",
+      "AuthorizeMatchmaking"
+    ]
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "name": "Player Events Example",
+  "version": "1.0.0",
+  "api": 1,
+  "entry": "player_events_example.dll"
+}

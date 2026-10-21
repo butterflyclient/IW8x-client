@@ -1,0 +1,146 @@
+[
+  {
+    "command": "xmake build -j 4 mw120rproxy",
+    "exit_code": 0,
+    "seconds": 1.317,
+    "log": "C:\\Users\\james\\Documents\\iw8-ds-prod\\backups\\xaratti-merge-20261009-232514\\validation\\build-mw120rproxy.log"
+  },
+  {
+    "command": "xmake build -j 4 magma_backend120",
+    "exit_code": 0,
+    "seconds": 2.028,
+    "log": "C:\\Users\\james\\Documents\\iw8-ds-prod\\backups\\xaratti-merge-20261009-232514\\validation\\build-magma_backend120.log"
+  },
+  {
+    "command": "xmake build -j 4 mw120rproxy_radmin_host",
+    "exit_code": 0,
+    "seconds": 5.348,
+    "log": "C:\\Users\\james\\Documents\\iw8-ds-prod\\backups\\xaratti-merge-20261009-232514\\validation\\build-mw120rproxy_radmin_host.log"
+  },
+  {
+    "command": "xmake build -j 4 mw120rproxy_radmin_client",
+    "exit_code": 0,
+    "seconds": 8.265,
+    "log": "C:\\Users\\james\\Documents\\iw8-ds-prod\\backups\\xaratti-merge-20261009-232514\\validation\\build-mw120rproxy_radmin_client.log"
+  },
+  {
+    "command": "xmake build -j 4 replay_plugins",
+    "exit_code": 0,
+    "seconds": 1.017,
+    "log": "C:\\Users\\james\\Documents\\iw8-ds-prod\\backups\\xaratti-merge-20261009-232514\\validation\\build-replay_plugins.log"
+  },
+  {
+    "command": "xmake build -j 4 gsc_runtime_port",
+    "exit_code": 0,
+    "seconds": 1.018,
+    "log": "C:\\Users\\james\\Documents\\iw8-ds-prod\\backups\\xaratti-merge-20261009-232514\\validation\\build-gsc_runtime_port.log"
+  },
+  {
+    "command": "xmake build -j 4 bot_compute_bench",
+    "exit_code": 0,
+    "seconds": 1.05,
+    "log": "C:\\Users\\james\\Documents\\iw8-ds-prod\\backups\\xaratti-merge-20261009-232514\\validation\\build-bot_compute_bench.log"
+  },
+  {
+    "command": "xmake build -j 4 gsc_live_probe",
+    "exit_code": 0,
+    "seconds": 0.957,
+    "log": "C:\\Users\\james\\Documents\\iw8-ds-prod\\backups\\xaratti-merge-20261009-232514\\validation\\build-gsc_live_probe.log"
+  },
+  {
+    "command": "xmake build -j 4 merge_feature_tests",
+    "exit_code": 0,
+    "seconds": 0.977,
+    "log": "C:\\Users\\james\\Documents\\iw8-ds-prod\\backups\\xaratti-merge-20261009-232514\\validation\\build-merge_feature_tests.log"
+  },
+  {
+    "command": "xmake run merge_feature_tests",
+    "exit_code": 0,
+    "seconds": 1.786,
+    "log": "C:\\Users\\james\\Documents\\iw8-ds-prod\\backups\\xaratti-merge-20261009-232514\\validation\\run-merge_feature_tests.log"
+  },
+  {
+    "command": "xmake build -j 4 backend_merge_tests",
+    "exit_code": 0,
+    "seconds": 1.03,
+    "log": "C:\\Users\\james\\Documents\\iw8-ds-prod\\backups\\xaratti-merge-20261009-232514\\validation\\build-backend_merge_tests.log"
+  },
+  {
+    "command": "xmake run backend_merge_tests",
+    "exit_code": 0,
+    "seconds": 2.941,
+    "log": "C:\\Users\\james\\Documents\\iw8-ds-prod\\backups\\xaratti-merge-20261009-232514\\validation\\run-backend_merge_tests.log"
+  },
+  {
+    "command": "xmake build -j 4 gsc_core_tests",
+    "exit_code": 0,
+    "seconds": 1.01,
+    "log": "C:\\Users\\james\\Documents\\iw8-ds-prod\\backups\\xaratti-merge-20261009-232514\\validation\\build-gsc_core_tests.log"
+  },
+  {
+    "command": "xmake run gsc_core_tests",
+    "exit_code": 0,
+    "seconds": 1.237,
+    "log": "C:\\Users\\james\\Documents\\iw8-ds-prod\\backups\\xaratti-merge-20261009-232514\\validation\\run-gsc_core_tests.log"
+  },
+  {
+    "command": "xmake build -j 4 gsc_invocation_tests",
+    "exit_code": 0,
+    "seconds": 0.986,
+    "log": "C:\\Users\\james\\Documents\\iw8-ds-prod\\backups\\xaratti-merge-20261009-232514\\validation\\build-gsc_invocation_tests.log"
+  },
+  {
+    "command": "xmake run gsc_invocation_tests",
+    "exit_code": 0,
+    "seconds": 1.057,
+    "log": "C:\\Users\\james\\Documents\\iw8-ds-prod\\backups\\xaratti-merge-20261009-232514\\validation\\run-gsc_invocation_tests.log"
+  },
+  {
+    "command": "xmake build -j 4 gsc_loader_tests",
+    "exit_code": 0,
+    "seconds": 1.137,
+    "log": "C:\\Users\\james\\Documents\\iw8-ds-prod\\backups\\xaratti-merge-20261009-232514\\validation\\build-gsc_loader_tests.log"
+  },
+  {
+    "command": "xmake run gsc_loader_tests",
+    "exit_code": 0,
+    "seconds": 1.157,
+    "log": "C:\\Users\\james\\Documents\\iw8-ds-prod\\backups\\xaratti-merge-20261009-232514\\validation\\run-gsc_loader_tests.log"
+  },
+  {
+    "command": "xmake build -j 4 gsc_bootstrap_tests",
+    "exit_code": 0,
+    "seconds": 1.37,
+    "log": "C:\\Users\\james\\Documents\\iw8-ds-prod\\backups\\xaratti-merge-20261009-232514\\validation\\build-gsc_bootstrap_tests.log"
+  },
+  {
+    "command": "xmake run gsc_bootstrap_tests",
+    "exit_code": 0,
+    "seconds": 1.357,
+    "log": "C:\\Users\\james\\Documents\\iw8-ds-prod\\backups\\xaratti-merge-20261009-232514\\validation\\run-gsc_bootstrap_tests.log"
+  },
+  {
+    "command": "xmake build -j 4 gsc_restart_tests",
+    "exit_code": 0,
+    "seconds": 1.211,
+    "log": "C:\\Users\\james\\Documents\\iw8-ds-prod\\backups\\xaratti-merge-20261009-232514\\validation\\build-gsc_restart_tests.log"
+  },
+  {
+    "command": "xmake run gsc_restart_tests",
+    "exit_code": 0,
+    "seconds": 1.751,
+    "log": "C:\\Users\\james\\Documents\\iw8-ds-prod\\backups\\xaratti-merge-20261009-232514\\validation\\run-gsc_restart_tests.log"
+  },
+  {
+    "command": "xmake build -j 4 headless_software_tests",
+    "exit_code": 0,
+    "seconds": 1.268,
+    "log": "C:\\Users\\james\\Documents\\iw8-ds-prod\\backups\\xaratti-merge-20261009-232514\\validation\\build-headless_software_tests.log"
+  },
+  {
+    "command": "xmake run headless_software_tests",
+    "exit_code": 0,
+    "seconds": 1.495,
+    "log": "C:\\Users\\james\\Documents\\iw8-ds-prod\\backups\\xaratti-merge-20261009-232514\\validation\\run-headless_software_tests.log"
+  }
+]

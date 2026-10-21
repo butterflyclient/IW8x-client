@@ -1,0 +1,6 @@
+https://github.com/discord/discord-rpc
+Commit: 963aa9f3e5ce81a4682c6ca3d136cddda614db33
+Vendored native sources only.
+Local changes: bounded overlapped Windows pipe I/O; SDK backoff on busy pipes;
+frame size and JSON object validation; restore subscriptions after reconnect;
+isolated pipe name for transport tests.

@@ -1,0 +1,6 @@
+{
+  "name": "GSC Gameplay Example",
+  "version": "1.0.0",
+  "api": 1,
+  "entry": "gsc_gameplay_example.dll"
+}

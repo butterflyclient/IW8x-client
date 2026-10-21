@@ -1,0 +1,113 @@
+{
+  "unavailable_historical_tests": [
+    {
+      "target": "bot_nav_compute_tests",
+      "absent_files": [
+        "tests/bot_nav_compute_tests.cpp"
+      ]
+    },
+    {
+      "target": "challenge_engine_tests",
+      "absent_files": [
+        "tests/challenge_engine_tests.cpp"
+      ]
+    },
+    {
+      "target": "progression_catalog_tests",
+      "absent_files": [
+        "tests/progression_catalog_tests.cpp"
+      ]
+    },
+    {
+      "target": "bot_movement_batch_tests",
+      "absent_files": [
+        "tests/bot_movement_batch_tests.cpp"
+      ]
+    },
+    {
+      "target": "bot_goal_wait_tests",
+      "absent_files": [
+        "tests/bot_goal_wait_tests.cpp"
+      ]
+    },
+    {
+      "target": "bot_command_cache_tests",
+      "absent_files": [
+        "tests/bot_command_cache_tests.cpp"
+      ]
+    },
+    {
+      "target": "asset_mark_guard_tests",
+      "absent_files": [
+        "tests/asset_mark_guard_tests.cpp"
+      ]
+    },
+    {
+      "target": "identity_store_tests",
+      "absent_files": [
+        "tests/identity_store_tests.cpp"
+      ]
+    },
+    {
+      "target": "stats_file_tests",
+      "absent_files": [
+        "tests/stats_file_tests.cpp"
+      ]
+    },
+    {
+      "target": "noclip_tests",
+      "absent_files": [
+        "tests/noclip_tests.cpp"
+      ]
+    },
+    {
+      "target": "bap_diagnostics_tests",
+      "absent_files": [
+        "tests/bap_diagnostics_tests.cpp"
+      ]
+    },
+    {
+      "target": "playlist_document_tests",
+      "absent_files": [
+        "tests/playlist_document_tests.cpp"
+      ]
+    },
+    {
+      "target": "match_http_tests",
+      "absent_files": [
+        "tests/match_http_tests.cpp"
+      ]
+    },
+    {
+      "target": "network_endpoint_tests",
+      "absent_files": [
+        "tests/network_endpoint_tests.cpp"
+      ]
+    },
+    {
+      "target": "online_services_tests",
+      "absent_files": [
+        "tests/online_services_tests.cpp"
+      ]
+    },
+    {
+      "target": "embedded_assets_tests",
+      "absent_files": [
+        "tests/embedded_assets_tests.cpp"
+      ]
+    },
+    {
+      "target": "headless_d3d_tests",
+      "absent_files": [
+        "tests/headless_d3d_tests.cpp"
+      ]
+    }
+  ],
+  "folded_social_implementations": [
+    "src/network/social/user_list_adapter.inl"
+  ],
+  "removed_empty_headers": [
+    "src/network/services/matchmaking.hpp",
+    "src/network/social/runtime/services.hpp"
+  ]
+}

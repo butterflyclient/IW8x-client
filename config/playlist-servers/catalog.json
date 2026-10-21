@@ -1,0 +1,5647 @@
+{
+  "source_sha256": "45f492de7bea978ceabb07e4ccda183b7b872b5275ea52e21d154b1920ea615e",
+  "playlists": [
+    {
+      "id": 1,
+      "name": "Team Deathmatch",
+      "native_name": "PLAYLIST/TDM_NAME",
+      "group": "Multiplayer",
+      "launcher": "Multiplayer/start-001-team-deathmatch.cmd",
+      "max_players": 12,
+      "entries": [
+        {
+          "index": 0,
+          "map": "mp_backlot2",
+          "gametype": "tdm",
+          "script": "war",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 1,
+          "map": "mp_cave_am",
+          "gametype": "tdm",
+          "script": "war",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 2,
+          "map": "mp_crash2",
+          "gametype": "tdm",
+          "script": "war",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 3,
+          "map": "mp_emporium",
+          "gametype": "tdm",
+          "script": "war",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 4,
+          "map": "mp_hackney_am",
+          "gametype": "tdm",
+          "script": "war",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 5,
+          "map": "mp_hideout",
+          "gametype": "tdm",
+          "script": "war",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 6,
+          "map": "mp_m_speed",
+          "gametype": "tdm",
+          "script": "war",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 7,
+          "map": "mp_petrograd",
+          "gametype": "tdm",
+          "script": "war",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 8,
+          "map": "mp_piccadilly",
+          "gametype": "tdm",
+          "script": "war",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 9,
+          "map": "mp_runner",
+          "gametype": "tdm",
+          "script": "war",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 10,
+          "map": "mp_rust",
+          "gametype": "tdm",
+          "script": "war",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 11,
+          "map": "mp_shipment",
+          "gametype": "tdm",
+          "script": "war",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 12,
+          "map": "mp_spear",
+          "gametype": "tdm",
+          "script": "war",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 13,
+          "map": "mp_vacant",
+          "gametype": "tdm",
+          "script": "war",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 14,
+          "map": "mp_village2",
+          "gametype": "tdm",
+          "script": "war",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Free for All",
+      "native_name": "PLAYLIST/FFA_NAME",
+      "group": "Multiplayer",
+      "launcher": "Multiplayer/start-002-free-for-all.cmd",
+      "max_players": 8,
+      "entries": [
+        {
+          "index": 0,
+          "map": "mp_backlot2",
+          "gametype": "dm",
+          "script": "dm",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 1,
+          "map": "mp_cave_am",
+          "gametype": "dm",
+          "script": "dm",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 2,
+          "map": "mp_crash2",
+          "gametype": "dm",
+          "script": "dm",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 3,
+          "map": "mp_emporium",
+          "gametype": "dm",
+          "script": "dm",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 4,
+          "map": "mp_hackney_am",
+          "gametype": "dm",
+          "script": "dm",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 5,
+          "map": "mp_hideout",
+          "gametype": "dm",
+          "script": "dm",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 6,
+          "map": "mp_m_speed",
+          "gametype": "dm",
+          "script": "dm",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 7,
+          "map": "mp_petrograd",
+          "gametype": "dm",
+          "script": "dm",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 8,
+          "map": "mp_piccadilly",
+          "gametype": "dm",
+          "script": "dm",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 9,
+          "map": "mp_runner",
+          "gametype": "dm",
+          "script": "dm",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 10,
+          "map": "mp_rust",
+          "gametype": "dm",
+          "script": "dm",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 11,
+          "map": "mp_shipment",
+          "gametype": "dm",
+          "script": "dm",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 12,
+          "map": "mp_spear",
+          "gametype": "dm",
+          "script": "dm",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 13,
+          "map": "mp_vacant",
+          "gametype": "dm",
+          "script": "dm",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 14,
+          "map": "mp_village2",
+          "gametype": "dm",
+          "script": "dm",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Domination",
+      "native_name": "PLAYLIST/DOM_NAME",
+      "group": "Multiplayer",
+      "launcher": "Multiplayer/start-003-domination.cmd",
+      "max_players": 12,
+      "entries": [
+        {
+          "index": 0,
+          "map": "mp_backlot2",
+          "gametype": "dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 1,
+          "map": "mp_cave_am",
+          "gametype": "dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 2,
+          "map": "mp_crash2",
+          "gametype": "dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 3,
+          "map": "mp_emporium",
+          "gametype": "dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 4,
+          "map": "mp_hackney_am",
+          "gametype": "dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 5,
+          "map": "mp_hideout",
+          "gametype": "dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 6,
+          "map": "mp_m_speed",
+          "gametype": "dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 7,
+          "map": "mp_petrograd",
+          "gametype": "dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 8,
+          "map": "mp_piccadilly",
+          "gametype": "dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 9,
+          "map": "mp_runner",
+          "gametype": "dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 10,
+          "map": "mp_rust",
+          "gametype": "dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 11,
+          "map": "mp_shipment",
+          "gametype": "dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 12,
+          "map": "mp_spear",
+          "gametype": "dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 13,
+          "map": "mp_vacant",
+          "gametype": "dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 14,
+          "map": "mp_village2",
+          "gametype": "dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Search and Destroy",
+      "native_name": "PLAYLIST/SD_NAME",
+      "group": "Multiplayer",
+      "launcher": "Multiplayer/start-004-search-and-destroy.cmd",
+      "max_players": 12,
+      "entries": [
+        {
+          "index": 0,
+          "map": "mp_backlot2",
+          "gametype": "sd",
+          "script": "sd",
+          "weight": 1,
+          "recipe": true,
+          "hardcore": false
+        },
+        {
+          "index": 1,
+          "map": "mp_cave_am",
+          "gametype": "sd",
+          "script": "sd",
+          "weight": 1,
+          "recipe": true,
+          "hardcore": false
+        },
+        {
+          "index": 2,
+          "map": "mp_crash2",
+          "gametype": "sd",
+          "script": "sd",
+          "weight": 1,
+          "recipe": true,
+          "hardcore": false
+        },
+        {
+          "index": 3,
+          "map": "mp_deadzone",
+          "gametype": "sd",
+          "script": "sd",
+          "weight": 1,
+          "recipe": true,
+          "hardcore": false
+        },
+        {
+          "index": 4,
+          "map": "mp_emporium",
+          "gametype": "sd",
+          "script": "sd",
+          "weight": 1,
+          "recipe": true,
+          "hardcore": false
+        },
+        {
+          "index": 5,
+          "map": "mp_hackney_am",
+          "gametype": "sd",
+          "script": "sd",
+          "weight": 1,
+          "recipe": true,
+          "hardcore": false
+        },
+        {
+          "index": 6,
+          "map": "mp_hideout",
+          "gametype": "sd",
+          "script": "sd",
+          "weight": 1,
+          "recipe": true,
+          "hardcore": false
+        },
+        {
+          "index": 7,
+          "map": "mp_m_speed",
+          "gametype": "sd",
+          "script": "sd",
+          "weight": 1,
+          "recipe": true,
+          "hardcore": false
+        },
+        {
+          "index": 8,
+          "map": "mp_petrograd",
+          "gametype": "sd",
+          "script": "sd",
+          "weight": 1,
+          "recipe": true,
+          "hardcore": false
+        },
+        {
+          "index": 9,
+          "map": "mp_piccadilly",
+          "gametype": "sd",
+          "script": "sd",
+          "weight": 1,
+          "recipe": true,
+          "hardcore": false
+        },
+        {
+          "index": 10,
+          "map": "mp_raid",
+          "gametype": "sd",
+          "script": "sd",
+          "weight": 1,
+          "recipe": true,
+          "hardcore": false
+        },
+        {
+          "index": 11,
+          "map": "mp_runner",
+          "gametype": "sd",
+          "script": "sd",
+          "weight": 1,
+          "recipe": true,
+          "hardcore": false
+        },
+        {
+          "index": 12,
+          "map": "mp_rust",
+          "gametype": "sd",
+          "script": "sd",
+          "weight": 1,
+          "recipe": true,
+          "hardcore": false
+        },
+        {
+          "index": 13,
+          "map": "mp_spear",
+          "gametype": "sd",
+          "script": "sd",
+          "weight": 1,
+          "recipe": true,
+          "hardcore": false
+        },
+        {
+          "index": 14,
+          "map": "mp_vacant",
+          "gametype": "sd",
+          "script": "sd",
+          "weight": 1,
+          "recipe": true,
+          "hardcore": false
+        },
+        {
+          "index": 15,
+          "map": "mp_village2",
+          "gametype": "sd",
+          "script": "sd",
+          "weight": 1,
+          "recipe": true,
+          "hardcore": false
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Headquarters",
+      "native_name": "PLAYLIST/HEADQUARTERS_NAME",
+      "group": "Multiplayer",
+      "launcher": "Multiplayer/start-005-headquarters.cmd",
+      "max_players": 12,
+      "entries": [
+        {
+          "index": 0,
+          "map": "mp_aniyah_tac",
+          "gametype": "hq",
+          "script": "hq",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 1,
+          "map": "mp_backlot2",
+          "gametype": "hq",
+          "script": "hq",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 2,
+          "map": "mp_cave_am",
+          "gametype": "hq",
+          "script": "hq",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 3,
+          "map": "mp_crash2",
+          "gametype": "hq",
+          "script": "hq",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 4,
+          "map": "mp_deadzone",
+          "gametype": "hq",
+          "script": "hq",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 5,
+          "map": "mp_emporium",
+          "gametype": "hq",
+          "script": "hq",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 6,
+          "map": "mp_hackney_am",
+          "gametype": "hq",
+          "script": "hq",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 7,
+          "map": "mp_hideout",
+          "gametype": "hq",
+          "script": "hq",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 8,
+          "map": "mp_m_speed",
+          "gametype": "hq",
+          "script": "hq",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 9,
+          "map": "mp_petrograd",
+          "gametype": "hq",
+          "script": "hq",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 10,
+          "map": "mp_piccadilly",
+          "gametype": "hq",
+          "script": "hq",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 11,
+          "map": "mp_raid",
+          "gametype": "hq",
+          "script": "hq",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 12,
+          "map": "mp_runner",
+          "gametype": "hq",
+          "script": "hq",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 13,
+          "map": "mp_rust",
+          "gametype": "hq",
+          "script": "hq",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 14,
+          "map": "mp_shipment",
+          "gametype": "hq",
+          "script": "hq",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 15,
+          "map": "mp_spear",
+          "gametype": "hq",
+          "script": "hq",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 16,
+          "map": "mp_vacant",
+          "gametype": "hq",
+          "script": "hq",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 17,
+          "map": "mp_village2",
+          "gametype": "hq",
+          "script": "hq",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Kill Confirmed",
+      "native_name": "PLAYLIST/CONF_NAME",
+      "group": "Multiplayer",
+      "launcher": "Multiplayer/start-006-kill-confirmed.cmd",
+      "max_players": 12,
+      "entries": [
+        {
+          "index": 0,
+          "map": "mp_aniyah_tac",
+          "gametype": "conf_tdm",
+          "script": "conf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 1,
+          "map": "mp_backlot2",
+          "gametype": "conf_tdm",
+          "script": "conf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 2,
+          "map": "mp_cave_am",
+          "gametype": "conf_tdm",
+          "script": "conf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 3,
+          "map": "mp_crash2",
+          "gametype": "conf_tdm",
+          "script": "conf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 4,
+          "map": "mp_emporium",
+          "gametype": "conf_tdm",
+          "script": "conf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 5,
+          "map": "mp_hackney_am",
+          "gametype": "conf_tdm",
+          "script": "conf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 6,
+          "map": "mp_hideout",
+          "gametype": "conf_tdm",
+          "script": "conf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 7,
+          "map": "mp_m_speed",
+          "gametype": "conf_tdm",
+          "script": "conf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 8,
+          "map": "mp_petrograd",
+          "gametype": "conf_tdm",
+          "script": "conf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 9,
+          "map": "mp_piccadilly",
+          "gametype": "conf_tdm",
+          "script": "conf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 10,
+          "map": "mp_runner",
+          "gametype": "conf_tdm",
+          "script": "conf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 11,
+          "map": "mp_rust",
+          "gametype": "conf_tdm",
+          "script": "conf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 12,
+          "map": "mp_shipment",
+          "gametype": "conf_tdm",
+          "script": "conf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 13,
+          "map": "mp_spear",
+          "gametype": "conf_tdm",
+          "script": "conf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 14,
+          "map": "mp_vacant",
+          "gametype": "conf_tdm",
+          "script": "conf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 15,
+          "map": "mp_village2",
+          "gametype": "conf_tdm",
+          "script": "conf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Infected Shotguns",
+      "native_name": "PLAYLIST/INFECT_NAME",
+      "group": "Multiplayer",
+      "launcher": "Multiplayer/start-007-infected-shotguns.cmd",
+      "max_players": 18,
+      "entries": [
+        {
+          "index": 0,
+          "map": "mp_aniyah_tac",
+          "gametype": "infect_shotgun",
+          "script": "infect",
+          "weight": 1,
+          "recipe": true,
+          "hardcore": false
+        },
+        {
+          "index": 1,
+          "map": "mp_backlot2",
+          "gametype": "infect_shotgun",
+          "script": "infect",
+          "weight": 1,
+          "recipe": true,
+          "hardcore": false
+        },
+        {
+          "index": 2,
+          "map": "mp_cave_am",
+          "gametype": "infect_shotgun",
+          "script": "infect",
+          "weight": 1,
+          "recipe": true,
+          "hardcore": false
+        },
+        {
+          "index": 3,
+          "map": "mp_crash2",
+          "gametype": "infect_shotgun",
+          "script": "infect",
+          "weight": 1,
+          "recipe": true,
+          "hardcore": false
+        },
+        {
+          "index": 4,
+          "map": "mp_emporium",
+          "gametype": "infect_shotgun",
+          "script": "infect",
+          "weight": 1,
+          "recipe": true,
+          "hardcore": false
+        },
+        {
+          "index": 5,
+          "map": "mp_hackney_am",
+          "gametype": "infect_shotgun",
+          "script": "infect",
+          "weight": 1,
+          "recipe": true,
+          "hardcore": false
+        },
+        {
+          "index": 6,
+          "map": "mp_hideout",
+          "gametype": "infect_shotgun",
+          "script": "infect",
+          "weight": 1,
+          "recipe": true,
+          "hardcore": false
+        },
+        {
+          "index": 7,
+          "map": "mp_m_speed",
+          "gametype": "infect_shotgun",
+          "script": "infect",
+          "weight": 1,
+          "recipe": true,
+          "hardcore": false
+        },
+        {
+          "index": 8,
+          "map": "mp_petrograd",
+          "gametype": "infect_shotgun",
+          "script": "infect",
+          "weight": 1,
+          "recipe": true,
+          "hardcore": false
+        },
+        {
+          "index": 9,
+          "map": "mp_piccadilly",
+          "gametype": "infect_shotgun",
+          "script": "infect",
+          "weight": 1,
+          "recipe": true,
+          "hardcore": false
+        },
+        {
+          "index": 10,
+          "map": "mp_runner_pm",
+          "gametype": "infect_shotgun",
+          "script": "infect",
+          "weight": 1,
+          "recipe": true,
+          "hardcore": false
+        },
+        {
+          "index": 11,
+          "map": "mp_rust",
+          "gametype": "infect_shotgun",
+          "script": "infect",
+          "weight": 1,
+          "recipe": true,
+          "hardcore": false
+        },
+        {
+          "index": 12,
+          "map": "mp_vacant",
+          "gametype": "infect_shotgun",
+          "script": "infect",
+          "weight": 1,
+          "recipe": true,
+          "hardcore": false
+        },
+        {
+          "index": 13,
+          "map": "mp_village2",
+          "gametype": "infect_shotgun",
+          "script": "infect",
+          "weight": 1,
+          "recipe": true,
+          "hardcore": false
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Cyber Attack",
+      "native_name": "PLAYLIST/CYBER_NAME",
+      "group": "Multiplayer",
+      "launcher": "Multiplayer/start-008-cyber-attack.cmd",
+      "max_players": 12,
+      "entries": [
+        {
+          "index": 0,
+          "map": "mp_aniyah_tac",
+          "gametype": "cyber",
+          "script": "cyber",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 1,
+          "map": "mp_backlot2",
+          "gametype": "cyber",
+          "script": "cyber",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 2,
+          "map": "mp_cave_am",
+          "gametype": "cyber",
+          "script": "cyber",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 3,
+          "map": "mp_crash2",
+          "gametype": "cyber",
+          "script": "cyber",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 4,
+          "map": "mp_emporium",
+          "gametype": "cyber",
+          "script": "cyber",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 5,
+          "map": "mp_hackney_am",
+          "gametype": "cyber",
+          "script": "cyber",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 6,
+          "map": "mp_hideout",
+          "gametype": "cyber",
+          "script": "cyber",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 7,
+          "map": "mp_m_speed",
+          "gametype": "cyber",
+          "script": "cyber",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 8,
+          "map": "mp_petrograd",
+          "gametype": "cyber",
+          "script": "cyber",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 9,
+          "map": "mp_piccadilly",
+          "gametype": "cyber",
+          "script": "cyber",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 10,
+          "map": "mp_raid",
+          "gametype": "cyber",
+          "script": "cyber",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 11,
+          "map": "mp_runner",
+          "gametype": "cyber",
+          "script": "cyber",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 12,
+          "map": "mp_rust",
+          "gametype": "cyber",
+          "script": "cyber",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 13,
+          "map": "mp_spear",
+          "gametype": "cyber",
+          "script": "cyber",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 14,
+          "map": "mp_vacant",
+          "gametype": "cyber",
+          "script": "cyber",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 15,
+          "map": "mp_village2",
+          "gametype": "cyber",
+          "script": "cyber",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "name": "Hardpoint",
+      "native_name": "PLAYLIST/HARDPOINT_NAME",
+      "group": "Multiplayer",
+      "launcher": "Multiplayer/start-009-hardpoint.cmd",
+      "max_players": 12,
+      "entries": [
+        {
+          "index": 0,
+          "map": "mp_aniyah_tac",
+          "gametype": "koth",
+          "script": "koth",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 1,
+          "map": "mp_backlot2",
+          "gametype": "koth",
+          "script": "koth",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 2,
+          "map": "mp_cave_am",
+          "gametype": "koth",
+          "script": "koth",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 3,
+          "map": "mp_crash2",
+          "gametype": "koth",
+          "script": "koth",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 4,
+          "map": "mp_deadzone",
+          "gametype": "koth",
+          "script": "koth",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 5,
+          "map": "mp_emporium",
+          "gametype": "koth",
+          "script": "koth",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 6,
+          "map": "mp_hackney_am",
+          "gametype": "koth",
+          "script": "koth",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 7,
+          "map": "mp_hideout",
+          "gametype": "koth",
+          "script": "koth",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 8,
+          "map": "mp_m_speed",
+          "gametype": "koth",
+          "script": "koth",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 9,
+          "map": "mp_petrograd",
+          "gametype": "koth",
+          "script": "koth",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 10,
+          "map": "mp_piccadilly",
+          "gametype": "koth",
+          "script": "koth",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 11,
+          "map": "mp_raid",
+          "gametype": "koth",
+          "script": "koth",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 12,
+          "map": "mp_runner",
+          "gametype": "koth",
+          "script": "koth",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 13,
+          "map": "mp_rust",
+          "gametype": "koth",
+          "script": "koth",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 14,
+          "map": "mp_shipment",
+          "gametype": "koth",
+          "script": "koth",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 15,
+          "map": "mp_vacant",
+          "gametype": "koth",
+          "script": "koth",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 16,
+          "map": "mp_village2",
+          "gametype": "koth",
+          "script": "koth",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "name": "Realism Headquarters",
+      "native_name": "PLAYLIST/REALISM_HQ",
+      "group": "Multiplayer",
+      "launcher": "Multiplayer/start-010-realism-headquarters.cmd",
+      "max_players": 12,
+      "entries": [
+        {
+          "index": 0,
+          "map": "mp_backlot2",
+          "gametype": "hq",
+          "script": "hq",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 1,
+          "map": "mp_cave",
+          "gametype": "hq",
+          "script": "hq",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 2,
+          "map": "mp_cave_am",
+          "gametype": "hq",
+          "script": "hq",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 3,
+          "map": "mp_crash2",
+          "gametype": "hq",
+          "script": "hq",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 4,
+          "map": "mp_hackney_am",
+          "gametype": "hq",
+          "script": "hq",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 5,
+          "map": "mp_hackney_yard",
+          "gametype": "hq",
+          "script": "hq",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 6,
+          "map": "mp_hideout",
+          "gametype": "hq",
+          "script": "hq",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 7,
+          "map": "mp_m_speed",
+          "gametype": "hq",
+          "script": "hq",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 8,
+          "map": "mp_petrograd",
+          "gametype": "hq",
+          "script": "hq",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 9,
+          "map": "mp_piccadilly",
+          "gametype": "hq",
+          "script": "hq",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 10,
+          "map": "mp_raid",
+          "gametype": "hq",
+          "script": "hq",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 11,
+          "map": "mp_runner",
+          "gametype": "hq",
+          "script": "hq",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 12,
+          "map": "mp_runner_pm",
+          "gametype": "hq",
+          "script": "hq",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 13,
+          "map": "mp_shipment",
+          "gametype": "hq",
+          "script": "hq",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 14,
+          "map": "mp_spear",
+          "gametype": "hq",
+          "script": "hq",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 15,
+          "map": "mp_spear_pm",
+          "gametype": "hq",
+          "script": "hq",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 16,
+          "map": "mp_vacant",
+          "gametype": "hq",
+          "script": "hq",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 17,
+          "map": "mp_village2",
+          "gametype": "hq",
+          "script": "hq",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "name": "10v10 Team Deathmatch",
+      "native_name": "PLAYLIST/TDM_BIG_NAME",
+      "group": "Multiplayer",
+      "launcher": "Multiplayer/start-011-10v10-team-deathmatch.cmd",
+      "max_players": 20,
+      "entries": [
+        {
+          "index": 0,
+          "map": "mp_aniyah",
+          "gametype": "tdm",
+          "script": "war",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 1,
+          "map": "mp_crash2",
+          "gametype": "tdm",
+          "script": "war",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 2,
+          "map": "mp_deadzone",
+          "gametype": "tdm",
+          "script": "war",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 3,
+          "map": "mp_emporium",
+          "gametype": "tdm",
+          "script": "war",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 4,
+          "map": "mp_euphrates",
+          "gametype": "tdm",
+          "script": "war",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 5,
+          "map": "mp_hideout",
+          "gametype": "tdm",
+          "script": "war",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 6,
+          "map": "mp_raid",
+          "gametype": "tdm",
+          "script": "war",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 7,
+          "map": "mp_runner",
+          "gametype": "tdm",
+          "script": "war",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 8,
+          "map": "mp_spear",
+          "gametype": "tdm",
+          "script": "war",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 9,
+          "map": "mp_village2",
+          "gametype": "tdm",
+          "script": "war",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "name": "2v2 Arena",
+      "native_name": "#2v2 Arena",
+      "group": "Multiplayer",
+      "launcher": "Multiplayer/start-012-2v2-arena.cmd",
+      "max_players": 16,
+      "entries": [
+        {
+          "index": 0,
+          "map": "mp_m_king",
+          "gametype": "arena",
+          "script": "arena",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "name": "10v10 Headquarters",
+      "native_name": "PLAYLIST/HQ_BIG_NAME",
+      "group": "Multiplayer",
+      "launcher": "Multiplayer/start-013-10v10-headquarters.cmd",
+      "max_players": 20,
+      "entries": [
+        {
+          "index": 0,
+          "map": "mp_aniyah",
+          "gametype": "hq",
+          "script": "hq",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 1,
+          "map": "mp_deadzone",
+          "gametype": "hq",
+          "script": "hq",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 2,
+          "map": "mp_emporium",
+          "gametype": "hq",
+          "script": "hq",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 3,
+          "map": "mp_euphrates",
+          "gametype": "hq",
+          "script": "hq",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 4,
+          "map": "mp_raid",
+          "gametype": "hq",
+          "script": "hq",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "name": "10v10 Kill Confirmed",
+      "native_name": "PLAYLIST/KC_BIG_NAME",
+      "group": "Multiplayer",
+      "launcher": "Multiplayer/start-014-10v10-kill-confirmed.cmd",
+      "max_players": 20,
+      "entries": [
+        {
+          "index": 0,
+          "map": "mp_aniyah",
+          "gametype": "conf_tdm",
+          "script": "conf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 1,
+          "map": "mp_deadzone",
+          "gametype": "conf_tdm",
+          "script": "conf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 2,
+          "map": "mp_emporium",
+          "gametype": "conf_tdm",
+          "script": "conf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 3,
+          "map": "mp_euphrates",
+          "gametype": "conf_tdm",
+          "script": "conf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 4,
+          "map": "mp_hideout",
+          "gametype": "conf_tdm",
+          "script": "conf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 5,
+          "map": "mp_raid",
+          "gametype": "conf_tdm",
+          "script": "conf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 6,
+          "map": "mp_village2",
+          "gametype": "conf_tdm",
+          "script": "conf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "name": "Gunfight Blueprints",
+      "native_name": "PLAYLIST/ARENABLUE_NAME3",
+      "group": "Multiplayer",
+      "launcher": "Multiplayer/start-015-gunfight-blueprints.cmd",
+      "max_players": 4,
+      "entries": [
+        {
+          "index": 0,
+          "map": "mp_m_cage",
+          "gametype": "arena",
+          "script": "arena",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 1,
+          "map": "mp_m_cargo",
+          "gametype": "arena",
+          "script": "arena",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 2,
+          "map": "mp_m_fork",
+          "gametype": "arena",
+          "script": "arena",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 3,
+          "map": "mp_m_hill",
+          "gametype": "arena",
+          "script": "arena",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 4,
+          "map": "mp_m_king",
+          "gametype": "arena",
+          "script": "arena",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 5,
+          "map": "mp_m_overunder",
+          "gametype": "arena",
+          "script": "arena",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 6,
+          "map": "mp_m_pine",
+          "gametype": "arena",
+          "script": "arena",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 7,
+          "map": "mp_m_showers",
+          "gametype": "arena",
+          "script": "arena",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 8,
+          "map": "mp_m_speedball",
+          "gametype": "arena",
+          "script": "arena",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 9,
+          "map": "mp_m_stack",
+          "gametype": "arena",
+          "script": "arena",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 10,
+          "map": "mp_rust",
+          "gametype": "arena",
+          "script": "arena",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 11,
+          "map": "mp_shipment",
+          "gametype": "arena",
+          "script": "arena",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "name": "3v3 Gunfight Knives",
+      "native_name": "PLAYLIST/ARENA3V3_KNIVES",
+      "group": "Multiplayer",
+      "launcher": "Multiplayer/start-016-3v3-gunfight-knives.cmd",
+      "max_players": 6,
+      "entries": [
+        {
+          "index": 0,
+          "map": "mp_m_cage",
+          "gametype": "arena_knives",
+          "script": "arena",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 1,
+          "map": "mp_m_cargo",
+          "gametype": "arena_knives",
+          "script": "arena",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 2,
+          "map": "mp_m_fork",
+          "gametype": "arena_knives",
+          "script": "arena",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 3,
+          "map": "mp_m_hill",
+          "gametype": "arena_knives",
+          "script": "arena",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 4,
+          "map": "mp_m_king",
+          "gametype": "arena_knives",
+          "script": "arena",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 5,
+          "map": "mp_m_overunder",
+          "gametype": "arena_knives",
+          "script": "arena",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 6,
+          "map": "mp_m_pine",
+          "gametype": "arena_knives",
+          "script": "arena",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 7,
+          "map": "mp_m_showers",
+          "gametype": "arena_knives",
+          "script": "arena",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 8,
+          "map": "mp_m_speedball",
+          "gametype": "arena_knives",
+          "script": "arena",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 9,
+          "map": "mp_m_stack",
+          "gametype": "arena_knives",
+          "script": "arena",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 10,
+          "map": "mp_rust",
+          "gametype": "arena_knives",
+          "script": "arena",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 11,
+          "map": "mp_rust",
+          "gametype": "arena_knives",
+          "script": "arena",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 12,
+          "map": "mp_shipment",
+          "gametype": "arena_knives",
+          "script": "arena",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "name": "Hardcore Team Deathmatch",
+      "native_name": "PLAYLIST/HC_TDM_NAME",
+      "group": "Multiplayer",
+      "launcher": "Multiplayer/start-017-hardcore-team-deathmatch.cmd",
+      "max_players": 12,
+      "entries": [
+        {
+          "index": 0,
+          "map": "mp_aniyah_tac",
+          "gametype": "hc_tdm",
+          "script": "war",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 1,
+          "map": "mp_backlot2",
+          "gametype": "hc_tdm",
+          "script": "war",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 2,
+          "map": "mp_cave_am",
+          "gametype": "hc_tdm",
+          "script": "war",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 3,
+          "map": "mp_crash2",
+          "gametype": "hc_tdm",
+          "script": "war",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 4,
+          "map": "mp_deadzone",
+          "gametype": "hc_tdm",
+          "script": "war",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 5,
+          "map": "mp_emporium",
+          "gametype": "hc_tdm",
+          "script": "war",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 6,
+          "map": "mp_hackney_am",
+          "gametype": "hc_tdm",
+          "script": "war",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 7,
+          "map": "mp_m_speed",
+          "gametype": "hc_tdm",
+          "script": "war",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 8,
+          "map": "mp_petrograd",
+          "gametype": "hc_tdm",
+          "script": "war",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 9,
+          "map": "mp_piccadilly",
+          "gametype": "hc_tdm",
+          "script": "war",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 10,
+          "map": "mp_raid",
+          "gametype": "hc_tdm",
+          "script": "war",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 11,
+          "map": "mp_runner",
+          "gametype": "hc_tdm",
+          "script": "war",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 12,
+          "map": "mp_rust",
+          "gametype": "hc_tdm",
+          "script": "war",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 13,
+          "map": "mp_shipment",
+          "gametype": "hc_tdm",
+          "script": "war",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 14,
+          "map": "mp_spear",
+          "gametype": "hc_tdm",
+          "script": "war",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 15,
+          "map": "mp_vacant",
+          "gametype": "hc_tdm",
+          "script": "war",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 16,
+          "map": "mp_village2",
+          "gametype": "hc_tdm",
+          "script": "war",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "name": "Hardcore Domination",
+      "native_name": "PLAYLIST/HC_DOM_NAME",
+      "group": "Multiplayer",
+      "launcher": "Multiplayer/start-018-hardcore-domination.cmd",
+      "max_players": 12,
+      "entries": [
+        {
+          "index": 0,
+          "map": "mp_aniyah_tac",
+          "gametype": "hc_dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 1,
+          "map": "mp_backlot2",
+          "gametype": "hc_dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 2,
+          "map": "mp_cave_am",
+          "gametype": "hc_dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 3,
+          "map": "mp_crash2",
+          "gametype": "hc_dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 4,
+          "map": "mp_deadzone",
+          "gametype": "hc_dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 5,
+          "map": "mp_emporium",
+          "gametype": "hc_dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 6,
+          "map": "mp_hackney_am",
+          "gametype": "hc_dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 7,
+          "map": "mp_m_speed",
+          "gametype": "hc_dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 8,
+          "map": "mp_petrograd",
+          "gametype": "hc_dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 9,
+          "map": "mp_piccadilly",
+          "gametype": "hc_dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 10,
+          "map": "mp_raid",
+          "gametype": "hc_dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 11,
+          "map": "mp_runner",
+          "gametype": "hc_dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 12,
+          "map": "mp_rust",
+          "gametype": "hc_dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 13,
+          "map": "mp_shipment",
+          "gametype": "hc_dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 14,
+          "map": "mp_spear",
+          "gametype": "hc_dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 15,
+          "map": "mp_vacant",
+          "gametype": "hc_dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 16,
+          "map": "mp_village2",
+          "gametype": "hc_dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "name": "Hardcore Search and Destroy",
+      "native_name": "PLAYLIST/HC_SD_NAME",
+      "group": "Multiplayer",
+      "launcher": "Multiplayer/start-019-hardcore-search-and-destroy.cmd",
+      "max_players": 12,
+      "entries": [
+        {
+          "index": 0,
+          "map": "mp_backlot2",
+          "gametype": "hc_sd",
+          "script": "sd",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 1,
+          "map": "mp_cave_am",
+          "gametype": "hc_sd",
+          "script": "sd",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 2,
+          "map": "mp_crash2",
+          "gametype": "hc_sd",
+          "script": "sd",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 3,
+          "map": "mp_deadzone",
+          "gametype": "hc_sd",
+          "script": "sd",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 4,
+          "map": "mp_emporium",
+          "gametype": "hc_sd",
+          "script": "sd",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 5,
+          "map": "mp_hackney_am",
+          "gametype": "hc_sd",
+          "script": "sd",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 6,
+          "map": "mp_hideout",
+          "gametype": "hc_sd",
+          "script": "sd",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 7,
+          "map": "mp_m_speed",
+          "gametype": "hc_sd",
+          "script": "sd",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 8,
+          "map": "mp_petrograd",
+          "gametype": "hc_sd",
+          "script": "sd",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 9,
+          "map": "mp_piccadilly",
+          "gametype": "hc_sd",
+          "script": "sd",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 10,
+          "map": "mp_raid",
+          "gametype": "hc_sd",
+          "script": "sd",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 11,
+          "map": "mp_runner",
+          "gametype": "hc_sd",
+          "script": "sd",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 12,
+          "map": "mp_rust",
+          "gametype": "hc_sd",
+          "script": "sd",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 13,
+          "map": "mp_spear",
+          "gametype": "hc_sd",
+          "script": "sd",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 14,
+          "map": "mp_vacant",
+          "gametype": "hc_sd",
+          "script": "sd",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 15,
+          "map": "mp_village2",
+          "gametype": "hc_sd",
+          "script": "sd",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "name": "Hardcore Cyber Attack",
+      "native_name": "PLAYLIST/HC_CYBER_NAME",
+      "group": "Multiplayer",
+      "launcher": "Multiplayer/start-020-hardcore-cyber-attack.cmd",
+      "max_players": 12,
+      "entries": [
+        {
+          "index": 0,
+          "map": "mp_backlot2",
+          "gametype": "hc_cyber",
+          "script": "cyber",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 1,
+          "map": "mp_cave_am",
+          "gametype": "hc_cyber",
+          "script": "cyber",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 2,
+          "map": "mp_crash2",
+          "gametype": "hc_cyber",
+          "script": "cyber",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 3,
+          "map": "mp_deadzone",
+          "gametype": "hc_cyber",
+          "script": "cyber",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 4,
+          "map": "mp_emporium",
+          "gametype": "hc_cyber",
+          "script": "cyber",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 5,
+          "map": "mp_hackney_am",
+          "gametype": "hc_cyber",
+          "script": "cyber",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 6,
+          "map": "mp_hideout",
+          "gametype": "hc_cyber",
+          "script": "cyber",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 7,
+          "map": "mp_m_speed",
+          "gametype": "hc_cyber",
+          "script": "cyber",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 8,
+          "map": "mp_petrograd",
+          "gametype": "hc_cyber",
+          "script": "cyber",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 9,
+          "map": "mp_piccadilly",
+          "gametype": "hc_cyber",
+          "script": "cyber",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 10,
+          "map": "mp_raid",
+          "gametype": "hc_cyber",
+          "script": "cyber",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 11,
+          "map": "mp_runner",
+          "gametype": "hc_cyber",
+          "script": "cyber",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 12,
+          "map": "mp_rust",
+          "gametype": "hc_cyber",
+          "script": "cyber",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 13,
+          "map": "mp_spear",
+          "gametype": "hc_cyber",
+          "script": "cyber",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 14,
+          "map": "mp_vacant",
+          "gametype": "hc_cyber",
+          "script": "cyber",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 15,
+          "map": "mp_village2",
+          "gametype": "hc_cyber",
+          "script": "cyber",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "name": "Hardcore Headquarters",
+      "native_name": "PLAYLIST/HC_HQ_NAME",
+      "group": "Multiplayer",
+      "launcher": "Multiplayer/start-021-hardcore-headquarters.cmd",
+      "max_players": 12,
+      "entries": [
+        {
+          "index": 0,
+          "map": "mp_backlot2",
+          "gametype": "hc_hq",
+          "script": "hq",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 1,
+          "map": "mp_cave_am",
+          "gametype": "hc_hq",
+          "script": "hq",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 2,
+          "map": "mp_crash2",
+          "gametype": "hc_hq",
+          "script": "hq",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 3,
+          "map": "mp_deadzone",
+          "gametype": "hc_hq",
+          "script": "hq",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 4,
+          "map": "mp_emporium",
+          "gametype": "hc_hq",
+          "script": "hq",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 5,
+          "map": "mp_hackney_am",
+          "gametype": "hc_hq",
+          "script": "hq",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 6,
+          "map": "mp_hideout",
+          "gametype": "hc_hq",
+          "script": "hq",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 7,
+          "map": "mp_m_speed",
+          "gametype": "hc_hq",
+          "script": "hq",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 8,
+          "map": "mp_petrograd",
+          "gametype": "hc_hq",
+          "script": "hq",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 9,
+          "map": "mp_piccadilly",
+          "gametype": "hc_hq",
+          "script": "hq",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 10,
+          "map": "mp_raid",
+          "gametype": "hc_hq",
+          "script": "hq",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 11,
+          "map": "mp_runner",
+          "gametype": "hc_hq",
+          "script": "hq",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 12,
+          "map": "mp_rust",
+          "gametype": "hc_hq",
+          "script": "hq",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 13,
+          "map": "mp_shipment",
+          "gametype": "hc_hq",
+          "script": "hq",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 14,
+          "map": "mp_spear",
+          "gametype": "hc_hq",
+          "script": "hq",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 15,
+          "map": "mp_vacant",
+          "gametype": "hc_hq",
+          "script": "hq",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 16,
+          "map": "mp_village2",
+          "gametype": "hc_hq",
+          "script": "hq",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "name": "Hardcore Kill Confirmed",
+      "native_name": "PLAYLIST/HC_CONF_TDM_NAME",
+      "group": "Multiplayer",
+      "launcher": "Multiplayer/start-022-hardcore-kill-confirmed.cmd",
+      "max_players": 12,
+      "entries": [
+        {
+          "index": 0,
+          "map": "mp_backlot2",
+          "gametype": "hc_conf_tdm",
+          "script": "conf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 1,
+          "map": "mp_cave_am",
+          "gametype": "hc_conf_tdm",
+          "script": "conf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 2,
+          "map": "mp_crash2",
+          "gametype": "hc_conf_tdm",
+          "script": "conf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 3,
+          "map": "mp_emporium",
+          "gametype": "hc_conf_tdm",
+          "script": "conf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 4,
+          "map": "mp_hackney_am",
+          "gametype": "hc_conf_tdm",
+          "script": "conf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 5,
+          "map": "mp_hideout",
+          "gametype": "hc_conf_tdm",
+          "script": "conf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 6,
+          "map": "mp_m_speed",
+          "gametype": "hc_conf_tdm",
+          "script": "conf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 7,
+          "map": "mp_petrograd",
+          "gametype": "hc_conf_tdm",
+          "script": "conf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 8,
+          "map": "mp_piccadilly",
+          "gametype": "hc_conf_tdm",
+          "script": "conf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 9,
+          "map": "mp_runner",
+          "gametype": "hc_conf_tdm",
+          "script": "conf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 10,
+          "map": "mp_rust",
+          "gametype": "hc_conf_tdm",
+          "script": "conf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 11,
+          "map": "mp_shipment",
+          "gametype": "hc_conf_tdm",
+          "script": "conf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 12,
+          "map": "mp_spear",
+          "gametype": "hc_conf_tdm",
+          "script": "conf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 13,
+          "map": "mp_vacant",
+          "gametype": "hc_conf_tdm",
+          "script": "conf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 14,
+          "map": "mp_village2",
+          "gametype": "hc_conf_tdm",
+          "script": "conf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        }
+      ]
+    },
+    {
+      "id": 23,
+      "name": "Infected SMGs",
+      "native_name": "PLAYLIST/INFECT_NAME",
+      "group": "Multiplayer",
+      "launcher": "Multiplayer/start-023-infected-smgs.cmd",
+      "max_players": 18,
+      "entries": [
+        {
+          "index": 0,
+          "map": "mp_aniyah_tac",
+          "gametype": "infect_smg",
+          "script": "infect",
+          "weight": 1,
+          "recipe": true,
+          "hardcore": false
+        },
+        {
+          "index": 1,
+          "map": "mp_backlot2",
+          "gametype": "infect_smg",
+          "script": "infect",
+          "weight": 1,
+          "recipe": true,
+          "hardcore": false
+        },
+        {
+          "index": 2,
+          "map": "mp_crash2",
+          "gametype": "infect_smg",
+          "script": "infect",
+          "weight": 1,
+          "recipe": true,
+          "hardcore": false
+        },
+        {
+          "index": 3,
+          "map": "mp_emporium",
+          "gametype": "infect_smg",
+          "script": "infect",
+          "weight": 1,
+          "recipe": true,
+          "hardcore": false
+        },
+        {
+          "index": 4,
+          "map": "mp_hackney_yard",
+          "gametype": "infect_smg",
+          "script": "infect",
+          "weight": 1,
+          "recipe": true,
+          "hardcore": false
+        },
+        {
+          "index": 5,
+          "map": "mp_hideout",
+          "gametype": "infect_smg",
+          "script": "infect",
+          "weight": 1,
+          "recipe": true,
+          "hardcore": false
+        },
+        {
+          "index": 6,
+          "map": "mp_m_speed",
+          "gametype": "infect_smg",
+          "script": "infect",
+          "weight": 1,
+          "recipe": true,
+          "hardcore": false
+        },
+        {
+          "index": 7,
+          "map": "mp_piccadilly",
+          "gametype": "infect_smg",
+          "script": "infect",
+          "weight": 1,
+          "recipe": true,
+          "hardcore": false
+        },
+        {
+          "index": 8,
+          "map": "mp_raid",
+          "gametype": "infect_smg",
+          "script": "infect",
+          "weight": 1,
+          "recipe": true,
+          "hardcore": false
+        },
+        {
+          "index": 9,
+          "map": "mp_rust",
+          "gametype": "infect_smg",
+          "script": "infect",
+          "weight": 1,
+          "recipe": true,
+          "hardcore": false
+        },
+        {
+          "index": 10,
+          "map": "mp_spear_pm",
+          "gametype": "infect_smg",
+          "script": "infect",
+          "weight": 1,
+          "recipe": true,
+          "hardcore": false
+        },
+        {
+          "index": 11,
+          "map": "mp_vacant",
+          "gametype": "infect_smg",
+          "script": "infect",
+          "weight": 1,
+          "recipe": true,
+          "hardcore": false
+        },
+        {
+          "index": 12,
+          "map": "mp_village2",
+          "gametype": "infect_smg",
+          "script": "infect",
+          "weight": 1,
+          "recipe": true,
+          "hardcore": false
+        }
+      ]
+    },
+    {
+      "id": 24,
+      "name": "10v10 Mosh Pit",
+      "native_name": "PLAYLIST/BIG_MOSHPIT",
+      "group": "Multiplayer",
+      "launcher": "Multiplayer/start-024-10v10-mosh-pit.cmd",
+      "max_players": 20,
+      "entries": [
+        {
+          "index": 0,
+          "map": "mp_crash2",
+          "gametype": "dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 1,
+          "map": "mp_deadzone",
+          "gametype": "dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 2,
+          "map": "mp_emporium",
+          "gametype": "dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 3,
+          "map": "mp_euphrates",
+          "gametype": "dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 4,
+          "map": "mp_hideout",
+          "gametype": "dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 5,
+          "map": "mp_raid",
+          "gametype": "dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 6,
+          "map": "mp_runner",
+          "gametype": "dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 7,
+          "map": "mp_spear",
+          "gametype": "dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 8,
+          "map": "mp_village2",
+          "gametype": "dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        }
+      ]
+    },
+    {
+      "id": 25,
+      "name": "BR Trios",
+      "native_name": "PLAYLIST/BRTRIOS_NAME",
+      "group": "Warzone",
+      "launcher": "Warzone/start-025-br-trios.cmd",
+      "max_players": 150,
+      "entries": [
+        {
+          "index": 0,
+          "map": "mp_donetsk",
+          "gametype": "brplund",
+          "script": "br",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        }
+      ]
+    },
+    {
+      "id": 27,
+      "name": "Ground War Tavorsk District",
+      "native_name": "LUA_MENU/MAPNAME_DWNTWN_DNTSK",
+      "group": "Multiplayer",
+      "launcher": "Multiplayer/start-027-ground-war-tavorsk-district.cmd",
+      "max_players": 64,
+      "entries": [
+        {
+          "index": 0,
+          "map": "mp_downtown_gw",
+          "gametype": "arm",
+          "script": "arm",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        }
+      ]
+    },
+    {
+      "id": 28,
+      "name": "Ground War Karst River Quarry",
+      "native_name": "LUA_MENU/MAPNAME_QUARRY2",
+      "group": "Multiplayer",
+      "launcher": "Multiplayer/start-028-ground-war-karst-river-quarry.cmd",
+      "max_players": 64,
+      "entries": [
+        {
+          "index": 0,
+          "map": "mp_quarry2",
+          "gametype": "arm",
+          "script": "arm",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        }
+      ]
+    },
+    {
+      "id": 29,
+      "name": "Ground War Krovnik Farmland",
+      "native_name": "LUA_MENU/MAPNAME_FARMS2",
+      "group": "Multiplayer",
+      "launcher": "Multiplayer/start-029-ground-war-krovnik-farmland.cmd",
+      "max_players": 64,
+      "entries": [
+        {
+          "index": 0,
+          "map": "mp_farms2_gw",
+          "gametype": "arm",
+          "script": "arm",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        }
+      ]
+    },
+    {
+      "id": 31,
+      "name": "Ground War Port of Verdansk",
+      "native_name": "LUA_MENU/MAPNAME_PORT2",
+      "group": "Multiplayer",
+      "launcher": "Multiplayer/start-031-ground-war-port-of-verdansk.cmd",
+      "max_players": 64,
+      "entries": [
+        {
+          "index": 0,
+          "map": "mp_port2_gw",
+          "gametype": "arm",
+          "script": "arm",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        }
+      ]
+    },
+    {
+      "id": 32,
+      "name": "Shipment Shoot House Rust Mosh Pit",
+      "native_name": "PLAYLIST/SPD_HOUSE_RUST_NAME",
+      "group": "Multiplayer",
+      "launcher": "Multiplayer/start-032-shipment-shoot-house-rust-mosh-pit.cmd",
+      "max_players": 10,
+      "entries": [
+        {
+          "index": 0,
+          "map": "mp_m_speed",
+          "gametype": "conf_tdm",
+          "script": "conf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 1,
+          "map": "mp_m_speed",
+          "gametype": "cranked",
+          "script": "war",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 2,
+          "map": "mp_m_speed",
+          "gametype": "dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 3,
+          "map": "mp_m_speed",
+          "gametype": "hq",
+          "script": "hq",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 4,
+          "map": "mp_m_speed",
+          "gametype": "koth",
+          "script": "koth",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 5,
+          "map": "mp_rust",
+          "gametype": "conf_tdm",
+          "script": "conf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 6,
+          "map": "mp_rust",
+          "gametype": "cranked",
+          "script": "war",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 7,
+          "map": "mp_rust",
+          "gametype": "dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 8,
+          "map": "mp_rust",
+          "gametype": "grind",
+          "script": "grind",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 9,
+          "map": "mp_rust",
+          "gametype": "hq",
+          "script": "hq",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 10,
+          "map": "mp_rust",
+          "gametype": "koth",
+          "script": "koth",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 11,
+          "map": "mp_shipment",
+          "gametype": "conf_tdm",
+          "script": "conf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 12,
+          "map": "mp_shipment",
+          "gametype": "cranked",
+          "script": "war",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 13,
+          "map": "mp_shipment",
+          "gametype": "dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 14,
+          "map": "mp_shipment",
+          "gametype": "grind",
+          "script": "grind",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 15,
+          "map": "mp_shipment",
+          "gametype": "koth",
+          "script": "koth",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 16,
+          "map": "mp_shipment",
+          "gametype": "tdm",
+          "script": "war",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        }
+      ]
+    },
+    {
+      "id": 33,
+      "name": "Realism Hardpoint",
+      "native_name": "PLAYLIST/REALISM_HARDPOINT",
+      "group": "Multiplayer",
+      "launcher": "Multiplayer/start-033-realism-hardpoint.cmd",
+      "max_players": 12,
+      "entries": [
+        {
+          "index": 0,
+          "map": "mp_backlot2",
+          "gametype": "koth",
+          "script": "koth",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 1,
+          "map": "mp_cave",
+          "gametype": "koth",
+          "script": "koth",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 2,
+          "map": "mp_cave_am",
+          "gametype": "koth",
+          "script": "koth",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 3,
+          "map": "mp_crash2",
+          "gametype": "koth",
+          "script": "koth",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 4,
+          "map": "mp_hackney_am",
+          "gametype": "koth",
+          "script": "koth",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 5,
+          "map": "mp_hackney_yard",
+          "gametype": "koth",
+          "script": "koth",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 6,
+          "map": "mp_hardhat",
+          "gametype": "koth",
+          "script": "koth",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 7,
+          "map": "mp_hideout",
+          "gametype": "koth",
+          "script": "koth",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 8,
+          "map": "mp_m_speed",
+          "gametype": "koth",
+          "script": "koth",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 9,
+          "map": "mp_petrograd",
+          "gametype": "koth",
+          "script": "koth",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 10,
+          "map": "mp_piccadilly",
+          "gametype": "koth",
+          "script": "koth",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 11,
+          "map": "mp_raid",
+          "gametype": "koth",
+          "script": "koth",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 12,
+          "map": "mp_runner",
+          "gametype": "koth",
+          "script": "koth",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 13,
+          "map": "mp_runner_pm",
+          "gametype": "koth",
+          "script": "koth",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 14,
+          "map": "mp_shipment",
+          "gametype": "koth",
+          "script": "koth",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 15,
+          "map": "mp_vacant",
+          "gametype": "koth",
+          "script": "koth",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 16,
+          "map": "mp_village2",
+          "gametype": "koth",
+          "script": "koth",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        }
+      ]
+    },
+    {
+      "id": 34,
+      "name": "Realism Domination",
+      "native_name": "PLAYLIST/REALISM_DOM",
+      "group": "Multiplayer",
+      "launcher": "Multiplayer/start-034-realism-domination.cmd",
+      "max_players": 12,
+      "entries": [
+        {
+          "index": 0,
+          "map": "mp_backlot2",
+          "gametype": "dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 1,
+          "map": "mp_cave",
+          "gametype": "dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 2,
+          "map": "mp_cave_am",
+          "gametype": "dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 3,
+          "map": "mp_crash2",
+          "gametype": "dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 4,
+          "map": "mp_hackney_am",
+          "gametype": "dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 5,
+          "map": "mp_hackney_yard",
+          "gametype": "dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 6,
+          "map": "mp_hardhat",
+          "gametype": "dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 7,
+          "map": "mp_hideout",
+          "gametype": "dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 8,
+          "map": "mp_m_speed",
+          "gametype": "dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 9,
+          "map": "mp_petrograd",
+          "gametype": "dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 10,
+          "map": "mp_piccadilly",
+          "gametype": "dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 11,
+          "map": "mp_raid",
+          "gametype": "dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 12,
+          "map": "mp_runner",
+          "gametype": "dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 13,
+          "map": "mp_runner_pm",
+          "gametype": "dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 14,
+          "map": "mp_shipment",
+          "gametype": "dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 15,
+          "map": "mp_spear",
+          "gametype": "dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 16,
+          "map": "mp_spear_pm",
+          "gametype": "dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 17,
+          "map": "mp_vacant",
+          "gametype": "dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 18,
+          "map": "mp_village2",
+          "gametype": "dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        }
+      ]
+    },
+    {
+      "id": 35,
+      "name": "Realism Kill Confirmed",
+      "native_name": "PLAYLIST/REALISM_KC",
+      "group": "Multiplayer",
+      "launcher": "Multiplayer/start-035-realism-kill-confirmed.cmd",
+      "max_players": 12,
+      "entries": [
+        {
+          "index": 0,
+          "map": "mp_backlot2",
+          "gametype": "conf_tdm",
+          "script": "conf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 1,
+          "map": "mp_cave",
+          "gametype": "conf_tdm",
+          "script": "conf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 2,
+          "map": "mp_cave_am",
+          "gametype": "conf_tdm",
+          "script": "conf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 3,
+          "map": "mp_crash2",
+          "gametype": "conf_tdm",
+          "script": "conf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 4,
+          "map": "mp_hackney_am",
+          "gametype": "conf_tdm",
+          "script": "conf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 5,
+          "map": "mp_hackney_yard",
+          "gametype": "conf_tdm",
+          "script": "conf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 6,
+          "map": "mp_hardhat",
+          "gametype": "conf_tdm",
+          "script": "conf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 7,
+          "map": "mp_hideout",
+          "gametype": "conf_tdm",
+          "script": "conf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 8,
+          "map": "mp_m_speed",
+          "gametype": "conf_tdm",
+          "script": "conf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 9,
+          "map": "mp_petrograd",
+          "gametype": "conf_tdm",
+          "script": "conf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 10,
+          "map": "mp_piccadilly",
+          "gametype": "conf_tdm",
+          "script": "conf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 11,
+          "map": "mp_raid",
+          "gametype": "conf_tdm",
+          "script": "conf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 12,
+          "map": "mp_runner",
+          "gametype": "conf_tdm",
+          "script": "conf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 13,
+          "map": "mp_runner_pm",
+          "gametype": "conf_tdm",
+          "script": "conf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 14,
+          "map": "mp_shipment",
+          "gametype": "conf_tdm",
+          "script": "conf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 15,
+          "map": "mp_spear",
+          "gametype": "conf_tdm",
+          "script": "conf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 16,
+          "map": "mp_spear_pm",
+          "gametype": "conf_tdm",
+          "script": "conf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 17,
+          "map": "mp_vacant",
+          "gametype": "conf_tdm",
+          "script": "conf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 18,
+          "map": "mp_village2",
+          "gametype": "conf_tdm",
+          "script": "conf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        }
+      ]
+    },
+    {
+      "id": 36,
+      "name": "Hardcore 10v10 Mosh Pit",
+      "native_name": "PLAYLIST/HC_10V10_MOSHPIT",
+      "group": "Multiplayer",
+      "launcher": "Multiplayer/start-036-hardcore-10v10-mosh-pit.cmd",
+      "max_players": 20,
+      "entries": [
+        {
+          "index": 0,
+          "map": "mp_aniyah_tac",
+          "gametype": "hc_tdm",
+          "script": "war",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 1,
+          "map": "mp_backlot2",
+          "gametype": "hc_tdm",
+          "script": "war",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 2,
+          "map": "mp_crash2",
+          "gametype": "hc_tdm",
+          "script": "war",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 3,
+          "map": "mp_deadzone",
+          "gametype": "hc_tdm",
+          "script": "war",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 4,
+          "map": "mp_emporium",
+          "gametype": "hc_tdm",
+          "script": "war",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 5,
+          "map": "mp_euphrates",
+          "gametype": "hc_tdm",
+          "script": "war",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 6,
+          "map": "mp_hideout",
+          "gametype": "hc_tdm",
+          "script": "war",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 7,
+          "map": "mp_raid",
+          "gametype": "hc_tdm",
+          "script": "war",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 8,
+          "map": "mp_runner",
+          "gametype": "hc_tdm",
+          "script": "war",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 9,
+          "map": "mp_spear",
+          "gametype": "hc_tdm",
+          "script": "war",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 10,
+          "map": "mp_village2",
+          "gametype": "hc_tdm",
+          "script": "war",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        }
+      ]
+    },
+    {
+      "id": 37,
+      "name": "Hardcore 10v10 Domination",
+      "native_name": "PLAYLIST/HC_DOM_NAME",
+      "group": "Multiplayer",
+      "launcher": "Multiplayer/start-037-hardcore-10v10-domination.cmd",
+      "max_players": 20,
+      "entries": [
+        {
+          "index": 0,
+          "map": "mp_aniyah_tac",
+          "gametype": "hc_dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 1,
+          "map": "mp_backlot2",
+          "gametype": "hc_dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 2,
+          "map": "mp_crash2",
+          "gametype": "hc_dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 3,
+          "map": "mp_deadzone",
+          "gametype": "hc_dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 4,
+          "map": "mp_emporium",
+          "gametype": "hc_dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 5,
+          "map": "mp_euphrates",
+          "gametype": "hc_dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 6,
+          "map": "mp_hideout",
+          "gametype": "hc_dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 7,
+          "map": "mp_raid",
+          "gametype": "hc_dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 8,
+          "map": "mp_runner",
+          "gametype": "hc_dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 9,
+          "map": "mp_spear",
+          "gametype": "hc_dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 10,
+          "map": "mp_village2",
+          "gametype": "hc_dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        }
+      ]
+    },
+    {
+      "id": 39,
+      "name": "Ground War Zhokov Boneyard",
+      "native_name": "LUA_MENU/MAPNAME_BONEYARD",
+      "group": "Multiplayer",
+      "launcher": "Multiplayer/start-039-ground-war-zhokov-boneyard.cmd",
+      "max_players": 64,
+      "entries": [
+        {
+          "index": 0,
+          "map": "mp_boneyard_gw",
+          "gametype": "arm",
+          "script": "arm",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        }
+      ]
+    },
+    {
+      "id": 40,
+      "name": "Giant Infected",
+      "native_name": "PLAYLIST/GWINF_NAME4",
+      "group": "Multiplayer",
+      "launcher": "Multiplayer/start-040-giant-infected.cmd",
+      "max_players": 48,
+      "entries": [
+        {
+          "index": 0,
+          "map": "mp_boneyard_gw",
+          "gametype": "big_ar",
+          "script": "infect",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 1,
+          "map": "mp_boneyard_gw",
+          "gametype": "big_pistol",
+          "script": "infect",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 2,
+          "map": "mp_boneyard_gw",
+          "gametype": "big_shotgun",
+          "script": "infect",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 3,
+          "map": "mp_boneyard_gw",
+          "gametype": "big_smg",
+          "script": "infect",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 4,
+          "map": "mp_boneyard_gw",
+          "gametype": "big_sniper",
+          "script": "infect",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 5,
+          "map": "mp_downtown_gw",
+          "gametype": "big_ar",
+          "script": "infect",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 6,
+          "map": "mp_downtown_gw",
+          "gametype": "big_pistol",
+          "script": "infect",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 7,
+          "map": "mp_downtown_gw",
+          "gametype": "big_shotgun",
+          "script": "infect",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 8,
+          "map": "mp_downtown_gw",
+          "gametype": "big_smg",
+          "script": "infect",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 9,
+          "map": "mp_downtown_gw",
+          "gametype": "big_sniper",
+          "script": "infect",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 10,
+          "map": "mp_farms2_gw",
+          "gametype": "big_ar",
+          "script": "infect",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 11,
+          "map": "mp_farms2_gw",
+          "gametype": "big_pistol",
+          "script": "infect",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 12,
+          "map": "mp_farms2_gw",
+          "gametype": "big_shotgun",
+          "script": "infect",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 13,
+          "map": "mp_farms2_gw",
+          "gametype": "big_smg",
+          "script": "infect",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 14,
+          "map": "mp_farms2_gw",
+          "gametype": "big_sniper",
+          "script": "infect",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 15,
+          "map": "mp_port2_gw",
+          "gametype": "big_ar",
+          "script": "infect",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 16,
+          "map": "mp_port2_gw",
+          "gametype": "big_pistol",
+          "script": "infect",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 17,
+          "map": "mp_port2_gw",
+          "gametype": "big_shotgun",
+          "script": "infect",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 18,
+          "map": "mp_port2_gw",
+          "gametype": "big_smg",
+          "script": "infect",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 19,
+          "map": "mp_port2_gw",
+          "gametype": "big_sniper",
+          "script": "infect",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 20,
+          "map": "mp_quarry2",
+          "gametype": "big_ar",
+          "script": "infect",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 21,
+          "map": "mp_quarry2",
+          "gametype": "big_pistol",
+          "script": "infect",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 22,
+          "map": "mp_quarry2",
+          "gametype": "big_shotgun",
+          "script": "infect",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 23,
+          "map": "mp_quarry2",
+          "gametype": "big_smg",
+          "script": "infect",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 24,
+          "map": "mp_quarry2",
+          "gametype": "big_sniper",
+          "script": "infect",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        }
+      ]
+    },
+    {
+      "id": 41,
+      "name": "Gun Game Reloaded",
+      "native_name": "PLAYLIST/GUN_RELOADED",
+      "group": "Multiplayer",
+      "launcher": "Multiplayer/start-041-gun-game-reloaded.cmd",
+      "max_players": 10,
+      "entries": [
+        {
+          "index": 0,
+          "map": "mp_backlot2",
+          "gametype": "gun",
+          "script": "gun",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 1,
+          "map": "mp_cave",
+          "gametype": "gun",
+          "script": "gun",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 2,
+          "map": "mp_cave_am",
+          "gametype": "gun",
+          "script": "gun",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 3,
+          "map": "mp_crash2",
+          "gametype": "gun",
+          "script": "gun",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 4,
+          "map": "mp_emporium",
+          "gametype": "gun",
+          "script": "gun",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 5,
+          "map": "mp_hackney_am",
+          "gametype": "gun",
+          "script": "gun",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 6,
+          "map": "mp_hackney_yard",
+          "gametype": "gun",
+          "script": "gun",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 7,
+          "map": "mp_hideout",
+          "gametype": "gun",
+          "script": "gun",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 8,
+          "map": "mp_m_speed",
+          "gametype": "gun",
+          "script": "gun",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 9,
+          "map": "mp_petrograd",
+          "gametype": "gun",
+          "script": "gun",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 10,
+          "map": "mp_piccadilly",
+          "gametype": "gun",
+          "script": "gun",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 11,
+          "map": "mp_runner",
+          "gametype": "gun",
+          "script": "gun",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 12,
+          "map": "mp_runner_pm",
+          "gametype": "gun",
+          "script": "gun",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 13,
+          "map": "mp_rust",
+          "gametype": "gun",
+          "script": "gun",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 14,
+          "map": "mp_shipment",
+          "gametype": "gun",
+          "script": "gun",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 15,
+          "map": "mp_spear",
+          "gametype": "gun",
+          "script": "gun",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 16,
+          "map": "mp_spear_pm",
+          "gametype": "gun",
+          "script": "gun",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 17,
+          "map": "mp_vacant",
+          "gametype": "gun",
+          "script": "gun",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 18,
+          "map": "mp_village2",
+          "gametype": "gun",
+          "script": "gun",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        }
+      ]
+    },
+    {
+      "id": 42,
+      "name": "Capture the Flag",
+      "native_name": "PLAYLIST/CTF_NAME",
+      "group": "Multiplayer",
+      "launcher": "Multiplayer/start-042-capture-the-flag.cmd",
+      "max_players": 12,
+      "entries": [
+        {
+          "index": 0,
+          "map": "mp_cave_am",
+          "gametype": "ctf",
+          "script": "ctf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 1,
+          "map": "mp_crash2",
+          "gametype": "ctf",
+          "script": "ctf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 2,
+          "map": "mp_deadzone",
+          "gametype": "ctf",
+          "script": "ctf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 3,
+          "map": "mp_emporium",
+          "gametype": "ctf",
+          "script": "ctf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 4,
+          "map": "mp_hackney_am",
+          "gametype": "ctf",
+          "script": "ctf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 5,
+          "map": "mp_m_speed",
+          "gametype": "ctf",
+          "script": "ctf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 6,
+          "map": "mp_petrograd",
+          "gametype": "ctf",
+          "script": "ctf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 7,
+          "map": "mp_piccadilly",
+          "gametype": "ctf",
+          "script": "ctf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 8,
+          "map": "mp_raid",
+          "gametype": "ctf",
+          "script": "ctf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 9,
+          "map": "mp_runner",
+          "gametype": "ctf",
+          "script": "ctf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 10,
+          "map": "mp_rust",
+          "gametype": "ctf",
+          "script": "ctf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 11,
+          "map": "mp_spear",
+          "gametype": "ctf",
+          "script": "ctf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 12,
+          "map": "mp_vacant",
+          "gametype": "ctf",
+          "script": "ctf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        }
+      ]
+    },
+    {
+      "id": 44,
+      "name": "Infected Assault Rifles",
+      "native_name": "PLAYLIST/INFECT_NAME",
+      "group": "Multiplayer",
+      "launcher": "Multiplayer/start-044-infected-assault-rifles.cmd",
+      "max_players": 18,
+      "entries": [
+        {
+          "index": 0,
+          "map": "mp_aniyah",
+          "gametype": "infect_ar",
+          "script": "infect",
+          "weight": 1,
+          "recipe": true,
+          "hardcore": false
+        },
+        {
+          "index": 1,
+          "map": "mp_aniyah_tac",
+          "gametype": "infect_ar",
+          "script": "infect",
+          "weight": 1,
+          "recipe": true,
+          "hardcore": false
+        },
+        {
+          "index": 2,
+          "map": "mp_backlot2",
+          "gametype": "infect_ar",
+          "script": "infect",
+          "weight": 1,
+          "recipe": true,
+          "hardcore": false
+        },
+        {
+          "index": 3,
+          "map": "mp_cave",
+          "gametype": "infect_ar",
+          "script": "infect",
+          "weight": 1,
+          "recipe": true,
+          "hardcore": false
+        },
+        {
+          "index": 4,
+          "map": "mp_deadzone",
+          "gametype": "infect_ar",
+          "script": "infect",
+          "weight": 1,
+          "recipe": true,
+          "hardcore": false
+        },
+        {
+          "index": 5,
+          "map": "mp_emporium",
+          "gametype": "infect_ar",
+          "script": "infect",
+          "weight": 1,
+          "recipe": true,
+          "hardcore": false
+        },
+        {
+          "index": 6,
+          "map": "mp_euphrates",
+          "gametype": "infect_ar",
+          "script": "infect",
+          "weight": 1,
+          "recipe": true,
+          "hardcore": false
+        },
+        {
+          "index": 7,
+          "map": "mp_hideout",
+          "gametype": "infect_ar",
+          "script": "infect",
+          "weight": 1,
+          "recipe": true,
+          "hardcore": false
+        },
+        {
+          "index": 8,
+          "map": "mp_petrograd",
+          "gametype": "infect_ar",
+          "script": "infect",
+          "weight": 1,
+          "recipe": true,
+          "hardcore": false
+        },
+        {
+          "index": 9,
+          "map": "mp_raid",
+          "gametype": "infect_ar",
+          "script": "infect",
+          "weight": 1,
+          "recipe": true,
+          "hardcore": false
+        },
+        {
+          "index": 10,
+          "map": "mp_runner",
+          "gametype": "infect_ar",
+          "script": "infect",
+          "weight": 1,
+          "recipe": true,
+          "hardcore": false
+        },
+        {
+          "index": 11,
+          "map": "mp_rust",
+          "gametype": "infect_ar",
+          "script": "infect",
+          "weight": 1,
+          "recipe": true,
+          "hardcore": false
+        },
+        {
+          "index": 12,
+          "map": "mp_spear",
+          "gametype": "infect_ar",
+          "script": "infect",
+          "weight": 1,
+          "recipe": true,
+          "hardcore": false
+        },
+        {
+          "index": 13,
+          "map": "mp_village2",
+          "gametype": "infect_ar",
+          "script": "infect",
+          "weight": 1,
+          "recipe": true,
+          "hardcore": false
+        }
+      ]
+    },
+    {
+      "id": 45,
+      "name": "CDL Hardpoint",
+      "native_name": "PLAYLIST/CDL_KOTH_NAME",
+      "group": "Multiplayer",
+      "launcher": "Multiplayer/start-045-cdl-hardpoint.cmd",
+      "max_players": 10,
+      "entries": [
+        {
+          "index": 0,
+          "map": "mp_cave_am",
+          "gametype": "mlg_koth_pl",
+          "script": "koth",
+          "weight": 1,
+          "recipe": true,
+          "hardcore": false
+        },
+        {
+          "index": 1,
+          "map": "mp_hackney_am",
+          "gametype": "mlg_koth_pl",
+          "script": "koth",
+          "weight": 1,
+          "recipe": true,
+          "hardcore": false
+        },
+        {
+          "index": 2,
+          "map": "mp_petrograd",
+          "gametype": "mlg_koth_pl",
+          "script": "koth",
+          "weight": 1,
+          "recipe": true,
+          "hardcore": false
+        },
+        {
+          "index": 3,
+          "map": "mp_runner",
+          "gametype": "mlg_koth_pl",
+          "script": "koth",
+          "weight": 1,
+          "recipe": true,
+          "hardcore": false
+        },
+        {
+          "index": 4,
+          "map": "mp_spear",
+          "gametype": "mlg_koth_pl",
+          "script": "koth",
+          "weight": 1,
+          "recipe": true,
+          "hardcore": false
+        }
+      ]
+    },
+    {
+      "id": 46,
+      "name": "CDL Domination",
+      "native_name": "PLAYLIST/CDL_DOM_NAME",
+      "group": "Multiplayer",
+      "launcher": "Multiplayer/start-046-cdl-domination.cmd",
+      "max_players": 10,
+      "entries": [
+        {
+          "index": 0,
+          "map": "mp_hackney_am",
+          "gametype": "mlg_dom_pl",
+          "script": "dom",
+          "weight": 1,
+          "recipe": true,
+          "hardcore": false
+        },
+        {
+          "index": 1,
+          "map": "mp_petrograd",
+          "gametype": "mlg_dom_pl",
+          "script": "dom",
+          "weight": 1,
+          "recipe": true,
+          "hardcore": false
+        },
+        {
+          "index": 2,
+          "map": "mp_runner",
+          "gametype": "mlg_dom_pl",
+          "script": "dom",
+          "weight": 1,
+          "recipe": true,
+          "hardcore": false
+        }
+      ]
+    },
+    {
+      "id": 47,
+      "name": "CDL Search and Destroy",
+      "native_name": "PLAYLIST/CDL_SD_NAME",
+      "group": "Multiplayer",
+      "launcher": "Multiplayer/start-047-cdl-search-and-destroy.cmd",
+      "max_players": 10,
+      "entries": [
+        {
+          "index": 0,
+          "map": "mp_deadzone",
+          "gametype": "mlg_sd_pl",
+          "script": "sd",
+          "weight": 1,
+          "recipe": true,
+          "hardcore": false
+        },
+        {
+          "index": 1,
+          "map": "mp_petrograd",
+          "gametype": "mlg_sd_pl",
+          "script": "sd",
+          "weight": 1,
+          "recipe": true,
+          "hardcore": false
+        },
+        {
+          "index": 2,
+          "map": "mp_piccadilly",
+          "gametype": "mlg_sd_pl",
+          "script": "sd",
+          "weight": 1,
+          "recipe": true,
+          "hardcore": false
+        },
+        {
+          "index": 3,
+          "map": "mp_runner",
+          "gametype": "mlg_sd_pl",
+          "script": "sd",
+          "weight": 1,
+          "recipe": true,
+          "hardcore": false
+        },
+        {
+          "index": 4,
+          "map": "mp_spear",
+          "gametype": "mlg_sd_pl",
+          "script": "sd",
+          "weight": 1,
+          "recipe": true,
+          "hardcore": false
+        }
+      ]
+    },
+    {
+      "id": 48,
+      "name": "Hardcore Free for All",
+      "native_name": "PLAYLIST/HC_FFA_NAME",
+      "group": "Multiplayer",
+      "launcher": "Multiplayer/start-048-hardcore-free-for-all.cmd",
+      "max_players": 8,
+      "entries": [
+        {
+          "index": 0,
+          "map": "mp_backlot2",
+          "gametype": "hc_dm",
+          "script": "dm",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 1,
+          "map": "mp_cave_am",
+          "gametype": "hc_dm",
+          "script": "dm",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 2,
+          "map": "mp_crash2",
+          "gametype": "hc_dm",
+          "script": "dm",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 3,
+          "map": "mp_emporium",
+          "gametype": "hc_dm",
+          "script": "dm",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 4,
+          "map": "mp_hackney_am",
+          "gametype": "hc_dm",
+          "script": "dm",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 5,
+          "map": "mp_hideout",
+          "gametype": "hc_dm",
+          "script": "dm",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 6,
+          "map": "mp_m_speed",
+          "gametype": "hc_dm",
+          "script": "dm",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 7,
+          "map": "mp_petrograd",
+          "gametype": "hc_dm",
+          "script": "dm",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 8,
+          "map": "mp_piccadilly",
+          "gametype": "hc_dm",
+          "script": "dm",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 9,
+          "map": "mp_runner",
+          "gametype": "hc_dm",
+          "script": "dm",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 10,
+          "map": "mp_rust",
+          "gametype": "hc_dm",
+          "script": "dm",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 11,
+          "map": "mp_shipment",
+          "gametype": "hc_dm",
+          "script": "dm",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 12,
+          "map": "mp_spear",
+          "gametype": "hc_dm",
+          "script": "dm",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 13,
+          "map": "mp_vacant",
+          "gametype": "hc_dm",
+          "script": "dm",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 14,
+          "map": "mp_village2",
+          "gametype": "hc_dm",
+          "script": "dm",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        }
+      ]
+    },
+    {
+      "id": 60,
+      "name": "Hardcore 10v10 Kill Confirmed",
+      "native_name": "PLAYLIST/HC_CONF_TDM_NAME",
+      "group": "Multiplayer",
+      "launcher": "Multiplayer/start-060-hardcore-10v10-kill-confirmed.cmd",
+      "max_players": 20,
+      "entries": [
+        {
+          "index": 0,
+          "map": "mp_aniyah",
+          "gametype": "hc_conf_tdm",
+          "script": "conf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 1,
+          "map": "mp_backlot2",
+          "gametype": "hc_conf_tdm",
+          "script": "conf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 2,
+          "map": "mp_crash2",
+          "gametype": "hc_conf_tdm",
+          "script": "conf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 3,
+          "map": "mp_deadzone",
+          "gametype": "hc_conf_tdm",
+          "script": "conf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 4,
+          "map": "mp_emporium",
+          "gametype": "hc_conf_tdm",
+          "script": "conf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 5,
+          "map": "mp_euphrates",
+          "gametype": "hc_conf_tdm",
+          "script": "conf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 6,
+          "map": "mp_hideout",
+          "gametype": "hc_conf_tdm",
+          "script": "conf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 7,
+          "map": "mp_raid",
+          "gametype": "hc_conf_tdm",
+          "script": "conf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 8,
+          "map": "mp_runner",
+          "gametype": "hc_conf_tdm",
+          "script": "conf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 9,
+          "map": "mp_village2",
+          "gametype": "hc_conf_tdm",
+          "script": "conf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        }
+      ]
+    },
+    {
+      "id": 61,
+      "name": "Hardcore Shipment Shoot House Rust Cranked",
+      "native_name": "PLAYLIST/HC_SP_SH_RU_NAME",
+      "group": "Multiplayer",
+      "launcher": "Multiplayer/start-061-hardcore-shipment-shoot-house-rust-cranked.cmd",
+      "max_players": 10,
+      "entries": [
+        {
+          "index": 0,
+          "map": "mp_m_speed",
+          "gametype": "hc_cranked",
+          "script": "war",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 1,
+          "map": "mp_rust",
+          "gametype": "hc_cranked",
+          "script": "war",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 2,
+          "map": "mp_shipment",
+          "gametype": "hc_cranked",
+          "script": "war",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        }
+      ]
+    },
+    {
+      "id": 62,
+      "name": "Hardcore Shipment Shoot House Rust Hardpoint",
+      "native_name": "PLAYLIST/HC_HARDPOINT_NAME",
+      "group": "Multiplayer",
+      "launcher": "Multiplayer/start-062-hardcore-shipment-shoot-house-rust-hardpoint.cmd",
+      "max_players": 10,
+      "entries": [
+        {
+          "index": 0,
+          "map": "mp_m_speed",
+          "gametype": "hc_koth",
+          "script": "koth",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 1,
+          "map": "mp_rust",
+          "gametype": "hc_koth",
+          "script": "koth",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 2,
+          "map": "mp_shipment",
+          "gametype": "hc_koth",
+          "script": "koth",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        }
+      ]
+    },
+    {
+      "id": 63,
+      "name": "Hardcore Shipment Shoot House Rust Kill Confirmed",
+      "native_name": "PLAYLIST/HC_CONF_TDM_NAME",
+      "group": "Multiplayer",
+      "launcher": "Multiplayer/start-063-hardcore-shipment-shoot-house-rust-kill-confirmed.cmd",
+      "max_players": 10,
+      "entries": [
+        {
+          "index": 0,
+          "map": "mp_m_speed",
+          "gametype": "hc_conf_tdm",
+          "script": "conf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 1,
+          "map": "mp_rust",
+          "gametype": "hc_conf_tdm",
+          "script": "conf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 2,
+          "map": "mp_shipment",
+          "gametype": "hc_conf_tdm",
+          "script": "conf",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        }
+      ]
+    },
+    {
+      "id": 64,
+      "name": "Hardcore Shipment Shoot House Rust Domination",
+      "native_name": "PLAYLIST/HC_DOM_NAME",
+      "group": "Multiplayer",
+      "launcher": "Multiplayer/start-064-hardcore-shipment-shoot-house-rust-domination.cmd",
+      "max_players": 10,
+      "entries": [
+        {
+          "index": 0,
+          "map": "mp_m_speed",
+          "gametype": "hc_dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 1,
+          "map": "mp_rust",
+          "gametype": "hc_dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        },
+        {
+          "index": 2,
+          "map": "mp_shipment",
+          "gametype": "hc_dom",
+          "script": "dom",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": true
+        }
+      ]
+    },
+    {
+      "id": 67,
+      "name": "Demolition",
+      "native_name": "PLAYLIST/DEMO_NAME",
+      "group": "Multiplayer",
+      "launcher": "Multiplayer/start-067-demolition.cmd",
+      "max_players": 12,
+      "entries": [
+        {
+          "index": 0,
+          "map": "mp_backlot2",
+          "gametype": "dd",
+          "script": "dd",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 1,
+          "map": "mp_cave_am",
+          "gametype": "dd",
+          "script": "dd",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 2,
+          "map": "mp_crash2",
+          "gametype": "dd",
+          "script": "dd",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 3,
+          "map": "mp_emporium",
+          "gametype": "dd",
+          "script": "dd",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 4,
+          "map": "mp_hackney_am",
+          "gametype": "dd",
+          "script": "dd",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 5,
+          "map": "mp_hideout",
+          "gametype": "dd",
+          "script": "dd",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 6,
+          "map": "mp_m_speed",
+          "gametype": "dd",
+          "script": "dd",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 7,
+          "map": "mp_m_speed",
+          "gametype": "dd",
+          "script": "dd",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 8,
+          "map": "mp_petrograd",
+          "gametype": "dd",
+          "script": "dd",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 9,
+          "map": "mp_piccadilly",
+          "gametype": "dd",
+          "script": "dd",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 10,
+          "map": "mp_raid",
+          "gametype": "dd",
+          "script": "dd",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 11,
+          "map": "mp_runner",
+          "gametype": "dd",
+          "script": "dd",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 12,
+          "map": "mp_rust",
+          "gametype": "dd",
+          "script": "dd",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 13,
+          "map": "mp_spear",
+          "gametype": "dd",
+          "script": "dd",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 14,
+          "map": "mp_vacant",
+          "gametype": "dd",
+          "script": "dd",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        },
+        {
+          "index": 15,
+          "map": "mp_village2",
+          "gametype": "dd",
+          "script": "dd",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        }
+      ]
+    },
+    {
+      "id": 71,
+      "name": "BR Buy Back Solos",
+      "native_name": "PLAYLIST/BRSOLOSTIM_NAME2",
+      "group": "Warzone",
+      "launcher": "Warzone/start-071-br-stimulus-solos.cmd",
+      "max_players": 150,
+      "entries": [
+        {
+          "index": 0,
+          "map": "mp_donetsk",
+          "gametype": "brInf",
+          "script": "br",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        }
+      ]
+    },
+    {
+      "id": 89,
+      "name": "BR Quads",
+      "native_name": "PLAYLIST/BRQUADS_NAME",
+      "group": "Warzone",
+      "launcher": "Warzone/start-089-br-quads.cmd",
+      "max_players": 152,
+      "entries": [
+        {
+          "index": 0,
+          "map": "mp_donetsk",
+          "gametype": "brplundQuad",
+          "script": "br",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        }
+      ]
+    },
+    {
+      "id": 104,
+      "name": "Blood Money",
+      "native_name": "PLAYLIST/BLDMNY_NAME",
+      "group": "Warzone",
+      "launcher": "Warzone/start-104-blood-money.cmd",
+      "max_players": 102,
+      "entries": [
+        {
+          "index": 0,
+          "map": "mp_donetsk",
+          "gametype": "dmz",
+          "script": "br",
+          "weight": 1,
+          "recipe": false,
+          "hardcore": false
+        }
+      ]
+    }
+  ]
+}

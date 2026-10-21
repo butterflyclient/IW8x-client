@@ -1,0 +1,7 @@
+{
+  "name": "IW8x Plugin API Acceptance",
+  "version": "1.0.0",
+  "api": 1,
+  "entry": "plugin_api_acceptance.dll"
+}
+

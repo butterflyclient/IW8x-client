@@ -1,0 +1,3627 @@
+{
+  "schema": 1,
+  "build": "Replay TU19 / 1.20.4.7623265",
+  "image_size": "0x1324b000",
+  "symbols": [
+    {
+      "name": "kGdiCloneBootstrapRVA",
+      "rva": "0x3061a0",
+      "aliases": [
+        "kGdiCloneBootstrapRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "social_bindings_c88a30",
+      "rva": "0xc88a30",
+      "aliases": [
+        "social_bindings_c88a30"
+      ],
+      "sources": [
+        "src/network/social_bindings.h"
+      ],
+      "expected_prefix": "40 53 48 83 EC 30 48 8B D9 C6 44 24 50 00 C6 44"
+    },
+    {
+      "name": "social_bindings_c88b20",
+      "rva": "0xc88b20",
+      "aliases": [
+        "social_bindings_c88b20"
+      ],
+      "sources": [
+        "src/network/social_bindings.h"
+      ],
+      "expected_prefix": "40 53 48 83 EC 30 48 8B D9 C6 44 24 50 00 C6 44"
+    },
+    {
+      "name": "social_bindings_c88c10",
+      "rva": "0xc88c10",
+      "aliases": [
+        "social_bindings_c88c10"
+      ],
+      "sources": [
+        "src/network/social_bindings.h"
+      ],
+      "expected_prefix": "48 89 5C 24 10 55 48 8B EC 48 83 EC 20 48 63 D9"
+    },
+    {
+      "name": "kBGOmnvarClearTablesRVA",
+      "rva": "0xcd5500",
+      "aliases": [
+        "kBGOmnvarClearTablesRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kBGOmnvarLoadTablesRVA",
+      "rva": "0xcd5c80",
+      "aliases": [
+        "kBGOmnvarLoadTablesRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kCollisionProcessRva",
+      "rva": "0xd6aea0",
+      "aliases": [
+        "kCollisionProcessRva"
+      ],
+      "sources": [
+        "src/dedicated/bap.cpp"
+      ]
+    },
+    {
+      "name": "kCLTransientsCollisionMPSetTransientModeRVA",
+      "rva": "0xd6b7d0",
+      "aliases": [
+        "kCLTransientsCollisionMPSetTransientModeRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kCreateD3DDeviceRVA",
+      "rva": "0xeb35a0",
+      "aliases": [
+        "kCreateD3DDeviceRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kCreateAGSD3DDeviceRVA",
+      "rva": "0xeb39a0",
+      "aliases": [
+        "kCreateAGSD3DDeviceRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "chat_bindings_f083f0",
+      "rva": "0xf083f0",
+      "aliases": [
+        "chat_bindings_f083f0",
+        "native_f083f0"
+      ],
+      "sources": [
+        "src/network/chat_bindings.h",
+        "src/network/chat_runtime.cpp"
+      ],
+      "expected_prefix": "48 89 5C 24 08 48 89 74 24 10 57 48 83 EC 20 41"
+    },
+    {
+      "name": "chat_bindings_f08490",
+      "rva": "0xf08490",
+      "aliases": [
+        "chat_bindings_f08490",
+        "native_f08490"
+      ],
+      "sources": [
+        "src/network/chat_bindings.h",
+        "src/network/chat_runtime.cpp"
+      ],
+      "expected_prefix": "48 89 5C 24 08 48 89 74 24 10 57 48 83 EC 20 49"
+    },
+    {
+      "name": "frontend_bindings_f19830",
+      "rva": "0xf19830",
+      "aliases": [
+        "frontend_bindings_f19830"
+      ],
+      "sources": [
+        "src/network/frontend_bindings.h"
+      ],
+      "expected_prefix": "40 53 48 83 EC 20 48 63 D9 0F 57 C0 F3 48 0F 2A"
+    },
+    {
+      "name": "frontend_bindings_f19890",
+      "rva": "0xf19890",
+      "aliases": [
+        "frontend_bindings_f19890"
+      ],
+      "sources": [
+        "src/network/frontend_bindings.h"
+      ],
+      "expected_prefix": "40 53 48 83 EC 20 48 63 D9 0F 57 C0 F3 48 0F 2A"
+    },
+    {
+      "name": "social_bindings_f198e0",
+      "rva": "0xf198e0",
+      "aliases": [
+        "social_bindings_f198e0"
+      ],
+      "sources": [
+        "src/network/social_bindings.h"
+      ],
+      "expected_prefix": "40 53 48 83 EC 20 48 63 D9 0F 57 C0 F3 48 0F 2A"
+    },
+    {
+      "name": "social_bindings_f1e480",
+      "rva": "0xf1e480",
+      "aliases": [
+        "social_bindings_f1e480",
+        "native_f1e480"
+      ],
+      "sources": [
+        "src/network/social_bindings.h",
+        "src/network/social_runtime.cpp"
+      ],
+      "expected_prefix": "4C 89 44 24 18 53 55 56 57 41 56 48 81 EC 10 01"
+    },
+    {
+      "name": "social_bindings_f1e840",
+      "rva": "0xf1e840",
+      "aliases": [
+        "social_bindings_f1e840"
+      ],
+      "sources": [
+        "src/network/social_bindings.h"
+      ],
+      "expected_prefix": "48 83 EC 28 E8 17 8D 5E 00 84 C0 74 12 33 C9 E8"
+    },
+    {
+      "name": "social_bindings_f1ef20",
+      "rva": "0xf1ef20",
+      "aliases": [
+        "social_bindings_f1ef20"
+      ],
+      "sources": [
+        "src/network/social_bindings.h"
+      ],
+      "expected_prefix": "40 53 48 83 EC 30 0F B6 81 F9 00 00 00 48 8D 91"
+    },
+    {
+      "name": "social_bindings_f1f210",
+      "rva": "0xf1f210",
+      "aliases": [
+        "social_bindings_f1f210"
+      ],
+      "sources": [
+        "src/network/social_bindings.h"
+      ],
+      "expected_prefix": "48 89 5C 24 08 48 89 74 24 10 4C 89 44 24 18 57"
+    },
+    {
+      "name": "social_bindings_f1f6a0",
+      "rva": "0xf1f6a0",
+      "aliases": [
+        "social_bindings_f1f6a0"
+      ],
+      "sources": [
+        "src/network/social_bindings.h"
+      ],
+      "expected_prefix": "40 53 48 83 EC 20 48 8B D9 8B 89 C0 00 00 00 E8"
+    },
+    {
+      "name": "frontend_bindings_f29b80",
+      "rva": "0xf29b80",
+      "aliases": [
+        "frontend_bindings_f29b80"
+      ],
+      "sources": [
+        "src/network/frontend_bindings.h"
+      ],
+      "expected_prefix": "40 57 48 81 EC B0 01 00 00 48 8B 05 68 A8 B2 04"
+    },
+    {
+      "name": "frontend_bindings_f29d70",
+      "rva": "0xf29d70",
+      "aliases": [
+        "frontend_bindings_f29d70"
+      ],
+      "sources": [
+        "src/network/frontend_bindings.h"
+      ],
+      "expected_prefix": "40 53 48 83 EC 30 48 8B D9 E8 32 9B 15 01 83 F8"
+    },
+    {
+      "name": "frontend_bindings_f2a1c0",
+      "rva": "0xf2a1c0",
+      "aliases": [
+        "frontend_bindings_f2a1c0"
+      ],
+      "sources": [
+        "src/network/frontend_bindings.h"
+      ],
+      "expected_prefix": "48 89 5C 24 08 57 48 83 EC 20 48 8B F9 E8 2E 3C"
+    },
+    {
+      "name": "frontend_bindings_f2a3c0",
+      "rva": "0xf2a3c0",
+      "aliases": [
+        "frontend_bindings_f2a3c0"
+      ],
+      "sources": [
+        "src/network/frontend_bindings.h"
+      ],
+      "expected_prefix": "40 57 48 81 EC C0 0D 00 00 48 8B 05 28 A0 B2 04"
+    },
+    {
+      "name": "native_f2ed80",
+      "rva": "0xf2ed80",
+      "aliases": [
+        "native_f2ed80",
+        "frontend_bindings_f2ed80"
+      ],
+      "sources": [
+        "src/network/frontend_backend.cpp",
+        "src/network/frontend_bindings.h"
+      ],
+      "expected_prefix": "48 89 5C 24 08 48 89 6C 24 10 48 89 74 24 18 57"
+    },
+    {
+      "name": "native_f2ee80",
+      "rva": "0xf2ee80",
+      "aliases": [
+        "native_f2ee80",
+        "frontend_bindings_f2ee80"
+      ],
+      "sources": [
+        "src/network/frontend_backend.cpp",
+        "src/network/frontend_bindings.h"
+      ],
+      "expected_prefix": "48 89 5C 24 08 48 89 74 24 10 57 48 83 EC 20 48"
+    },
+    {
+      "name": "frontend_bindings_f32fb0",
+      "rva": "0xf32fb0",
+      "aliases": [
+        "frontend_bindings_f32fb0"
+      ],
+      "sources": [
+        "src/network/frontend_bindings.h"
+      ],
+      "expected_prefix": "48 89 5C 24 08 57 48 83 EC 20 33 DB 66 C7 41 40"
+    },
+    {
+      "name": "frontend_bindings_f33150",
+      "rva": "0xf33150",
+      "aliases": [
+        "frontend_bindings_f33150"
+      ],
+      "sources": [
+        "src/network/frontend_bindings.h"
+      ],
+      "expected_prefix": "48 89 5C 24 10 56 48 83 EC 20 48 63 F2 48 8B D9"
+    },
+    {
+      "name": "frontend_bindings_f33b70",
+      "rva": "0xf33b70",
+      "aliases": [
+        "frontend_bindings_f33b70"
+      ],
+      "sources": [
+        "src/network/frontend_bindings.h"
+      ],
+      "expected_prefix": "40 55 53 41 56 41 57 48 8D AC 24 98 F9 FF FF 48"
+    },
+    {
+      "name": "native_f350d0",
+      "rva": "0xf350d0",
+      "aliases": [
+        "native_f350d0",
+        "frontend_bindings_f350d0"
+      ],
+      "sources": [
+        "src/network/frontend_backend.cpp",
+        "src/network/frontend_bindings.h"
+      ],
+      "expected_prefix": "40 55 53 56 57 41 57 48 8D AC 24 C0 22 FF FF B8"
+    },
+    {
+      "name": "chat_bindings_f3d410",
+      "rva": "0xf3d410",
+      "aliases": [
+        "chat_bindings_f3d410",
+        "native_f3d410"
+      ],
+      "sources": [
+        "src/network/chat_bindings.h",
+        "src/network/chat_runtime.cpp"
+      ],
+      "expected_prefix": "40 55 56 57 41 56 41 57 48 83 EC 40 4C 89 64 24"
+    },
+    {
+      "name": "chat_bindings_f3d830",
+      "rva": "0xf3d830",
+      "aliases": [
+        "chat_bindings_f3d830",
+        "native_f3d830"
+      ],
+      "sources": [
+        "src/network/chat_bindings.h",
+        "src/network/chat_runtime.cpp"
+      ],
+      "expected_prefix": "48 89 5C 24 08 48 89 6C 24 10 48 89 74 24 18 57"
+    },
+    {
+      "name": "chat_bindings_f3d9d0",
+      "rva": "0xf3d9d0",
+      "aliases": [
+        "chat_bindings_f3d9d0",
+        "native_f3d9d0"
+      ],
+      "sources": [
+        "src/network/chat_bindings.h",
+        "src/network/chat_runtime.cpp"
+      ],
+      "expected_prefix": "40 55 56 41 56 41 57 48 8D AC 24 C8 FB FF FF 48"
+    },
+    {
+      "name": "native_mm_bindings_f4fe70",
+      "rva": "0xf4fe70",
+      "aliases": [
+        "native_mm_bindings_f4fe70"
+      ],
+      "sources": [
+        "src/network/native_mm_bindings.h"
+      ],
+      "expected_prefix": "8B 05 AA 21 94 0A C3 CC CC CC CC CC CC CC CC CC"
+    },
+    {
+      "name": "native_mm_bindings_f50d90",
+      "rva": "0xf50d90",
+      "aliases": [
+        "native_mm_bindings_f50d90"
+      ],
+      "sources": [
+        "src/network/native_mm_bindings.h"
+      ],
+      "expected_prefix": "8B 05 0A 4A 86 0A 83 C0 FE 83 F8 01 77 2F B8 02"
+    },
+    {
+      "name": "native_mm_bindings_f50e10",
+      "rva": "0xf50e10",
+      "aliases": [
+        "native_mm_bindings_f50e10"
+      ],
+      "sources": [
+        "src/network/native_mm_bindings.h"
+      ],
+      "expected_prefix": "0F BD C1 74 05 83 F0 1F EB 05 B8 20 00 00 00 48"
+    },
+    {
+      "name": "social_bindings_f54480",
+      "rva": "0xf54480",
+      "aliases": [
+        "social_bindings_f54480",
+        "native_f54480"
+      ],
+      "sources": [
+        "src/network/social_bindings.h",
+        "src/network/social_runtime.cpp"
+      ],
+      "expected_prefix": "48 89 5C 24 10 55 56 41 57 48 83 EC 20 48 63 D9"
+    },
+    {
+      "name": "social_bindings_f54da0",
+      "rva": "0xf54da0",
+      "aliases": [
+        "social_bindings_f54da0"
+      ],
+      "sources": [
+        "src/network/social_bindings.h"
+      ],
+      "expected_prefix": "40 53 48 83 EC 20 33 C9 8B DA E8 91 1C 00 00 84"
+    },
+    {
+      "name": "social_bindings_f54fc0",
+      "rva": "0xf54fc0",
+      "aliases": [
+        "social_bindings_f54fc0"
+      ],
+      "sources": [
+        "src/network/social_bindings.h"
+      ],
+      "expected_prefix": "40 56 57 48 81 EC 98 00 00 00 48 8B F1 8B FA B9"
+    },
+    {
+      "name": "social_bindings_f55210",
+      "rva": "0xf55210",
+      "aliases": [
+        "social_bindings_f55210"
+      ],
+      "sources": [
+        "src/network/social_bindings.h"
+      ],
+      "expected_prefix": "40 56 57 48 81 EC 98 00 00 00 48 8B F1 8B FA B9"
+    },
+    {
+      "name": "native_f56420",
+      "rva": "0xf56420",
+      "aliases": [
+        "native_f56420"
+      ],
+      "sources": [
+        "src/network/social_runtime.cpp"
+      ]
+    },
+    {
+      "name": "social_bindings_f5abe0",
+      "rva": "0xf5abe0",
+      "aliases": [
+        "social_bindings_f5abe0",
+        "native_f5abe0"
+      ],
+      "sources": [
+        "src/network/social_bindings.h",
+        "src/network/social_runtime.cpp"
+      ],
+      "expected_prefix": "40 53 55 56 57 41 56 48 81 EC B0 00 00 00 48 8B"
+    },
+    {
+      "name": "social_bindings_f5c390",
+      "rva": "0xf5c390",
+      "aliases": [
+        "social_bindings_f5c390",
+        "native_f5c390"
+      ],
+      "sources": [
+        "src/network/social_bindings.h",
+        "src/network/social_runtime.cpp"
+      ],
+      "expected_prefix": "40 55 53 56 41 54 41 55 41 57 48 8D AC 24 98 FE"
+    },
+    {
+      "name": "social_bindings_f5c750",
+      "rva": "0xf5c750",
+      "aliases": [
+        "social_bindings_f5c750"
+      ],
+      "sources": [
+        "src/network/social_bindings.h"
+      ],
+      "expected_prefix": "40 53 57 41 54 41 55 41 56 41 57 48 81 EC F8 01"
+    },
+    {
+      "name": "kAllocateRva",
+      "rva": "0xf5dd30",
+      "aliases": [
+        "kAllocateRva",
+        "kDBAssetEntryPoolAllocateRVA"
+      ],
+      "sources": [
+        "src/dedicated/bap.cpp",
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kFreeRva",
+      "rva": "0xf5de40",
+      "aliases": [
+        "kFreeRva",
+        "kDBAssetEntryPoolFreeRVA"
+      ],
+      "sources": [
+        "src/dedicated/bap.cpp",
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kAddToStashTailRva",
+      "rva": "0xf5def0",
+      "aliases": [
+        "kAddToStashTailRva",
+        "kDBAssetEntryTableAddToStashTailRVA"
+      ],
+      "sources": [
+        "src/dedicated/bap.cpp",
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kAddToTableRva",
+      "rva": "0xf5df60",
+      "aliases": [
+        "kAddToTableRva",
+        "kDBAssetEntryTableAddToTableRVA"
+      ],
+      "sources": [
+        "src/dedicated/bap.cpp",
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kFindAssetRva",
+      "rva": "0xf5e010",
+      "aliases": [
+        "kFindAssetRva",
+        "kDBAssetEntryTableFindAssetRVA"
+      ],
+      "sources": [
+        "src/dedicated/bap.cpp",
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kMakeFirstStashedEntryRva",
+      "rva": "0xf5e350",
+      "aliases": [
+        "kMakeFirstStashedEntryRva",
+        "kDBAssetEntryTableMakeFirstStashedEntryRVA"
+      ],
+      "sources": [
+        "src/dedicated/bap.cpp",
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kRemoveFromTableRva",
+      "rva": "0xf5e3d0",
+      "aliases": [
+        "kRemoveFromTableRva",
+        "kDBAssetEntryTableRemoveFromTableRVA"
+      ],
+      "sources": [
+        "src/dedicated/bap.cpp",
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kRemoveStashedAssetRva",
+      "rva": "0xf5e4d0",
+      "aliases": [
+        "kRemoveStashedAssetRva",
+        "kDBAssetEntryTableRemoveStashedAssetRVA"
+      ],
+      "sources": [
+        "src/dedicated/bap.cpp",
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kAllocateHeaderRva",
+      "rva": "0xf5e5b0",
+      "aliases": [
+        "kAllocateHeaderRva",
+        "kDBAllocateXAssetHeaderRVA"
+      ],
+      "sources": [
+        "src/dedicated/bap.cpp",
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kFreeHeaderRva",
+      "rva": "0xf5f1f0",
+      "aliases": [
+        "kFreeHeaderRva",
+        "kDBFreeXAssetHeaderRVA"
+      ],
+      "sources": [
+        "src/dedicated/bap.cpp",
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "frontend_bindings_f68b70",
+      "rva": "0xf68b70",
+      "aliases": [
+        "frontend_bindings_f68b70"
+      ],
+      "sources": [
+        "src/network/frontend_bindings.h"
+      ],
+      "expected_prefix": "48 89 6C 24 10 48 89 74 24 20 57 48 83 EC 50 48"
+    },
+    {
+      "name": "frontend_bindings_f69740",
+      "rva": "0xf69740",
+      "aliases": [
+        "frontend_bindings_f69740"
+      ],
+      "sources": [
+        "src/network/frontend_bindings.h"
+      ],
+      "expected_prefix": "40 55 56 57 41 56 41 57 48 8D 6C 24 C0 48 81 EC"
+    },
+    {
+      "name": "native_f69ab0",
+      "rva": "0xf69ab0",
+      "aliases": [
+        "native_f69ab0",
+        "frontend_bindings_f69ab0"
+      ],
+      "sources": [
+        "src/network/frontend_backend.cpp",
+        "src/network/frontend_bindings.h"
+      ],
+      "expected_prefix": "48 89 5C 24 08 48 89 6C 24 10 48 89 74 24 18 57"
+    },
+    {
+      "name": "native_f69bb0",
+      "rva": "0xf69bb0",
+      "aliases": [
+        "native_f69bb0",
+        "frontend_bindings_f69bb0"
+      ],
+      "sources": [
+        "src/network/frontend_backend.cpp",
+        "src/network/frontend_bindings.h"
+      ],
+      "expected_prefix": "48 89 5C 24 10 48 89 6C 24 18 57 48 83 EC 50 41"
+    },
+    {
+      "name": "native_f6a6f0",
+      "rva": "0xf6a6f0",
+      "aliases": [
+        "native_f6a6f0",
+        "frontend_bindings_f6a6f0"
+      ],
+      "sources": [
+        "src/network/frontend_backend.cpp",
+        "src/network/frontend_bindings.h"
+      ],
+      "expected_prefix": "48 89 5C 24 08 48 89 74 24 10 48 89 7C 24 18 4C"
+    },
+    {
+      "name": "native_mm_bindings_f6bd60",
+      "rva": "0xf6bd60",
+      "aliases": [
+        "native_mm_bindings_f6bd60"
+      ],
+      "sources": [
+        "src/network/native_mm_bindings.h"
+      ],
+      "expected_prefix": "48 83 EC 28 85 D2 78 43 48 63 C2 48 3B 81 70 04"
+    },
+    {
+      "name": "user_list_bindings_f6cc30",
+      "rva": "0xf6cc30",
+      "aliases": [
+        "user_list_bindings_f6cc30"
+      ],
+      "sources": [
+        "src/network/user_list_bindings.h"
+      ],
+      "expected_prefix": "40 53 55 56 57 41 56 B8 90 C2 00 00 E8 AF 02 26"
+    },
+    {
+      "name": "user_list_bindings_f6cdc0",
+      "rva": "0xf6cdc0",
+      "aliases": [
+        "user_list_bindings_f6cdc0"
+      ],
+      "sources": [
+        "src/network/user_list_bindings.h"
+      ],
+      "expected_prefix": "40 53 55 56 57 48 81 EC C8 00 00 00 48 8B 05 25"
+    },
+    {
+      "name": "user_list_bindings_f6cee0",
+      "rva": "0xf6cee0",
+      "aliases": [
+        "user_list_bindings_f6cee0"
+      ],
+      "sources": [
+        "src/network/user_list_bindings.h"
+      ],
+      "expected_prefix": "40 53 55 56 57 41 56 48 81 EC D0 04 00 00 48 8B"
+    },
+    {
+      "name": "user_list_bindings_f6d010",
+      "rva": "0xf6d010",
+      "aliases": [
+        "user_list_bindings_f6d010"
+      ],
+      "sources": [
+        "src/network/user_list_bindings.h"
+      ],
+      "expected_prefix": "40 53 55 56 57 41 56 B8 90 C2 00 00 E8 CF FE 25"
+    },
+    {
+      "name": "social_bindings_f6d4e0",
+      "rva": "0xf6d4e0",
+      "aliases": [
+        "social_bindings_f6d4e0"
+      ],
+      "sources": [
+        "src/network/social_bindings.h"
+      ],
+      "expected_prefix": "40 53 55 56 57 41 56 B8 D0 22 00 00 E8 FF F9 25"
+    },
+    {
+      "name": "native_mm_bindings_f6db10",
+      "rva": "0xf6db10",
+      "aliases": [
+        "native_mm_bindings_f6db10"
+      ],
+      "sources": [
+        "src/network/native_mm_bindings.h"
+      ],
+      "expected_prefix": "48 89 5C 24 10 48 89 6C 24 18 48 89 74 24 20 57"
+    },
+    {
+      "name": "social_bindings_f6fb90",
+      "rva": "0xf6fb90",
+      "aliases": [
+        "social_bindings_f6fb90"
+      ],
+      "sources": [
+        "src/network/social_bindings.h"
+      ],
+      "expected_prefix": "40 53 55 56 57 48 81 EC 68 04 00 00 48 8B 05 55"
+    },
+    {
+      "name": "native_mm_bindings_f70ad0",
+      "rva": "0xf70ad0",
+      "aliases": [
+        "native_mm_bindings_f70ad0"
+      ],
+      "sources": [
+        "src/network/native_mm_bindings.h"
+      ],
+      "expected_prefix": "48 89 5C 24 10 48 89 74 24 18 57 48 83 EC 20 48"
+    },
+    {
+      "name": "social_bindings_f712d0",
+      "rva": "0xf712d0",
+      "aliases": [
+        "social_bindings_f712d0"
+      ],
+      "sources": [
+        "src/network/social_bindings.h"
+      ],
+      "expected_prefix": "40 53 55 56 57 48 81 EC 78 04 00 00 48 8B 05 15"
+    },
+    {
+      "name": "native_mm_bindings_f76070",
+      "rva": "0xf76070",
+      "aliases": [
+        "native_mm_bindings_f76070"
+      ],
+      "sources": [
+        "src/network/native_mm_bindings.h"
+      ],
+      "expected_prefix": "48 89 5C 24 08 57 48 83 EC 20 48 8B D9 48 8B FA"
+    },
+    {
+      "name": "social_bindings_f76170",
+      "rva": "0xf76170",
+      "aliases": [
+        "social_bindings_f76170"
+      ],
+      "sources": [
+        "src/network/social_bindings.h"
+      ],
+      "expected_prefix": "40 53 55 56 57 48 81 EC C8 00 00 00 48 8B 05 75"
+    },
+    {
+      "name": "social_bindings_f769a0",
+      "rva": "0xf769a0",
+      "aliases": [
+        "social_bindings_f769a0"
+      ],
+      "sources": [
+        "src/network/social_bindings.h"
+      ],
+      "expected_prefix": "48 89 5C 24 10 48 89 6C 24 18 48 89 74 24 20 57"
+    },
+    {
+      "name": "native_mm_bindings_f76fc0",
+      "rva": "0xf76fc0",
+      "aliases": [
+        "native_mm_bindings_f76fc0"
+      ],
+      "sources": [
+        "src/network/native_mm_bindings.h"
+      ],
+      "expected_prefix": "48 89 5C 24 10 48 89 6C 24 18 48 89 74 24 20 57"
+    },
+    {
+      "name": "native_mm_bindings_f77470",
+      "rva": "0xf77470",
+      "aliases": [
+        "native_mm_bindings_f77470"
+      ],
+      "sources": [
+        "src/network/native_mm_bindings.h"
+      ],
+      "expected_prefix": "48 89 5C 24 10 48 89 6C 24 18 48 89 74 24 20 57"
+    },
+    {
+      "name": "native_mm_bindings_f77550",
+      "rva": "0xf77550",
+      "aliases": [
+        "native_mm_bindings_f77550"
+      ],
+      "sources": [
+        "src/network/native_mm_bindings.h"
+      ],
+      "expected_prefix": "48 89 5C 24 10 48 89 6C 24 18 48 89 74 24 20 57"
+    },
+    {
+      "name": "social_bindings_f779e0",
+      "rva": "0xf779e0",
+      "aliases": [
+        "social_bindings_f779e0"
+      ],
+      "sources": [
+        "src/network/social_bindings.h"
+      ],
+      "expected_prefix": "40 53 55 56 57 41 56 B8 90 1C 00 00 E8 FF 54 25"
+    },
+    {
+      "name": "social_bindings_f788d0",
+      "rva": "0xf788d0",
+      "aliases": [
+        "social_bindings_f788d0"
+      ],
+      "sources": [
+        "src/network/social_bindings.h"
+      ],
+      "expected_prefix": "48 89 5C 24 10 48 89 6C 24 18 48 89 74 24 20 57"
+    },
+    {
+      "name": "native_103ecf0",
+      "rva": "0x103ecf0",
+      "aliases": [
+        "native_103ecf0",
+        "native_mm_bindings_103ecf0"
+      ],
+      "sources": [
+        "src/network/native_matchmaking.cpp",
+        "src/network/native_mm_bindings.h"
+      ],
+      "expected_prefix": "48 89 5C 24 08 48 89 6C 24 10 48 89 74 24 18 57"
+    },
+    {
+      "name": "native_mm_bindings_1047280",
+      "rva": "0x1047280",
+      "aliases": [
+        "native_mm_bindings_1047280"
+      ],
+      "sources": [
+        "src/network/native_mm_bindings.h"
+      ],
+      "expected_prefix": "40 55 57 41 56 48 83 EC 30 48 89 5C 24 60 4C 8D"
+    },
+    {
+      "name": "native_10489a0",
+      "rva": "0x10489a0",
+      "aliases": [
+        "native_10489a0",
+        "native_mm_bindings_10489a0"
+      ],
+      "sources": [
+        "src/network/native_matchmaking.cpp",
+        "src/network/native_mm_bindings.h"
+      ],
+      "expected_prefix": "40 53 57 41 55 41 57 48 83 EC 38 8B 51 04 48 8B"
+    },
+    {
+      "name": "frontend_bindings_10527b0",
+      "rva": "0x10527b0",
+      "aliases": [
+        "frontend_bindings_10527b0"
+      ],
+      "sources": [
+        "src/network/frontend_bindings.h"
+      ],
+      "expected_prefix": "48 8B 05 51 42 33 0C 4C 8B C9 4C 8B 40 28 41 80"
+    },
+    {
+      "name": "frontend_bindings_1053520",
+      "rva": "0x1053520",
+      "aliases": [
+        "frontend_bindings_1053520"
+      ],
+      "sources": [
+        "src/network/frontend_bindings.h"
+      ],
+      "expected_prefix": "48 63 C2 48 6B D0 64 0F B6 84 0A A5 00 00 00 C3"
+    },
+    {
+      "name": "social_bindings_1057d10",
+      "rva": "0x1057d10",
+      "aliases": [
+        "social_bindings_1057d10",
+        "native_1057d10"
+      ],
+      "sources": [
+        "src/network/social_bindings.h",
+        "src/network/social_runtime.cpp"
+      ],
+      "expected_prefix": "48 89 5C 24 18 48 89 74 24 20 57 48 81 EC D0 00"
+    },
+    {
+      "name": "native_10584f0",
+      "rva": "0x10584f0",
+      "aliases": [
+        "native_10584f0"
+      ],
+      "sources": [
+        "src/network/social_runtime.cpp"
+      ]
+    },
+    {
+      "name": "social_bindings_10585e0",
+      "rva": "0x10585e0",
+      "aliases": [
+        "social_bindings_10585e0",
+        "native_10585e0"
+      ],
+      "sources": [
+        "src/network/social_bindings.h",
+        "src/network/social_runtime.cpp"
+      ],
+      "expected_prefix": "40 57 48 81 EC A0 00 00 00 48 63 FA 48 8D 05 55"
+    },
+    {
+      "name": "native_1058f80",
+      "rva": "0x1058f80",
+      "aliases": [
+        "native_1058f80"
+      ],
+      "sources": [
+        "src/network/social_runtime.cpp"
+      ]
+    },
+    {
+      "name": "social_bindings_106e5d0",
+      "rva": "0x106e5d0",
+      "aliases": [
+        "social_bindings_106e5d0"
+      ],
+      "sources": [
+        "src/network/social_bindings.h"
+      ],
+      "expected_prefix": "48 89 5C 24 08 48 89 6C 24 10 48 89 74 24 18 57"
+    },
+    {
+      "name": "native_1079f30",
+      "rva": "0x1079f30",
+      "aliases": [
+        "native_1079f30",
+        "user_list_bindings_1079f30"
+      ],
+      "sources": [
+        "src/network/user_list_adapter.inl",
+        "src/network/user_list_bindings.h"
+      ],
+      "expected_prefix": "48 83 EC 28 8B 05 D6 8E E4 11 65 48 8B 0C 25 58"
+    },
+    {
+      "name": "native_107a1a0",
+      "rva": "0x107a1a0",
+      "aliases": [
+        "native_107a1a0",
+        "user_list_bindings_107a1a0"
+      ],
+      "sources": [
+        "src/network/user_list_adapter.inl",
+        "src/network/user_list_bindings.h"
+      ],
+      "expected_prefix": "C7 81 50 82 01 00 00 00 00 00 B0 01 C7 81 78 04"
+    },
+    {
+      "name": "frontend_bindings_107b7d0",
+      "rva": "0x107b7d0",
+      "aliases": [
+        "frontend_bindings_107b7d0"
+      ],
+      "sources": [
+        "src/network/frontend_bindings.h"
+      ],
+      "expected_prefix": "48 83 EC 28 48 8D 15 75 08 00 00 B9 08 00 00 00"
+    },
+    {
+      "name": "publisher_bindings_107b8a0",
+      "rva": "0x107b8a0",
+      "aliases": [
+        "publisher_bindings_107b8a0"
+      ],
+      "sources": [
+        "src/network/publisher_bindings.h"
+      ],
+      "expected_prefix": "48 83 EC 28 83 3D 65 AB 51 03 FF 74 61 E8 EE AE"
+    },
+    {
+      "name": "publisher_bindings_107b930",
+      "rva": "0x107b930",
+      "aliases": [
+        "publisher_bindings_107b930",
+        "native_107b930"
+      ],
+      "sources": [
+        "src/network/publisher_bindings.h",
+        "src/network/publisher_variables.cpp"
+      ],
+      "expected_prefix": "40 53 48 83 EC 20 8B 05 D4 AA 51 03 8B DA 3B C2"
+    },
+    {
+      "name": "publisher_bindings_107beb0",
+      "rva": "0x107beb0",
+      "aliases": [
+        "publisher_bindings_107beb0",
+        "native_107beb0"
+      ],
+      "sources": [
+        "src/network/publisher_bindings.h",
+        "src/network/publisher_variables.cpp"
+      ],
+      "expected_prefix": "48 89 5C 24 08 48 89 74 24 10 57 48 83 EC 40 49"
+    },
+    {
+      "name": "publisher_bindings_107c050",
+      "rva": "0x107c050",
+      "aliases": [
+        "publisher_bindings_107c050",
+        "native_107c050"
+      ],
+      "sources": [
+        "src/network/publisher_bindings.h",
+        "src/network/publisher_variables.cpp"
+      ],
+      "expected_prefix": "84 D2 74 7C 8B 05 06 41 34 0B B9 01 00 00 00 85"
+    },
+    {
+      "name": "native_107f580",
+      "rva": "0x107f580",
+      "aliases": [
+        "native_107f580",
+        "user_list_bindings_107f580"
+      ],
+      "sources": [
+        "src/network/user_list_adapter.inl",
+        "src/network/user_list_bindings.h"
+      ],
+      "expected_prefix": "48 89 5C 24 08 57 48 83 EC 20 8B FA 48 8B D9 E8"
+    },
+    {
+      "name": "native_107fa70",
+      "rva": "0x107fa70",
+      "aliases": [
+        "native_107fa70",
+        "user_list_bindings_107fa70"
+      ],
+      "sources": [
+        "src/network/user_list_adapter.inl",
+        "src/network/user_list_bindings.h"
+      ],
+      "expected_prefix": "40 55 56 57 48 81 EC A0 00 00 00 49 8B E8 8B F2"
+    },
+    {
+      "name": "kComFastFileFrameFrontEndRVA",
+      "rva": "0x10b29c0",
+      "aliases": [
+        "kComFastFileFrameFrontEndRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kIsInFrontEndRVA",
+      "rva": "0x10c67a0",
+      "aliases": [
+        "kIsInFrontEndRVA",
+        "native_10c67a0",
+        "frontend_bindings_10c67a0",
+        "publisher_bindings_10c67a0"
+      ],
+      "sources": [
+        "src/engine/game.h",
+        "src/network/frontend_backend.cpp",
+        "src/network/frontend_bindings.h",
+        "src/network/publisher_bindings.h",
+        "src/network/publisher_variables.cpp"
+      ],
+      "expected_prefix": "0F B6 05 C5 56 42 0B C3 CC CC CC CC CC CC CC CC"
+    },
+    {
+      "name": "kIsFrontEndRVA",
+      "rva": "0x10c6bd0",
+      "aliases": [
+        "kIsFrontEndRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kComGameModeGetActiveGameModeRVA",
+      "rva": "0x10c86e0",
+      "aliases": [
+        "kComGameModeGetActiveGameModeRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kComGameModeSetDesiredGameModeRVA",
+      "rva": "0x10c88f0",
+      "aliases": [
+        "kComGameModeSetDesiredGameModeRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kComGameModeSupportsFeatureRVA",
+      "rva": "0x10c8980",
+      "aliases": [
+        "kComGameModeSupportsFeatureRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "native_10ca2c0",
+      "rva": "0x10ca2c0",
+      "aliases": [
+        "native_10ca2c0"
+      ],
+      "sources": [
+        "src/auth/local_progression.cpp"
+      ]
+    },
+    {
+      "name": "kGetLoadoutStatsGroupRVA",
+      "rva": "0x10ca350",
+      "aliases": [
+        "kGetLoadoutStatsGroupRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kGetRequiredStatPacketsRVA",
+      "rva": "0x10ca5d0",
+      "aliases": [
+        "kGetRequiredStatPacketsRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "native_10caab0",
+      "rva": "0x10caab0",
+      "aliases": [
+        "native_10caab0"
+      ],
+      "sources": [
+        "src/auth/local_progression.cpp"
+      ]
+    },
+    {
+      "name": "kBGBotsEnabledRVA",
+      "rva": "0x1109560",
+      "aliases": [
+        "kBGBotsEnabledRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kBGAreBotsAllowedRVA",
+      "rva": "0x11095e0",
+      "aliases": [
+        "kBGAreBotsAllowedRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kBGGetBotsConnectTypeRVA",
+      "rva": "0x110e320",
+      "aliases": [
+        "kBGGetBotsConnectTypeRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kBGSetBotsConnectTypeRVA",
+      "rva": "0x1119ae0",
+      "aliases": [
+        "kBGSetBotsConnectTypeRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kGetSystemLinkPartyRVA",
+      "rva": "0x118c010",
+      "aliases": [
+        "kGetSystemLinkPartyRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "native_118c410",
+      "rva": "0x118c410",
+      "aliases": [
+        "native_118c410",
+        "native_mm_bindings_118c410"
+      ],
+      "sources": [
+        "src/network/native_matchmaking.cpp",
+        "src/network/native_mm_bindings.h"
+      ],
+      "expected_prefix": "83 B9 48 BF 04 00 00 8B 91 28 BF 04 00 75 0B 8B"
+    },
+    {
+      "name": "kPartyIsServerDedicatedRVA",
+      "rva": "0x118ec70",
+      "aliases": [
+        "kPartyIsServerDedicatedRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kPartyAtomicHostHandleJoinRequestRVA",
+      "rva": "0x11936f0",
+      "aliases": [
+        "kPartyAtomicHostHandleJoinRequestRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kPartyAtomicHostSendAcceptMessageRVA",
+      "rva": "0x1197500",
+      "aliases": [
+        "kPartyAtomicHostSendAcceptMessageRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kPartyAtomicHostSendJoinFailedResponseRVA",
+      "rva": "0x11975d0",
+      "aliases": [
+        "kPartyAtomicHostSendJoinFailedResponseRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kLoadRva",
+      "rva": "0x11a79f0",
+      "aliases": [
+        "kLoadRva"
+      ],
+      "sources": [
+        "src/diagnostics/fastfile.cpp"
+      ]
+    },
+    {
+      "name": "kDBAssetAlternateLifecycleWriteBlockRVA",
+      "rva": "0x11aaf81",
+      "aliases": [
+        "kDBAssetAlternateLifecycleWriteBlockRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kDBAssetUsePendingRVA",
+      "rva": "0x11ac340",
+      "aliases": [
+        "kDBAssetUsePendingRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kDBAssetAnyZoneRVA",
+      "rva": "0x11ac3b0",
+      "aliases": [
+        "kDBAssetAnyZoneRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kDBLinkStashNextBlockRVA",
+      "rva": "0x11ac8c6",
+      "aliases": [
+        "kDBLinkStashNextBlockRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kDBLinkTransientHeadWriteABlockRVA",
+      "rva": "0x11acaa1",
+      "aliases": [
+        "kDBLinkTransientHeadWriteABlockRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kDBLinkTransientHeadWriteBBlockRVA",
+      "rva": "0x11acb05",
+      "aliases": [
+        "kDBLinkTransientHeadWriteBBlockRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kDBLinkUseOnceTestBlockRVA",
+      "rva": "0x11acb8d",
+      "aliases": [
+        "kDBLinkUseOnceTestBlockRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kDBLinkUseOnceTestFalseResumeRVA",
+      "rva": "0x11acc0e",
+      "aliases": [
+        "kDBLinkUseOnceTestFalseResumeRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kZonePairAllocatedBranchRva",
+      "rva": "0x11ad449",
+      "aliases": [
+        "kZonePairAllocatedBranchRva"
+      ],
+      "sources": [
+        "src/dedicated/bap.cpp"
+      ]
+    },
+    {
+      "name": "kDBAssetZonePairWriteBlockRVA",
+      "rva": "0x11ad57e",
+      "aliases": [
+        "kDBAssetZonePairWriteBlockRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kDBAssetResolvedHeadWriteBlockRVA",
+      "rva": "0x11ae625",
+      "aliases": [
+        "kDBAssetResolvedHeadWriteBlockRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kDBAssetResolvedHeadWriteResumeRVA",
+      "rva": "0x11ae6d0",
+      "aliases": [
+        "kDBAssetResolvedHeadWriteResumeRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kDBAssetReplaceHeadLifecycleClearBlockRVA",
+      "rva": "0x11aec83",
+      "aliases": [
+        "kDBAssetReplaceHeadLifecycleClearBlockRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kDBAssetLifecycleMarkRVA",
+      "rva": "0x11af110",
+      "aliases": [
+        "kDBAssetLifecycleMarkRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kDBAssetLifecycleStockWriteRVA",
+      "rva": "0x11af18d",
+      "aliases": [
+        "kDBAssetLifecycleStockWriteRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kDBAssetUseTransitionOnceRVA",
+      "rva": "0x11afbb0",
+      "aliases": [
+        "kDBAssetUseTransitionOnceRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kNoclipMovementFlagsRVA",
+      "rva": "0x11e801b",
+      "aliases": [
+        "kNoclipMovementFlagsRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kCmdClientCommandRVA",
+      "rva": "0x120b6a0",
+      "aliases": [
+        "kCmdClientCommandRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kGlassPieceStateChangedRva",
+      "rva": "0x1212b00",
+      "aliases": [
+        "kGlassPieceStateChangedRva"
+      ],
+      "sources": [
+        "src/dedicated/bap.cpp"
+      ]
+    },
+    {
+      "name": "kGScrExecEntThreadRVA",
+      "rva": "0x1257d70",
+      "aliases": [
+        "kGScrExecEntThreadRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kGScrNotifyRVA",
+      "rva": "0x1259b30",
+      "aliases": [
+        "kGScrNotifyRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kServerCommandForwarderRVA",
+      "rva": "0x1295ed0",
+      "aliases": [
+        "kServerCommandForwarderRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kCmdAddServerCommandListRVA",
+      "rva": "0x12966c0",
+      "aliases": [
+        "kCmdAddServerCommandListRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "native_12968b0",
+      "rva": "0x12968b0",
+      "aliases": [
+        "native_12968b0"
+      ],
+      "sources": [
+        "src/auth/challenge_transport.cpp"
+      ]
+    },
+    {
+      "name": "native_1296960",
+      "rva": "0x1296960",
+      "aliases": [
+        "native_1296960"
+      ],
+      "sources": [
+        "src/auth/challenge_transport.cpp"
+      ]
+    },
+    {
+      "name": "kSVCmdArgvRVA",
+      "rva": "0x1298b10",
+      "aliases": [
+        "kSVCmdArgvRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "frontend_bindings_12a0950",
+      "rva": "0x12a0950",
+      "aliases": [
+        "frontend_bindings_12a0950"
+      ],
+      "sources": [
+        "src/network/frontend_bindings.h"
+      ],
+      "expected_prefix": "48 89 5C 24 10 48 89 6C 24 18 48 89 7C 24 20 41"
+    },
+    {
+      "name": "native_12a2110",
+      "rva": "0x12a2110",
+      "aliases": [
+        "native_12a2110"
+      ],
+      "sources": [
+        "src/auth/local_progression.cpp"
+      ]
+    },
+    {
+      "name": "native_12a2860",
+      "rva": "0x12a2860",
+      "aliases": [
+        "native_12a2860"
+      ],
+      "sources": [
+        "src/auth/local_stats.cpp"
+      ]
+    },
+    {
+      "name": "native_12a3ee0",
+      "rva": "0x12a3ee0",
+      "aliases": [
+        "native_12a3ee0"
+      ],
+      "sources": [
+        "src/auth/local_stats.cpp"
+      ]
+    },
+    {
+      "name": "kEnterFrontendRVA",
+      "rva": "0x12aa3c0",
+      "aliases": [
+        "kEnterFrontendRVA"
+      ],
+      "sources": [
+        "src/dedicated/dedicated.cpp"
+      ]
+    },
+    {
+      "name": "kComDoMaxFPSWaitRVA",
+      "rva": "0x12aa8c0",
+      "aliases": [
+        "kComDoMaxFPSWaitRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kComFrameRVA",
+      "rva": "0x12ab770",
+      "aliases": [
+        "kComFrameRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kIsAnyLocalServerRunningRVA",
+      "rva": "0x12b0250",
+      "aliases": [
+        "kIsAnyLocalServerRunningRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kMSGBeginReadingRVA",
+      "rva": "0x12b84a0",
+      "aliases": [
+        "kMSGBeginReadingRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kMSGReadLongRVA",
+      "rva": "0x12b9380",
+      "aliases": [
+        "kMSGReadLongRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kMSGReadStringLineRVA",
+      "rva": "0x12b9670",
+      "aliases": [
+        "kMSGReadStringLineRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kNetInitDemonwareCallbackRVA",
+      "rva": "0x12bc0d0",
+      "aliases": [
+        "kNetInitDemonwareCallbackRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kNETCreateSessionRVA",
+      "rva": "0x12bd480",
+      "aliases": [
+        "kNETCreateSessionRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "frontend_bindings_12bd8f0",
+      "rva": "0x12bd8f0",
+      "aliases": [
+        "frontend_bindings_12bd8f0"
+      ],
+      "sources": [
+        "src/network/frontend_bindings.h"
+      ],
+      "expected_prefix": "48 8D 0D 29 E9 1A 0C E9 44 EE FF FF CC CC CC CC"
+    },
+    {
+      "name": "kNETStartRVA",
+      "rva": "0x12be220",
+      "aliases": [
+        "kNETStartRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "native_12cf280",
+      "rva": "0x12cf280",
+      "aliases": [
+        "native_12cf280",
+        "kSysIsMainThreadRVA"
+      ],
+      "sources": [
+        "src/auth/local_stats.cpp",
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kScriptContextServerRVA",
+      "rva": "0x12e0e70",
+      "aliases": [
+        "kScriptContextServerRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kScrEndLoadScriptsRVA",
+      "rva": "0x1316fe0",
+      "aliases": [
+        "kScrEndLoadScriptsRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kScrGetFunctionHandleRVA",
+      "rva": "0x1317270",
+      "aliases": [
+        "kScrGetFunctionHandleRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kSLConvertToStringRVA",
+      "rva": "0x131aa20",
+      "aliases": [
+        "kSLConvertToStringRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kSLFindStringRVA",
+      "rva": "0x131ab50",
+      "aliases": [
+        "kSLFindStringRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kScrFindVariableRVA",
+      "rva": "0x131cb90",
+      "aliases": [
+        "kScrFindVariableRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kScrFindEntityIdRVA",
+      "rva": "0x1320940",
+      "aliases": [
+        "kScrFindEntityIdRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kScrAddStringRVA",
+      "rva": "0x1322d90",
+      "aliases": [
+        "kScrAddStringRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kScrAddStructRVA",
+      "rva": "0x1322dc0",
+      "aliases": [
+        "kScrAddStructRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kScrAddUndefinedRVA",
+      "rva": "0x1322e50",
+      "aliases": [
+        "kScrAddUndefinedRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kScrFreeThreadRVA",
+      "rva": "0x13242e0",
+      "aliases": [
+        "kScrFreeThreadRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kGetActiveServerApplicationRVA",
+      "rva": "0x132cc50",
+      "aliases": [
+        "kGetActiveServerApplicationRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kBotUpdateCommandRVA",
+      "rva": "0x1349800",
+      "aliases": [
+        "kBotUpdateCommandRVA"
+      ],
+      "sources": [
+        "src/dedicated/dedicated.cpp"
+      ]
+    },
+    {
+      "name": "kDevSetupRVA",
+      "rva": "0x136b720",
+      "aliases": [
+        "kDevSetupRVA"
+      ],
+      "sources": [
+        "src/dedicated/dedicated.cpp"
+      ]
+    },
+    {
+      "name": "kDevSetupSystemLinkRVA",
+      "rva": "0x136b7d7",
+      "aliases": [
+        "kDevSetupSystemLinkRVA"
+      ],
+      "sources": [
+        "src/dedicated/dedicated.cpp"
+      ]
+    },
+    {
+      "name": "kSVDevmapCmdRVA",
+      "rva": "0x136bbb0",
+      "aliases": [
+        "kSVDevmapCmdRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kKickClientRVA",
+      "rva": "0x136c160",
+      "aliases": [
+        "kKickClientRVA"
+      ],
+      "sources": [
+        "src/dedicated/dedicated.cpp"
+      ]
+    },
+    {
+      "name": "kSVClientMPAddBotRVA",
+      "rva": "0x136e210",
+      "aliases": [
+        "kSVClientMPAddBotRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kSVClientMPDirectConnectRVA",
+      "rva": "0x136eb20",
+      "aliases": [
+        "kSVClientMPDirectConnectRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kSVClientMPExecuteMessageRVA",
+      "rva": "0x136fe70",
+      "aliases": [
+        "kSVClientMPExecuteMessageRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kSVClientMPGetChallengeRVA",
+      "rva": "0x13709f0",
+      "aliases": [
+        "kSVClientMPGetChallengeRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "native_1370c20",
+      "rva": "0x1370c20",
+      "aliases": [
+        "native_1370c20"
+      ],
+      "sources": [
+        "src/auth/local_progression.cpp"
+      ]
+    },
+    {
+      "name": "native_1370c60",
+      "rva": "0x1370c60",
+      "aliases": [
+        "native_1370c60"
+      ],
+      "sources": [
+        "src/auth/local_progression.cpp"
+      ]
+    },
+    {
+      "name": "kSVClientMPSpawnBotOrTestClientRVA",
+      "rva": "0x1373640",
+      "aliases": [
+        "kSVClientMPSpawnBotOrTestClientRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kClientThinkRVA",
+      "rva": "0x1373b00",
+      "aliases": [
+        "kClientThinkRVA"
+      ],
+      "sources": [
+        "src/dedicated/dedicated.cpp"
+      ]
+    },
+    {
+      "name": "native_13761e0",
+      "rva": "0x13761e0",
+      "aliases": [
+        "native_13761e0"
+      ],
+      "sources": [
+        "src/auth/challenge_transport.cpp"
+      ]
+    },
+    {
+      "name": "native_137c670",
+      "rva": "0x137c670",
+      "aliases": [
+        "native_137c670"
+      ],
+      "sources": [
+        "src/auth/challenge_transport.cpp"
+      ]
+    },
+    {
+      "name": "kSVMainMPConnectionlessPacketRVA",
+      "rva": "0x137d0f0",
+      "aliases": [
+        "kSVMainMPConnectionlessPacketRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kSVGetServerLobbyRVA",
+      "rva": "0x137d670",
+      "aliases": [
+        "kSVGetServerLobbyRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kRequestServerShutdownRVA",
+      "rva": "0x137d6f0",
+      "aliases": [
+        "kRequestServerShutdownRVA"
+      ],
+      "sources": [
+        "src/dedicated/dedicated.cpp"
+      ]
+    },
+    {
+      "name": "publisher_bindings_13cc640",
+      "rva": "0x13cc640",
+      "aliases": [
+        "publisher_bindings_13cc640",
+        "native_13cc640"
+      ],
+      "sources": [
+        "src/network/publisher_bindings.h",
+        "src/network/publisher_variables.cpp"
+      ],
+      "expected_prefix": "40 55 57 41 54 48 83 EC 30 45 33 D2 48 89 5C 24"
+    },
+    {
+      "name": "publisher_bindings_13cc870",
+      "rva": "0x13cc870",
+      "aliases": [
+        "publisher_bindings_13cc870",
+        "native_13cc870"
+      ],
+      "sources": [
+        "src/network/publisher_bindings.h",
+        "src/network/publisher_variables.cpp"
+      ],
+      "expected_prefix": "48 8D 05 29 46 F6 0C C3 CC CC CC CC CC CC CC CC"
+    },
+    {
+      "name": "native_13e2b00",
+      "rva": "0x13e2b00",
+      "aliases": [
+        "native_13e2b00"
+      ],
+      "sources": [
+        "src/auth/local_progression.cpp"
+      ]
+    },
+    {
+      "name": "native_13e2ba0",
+      "rva": "0x13e2ba0",
+      "aliases": [
+        "native_13e2ba0"
+      ],
+      "sources": [
+        "src/auth/local_progression.cpp"
+      ]
+    },
+    {
+      "name": "kDvarGetBoolRVA",
+      "rva": "0x13e6820",
+      "aliases": [
+        "kDvarGetBoolRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kDvarGetStringRVA",
+      "rva": "0x13e69b0",
+      "aliases": [
+        "kDvarGetStringRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kDvarRegisterBoolRVA",
+      "rva": "0x13e7670",
+      "aliases": [
+        "kDvarRegisterBoolRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kDvarSetBoolInternalRVA",
+      "rva": "0x13e8b50",
+      "aliases": [
+        "kDvarSetBoolInternalRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kEnterCriticalRVA",
+      "rva": "0x13f54f0",
+      "aliases": [
+        "kEnterCriticalRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kLeaveCriticalRVA",
+      "rva": "0x13f55f0",
+      "aliases": [
+        "kLeaveCriticalRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "frontend_bindings_13fce00",
+      "rva": "0x13fce00",
+      "aliases": [
+        "frontend_bindings_13fce00"
+      ],
+      "sources": [
+        "src/network/frontend_bindings.h"
+      ],
+      "expected_prefix": "48 89 5C 24 08 57 48 83 EC 20 48 63 F9 48 8B DA"
+    },
+    {
+      "name": "native_148fce0",
+      "rva": "0x148fce0",
+      "aliases": [
+        "native_148fce0",
+        "frontend_bindings_148fce0",
+        "native_mm_bindings_148fce0"
+      ],
+      "sources": [
+        "src/network/frontend_backend.cpp",
+        "src/network/frontend_bindings.h",
+        "src/network/native_matchmaking.cpp",
+        "src/network/native_mm_bindings.h"
+      ],
+      "expected_prefix": "83 3D 95 44 13 0D 00 49 B8 00 00 00 00 00 00 00"
+    },
+    {
+      "name": "kDWNetSetErrorRVA",
+      "rva": "0x14ef150",
+      "aliases": [
+        "kDWNetSetErrorRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "frontend_bindings_15048e0",
+      "rva": "0x15048e0",
+      "aliases": [
+        "frontend_bindings_15048e0"
+      ],
+      "sources": [
+        "src/network/frontend_bindings.h"
+      ],
+      "expected_prefix": "40 53 48 83 EC 20 83 3D 5B 14 94 0D 04 74 2E 48"
+    },
+    {
+      "name": "publisher_bindings_1506a70",
+      "rva": "0x1506a70",
+      "aliases": [
+        "publisher_bindings_1506a70"
+      ],
+      "sources": [
+        "src/network/publisher_bindings.h"
+      ],
+      "expected_prefix": "48 89 5C 24 08 48 89 6C 24 10 48 89 74 24 18 48"
+    },
+    {
+      "name": "publisher_bindings_1506b10",
+      "rva": "0x1506b10",
+      "aliases": [
+        "publisher_bindings_1506b10"
+      ],
+      "sources": [
+        "src/network/publisher_bindings.h"
+      ],
+      "expected_prefix": "48 89 5C 24 08 48 89 6C 24 10 48 89 74 24 18 57"
+    },
+    {
+      "name": "publisher_bindings_1506e50",
+      "rva": "0x1506e50",
+      "aliases": [
+        "publisher_bindings_1506e50"
+      ],
+      "sources": [
+        "src/network/publisher_bindings.h"
+      ],
+      "expected_prefix": "48 89 5C 24 18 48 89 6C 24 20 56 48 83 EC 40 40"
+    },
+    {
+      "name": "frontend_bindings_1507330",
+      "rva": "0x1507330",
+      "aliases": [
+        "frontend_bindings_1507330"
+      ],
+      "sources": [
+        "src/network/frontend_bindings.h"
+      ],
+      "expected_prefix": "48 89 5C 24 20 57 48 83 EC 70 48 8B 05 B7 D0 54"
+    },
+    {
+      "name": "kGlassGetSystemForInitialPieceRva",
+      "rva": "0x150d780",
+      "aliases": [
+        "kGlassGetSystemForInitialPieceRva"
+      ],
+      "sources": [
+        "src/dedicated/bap.cpp"
+      ]
+    },
+    {
+      "name": "kSystemLinkPredicateRVA",
+      "rva": "0x1528420",
+      "aliases": [
+        "kSystemLinkPredicateRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "social_bindings_15284e0",
+      "rva": "0x15284e0",
+      "aliases": [
+        "social_bindings_15284e0"
+      ],
+      "sources": [
+        "src/network/social_bindings.h"
+      ],
+      "expected_prefix": "40 53 48 83 EC 20 8B D9 E8 03 54 D9 FF 8B CB 48"
+    },
+    {
+      "name": "social_bindings_1597410",
+      "rva": "0x1597410",
+      "aliases": [
+        "social_bindings_1597410"
+      ],
+      "sources": [
+        "src/network/social_bindings.h"
+      ],
+      "expected_prefix": "48 89 5C 24 08 57 48 83 EC 20 8B F9 33 DB E8 CD"
+    },
+    {
+      "name": "kAddConsoleTextRVA",
+      "rva": "0x15c1c20",
+      "aliases": [
+        "kAddConsoleTextRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kCLMainMPFrameDispatchRVA",
+      "rva": "0x15c2ba0",
+      "aliases": [
+        "kCLMainMPFrameDispatchRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kStartPrivatePartyRVA",
+      "rva": "0x15c5710",
+      "aliases": [
+        "kStartPrivatePartyRVA"
+      ],
+      "sources": [
+        "src/network/online_services.cpp"
+      ]
+    },
+    {
+      "name": "native_15c7940",
+      "rva": "0x15c7940",
+      "aliases": [
+        "native_15c7940"
+      ],
+      "sources": [
+        "src/auth/local_progression.cpp",
+        "src/auth/local_stats.cpp"
+      ]
+    },
+    {
+      "name": "kCLScreenUpdateRVA",
+      "rva": "0x15caa50",
+      "aliases": [
+        "kCLScreenUpdateRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kCLInitUIRVA",
+      "rva": "0x15ce980",
+      "aliases": [
+        "kCLInitUIRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kCLMainMPCheckForResendRVA",
+      "rva": "0x15e4fc0",
+      "aliases": [
+        "kCLMainMPCheckForResendRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kDBTransientRegisteredPredicateRVA",
+      "rva": "0x15f6e70",
+      "aliases": [
+        "kDBTransientRegisteredPredicateRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kDBTransientRegisteredFollowupRVA",
+      "rva": "0x15f8f30",
+      "aliases": [
+        "kDBTransientRegisteredFollowupRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kPartyJoinAbortRVA",
+      "rva": "0x1606a20",
+      "aliases": [
+        "kPartyJoinAbortRVA"
+      ],
+      "sources": [
+        "src/network/online_services.cpp"
+      ]
+    },
+    {
+      "name": "kPartyAtomicAcceptInviteMPRVA",
+      "rva": "0x1606be0",
+      "aliases": [
+        "kPartyAtomicAcceptInviteMPRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kPartyStartLANServerJoinRVA",
+      "rva": "0x1608270",
+      "aliases": [
+        "kPartyStartLANServerJoinRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "frontend_bindings_16694f0",
+      "rva": "0x16694f0",
+      "aliases": [
+        "frontend_bindings_16694f0"
+      ],
+      "sources": [
+        "src/network/frontend_bindings.h"
+      ],
+      "expected_prefix": "C7 41 10 01 00 00 00 C3 CC CC CC CC CC CC CC CC"
+    },
+    {
+      "name": "frontend_bindings_1670370",
+      "rva": "0x1670370",
+      "aliases": [
+        "frontend_bindings_1670370"
+      ],
+      "sources": [
+        "src/network/frontend_bindings.h"
+      ],
+      "expected_prefix": "48 89 5C 24 08 4C 8B 99 B8 00 00 00 33 DB 45 32"
+    },
+    {
+      "name": "kSVSendClientGameStateRVA",
+      "rva": "0x1675160",
+      "aliases": [
+        "kSVSendClientGameStateRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kSetLastStandEnabledRVA",
+      "rva": "0x1778e80",
+      "aliases": [
+        "kSetLastStandEnabledRVA"
+      ],
+      "sources": [
+        "src/dedicated/headless/headless.cpp"
+      ]
+    },
+    {
+      "name": "kLuaLoadfileFastfileRVA",
+      "rva": "0x19baee0",
+      "aliases": [
+        "kLuaLoadfileFastfileRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "native_19bcc30",
+      "rva": "0x19bcc30",
+      "aliases": [
+        "native_19bcc30",
+        "chat_bindings_19bcc30",
+        "social_bindings_19bcc30"
+      ],
+      "sources": [
+        "src/client/native_commerce.cpp",
+        "src/network/chat_bindings.h",
+        "src/network/chat_runtime.cpp",
+        "src/network/social_bindings.h",
+        "src/network/social_runtime.cpp"
+      ],
+      "expected_prefix": "48 89 6C 24 10 48 89 74 24 18 57 48 83 EC 20 8B"
+    },
+    {
+      "name": "native_19bda00",
+      "rva": "0x19bda00",
+      "aliases": [
+        "native_19bda00",
+        "chat_bindings_19bda00",
+        "social_bindings_19bda00"
+      ],
+      "sources": [
+        "src/client/native_commerce.cpp",
+        "src/network/chat_bindings.h",
+        "src/network/chat_runtime.cpp",
+        "src/network/social_bindings.h",
+        "src/network/social_runtime.cpp"
+      ],
+      "expected_prefix": "40 53 48 83 EC 20 48 8B D1 B9 03 00 00 00 E8 2D"
+    },
+    {
+      "name": "native_19ce460",
+      "rva": "0x19ce460",
+      "aliases": [
+        "native_19ce460",
+        "chat_bindings_19ce460"
+      ],
+      "sources": [
+        "src/client/native_commerce.cpp",
+        "src/network/chat_bindings.h",
+        "src/network/chat_runtime.cpp"
+      ],
+      "expected_prefix": "E9 5B 92 FE FF CC CC CC CC CC CC CC CC CC CC CC"
+    },
+    {
+      "name": "native_19ce4f0",
+      "rva": "0x19ce4f0",
+      "aliases": [
+        "native_19ce4f0",
+        "chat_bindings_19ce4f0",
+        "social_bindings_19ce4f0"
+      ],
+      "sources": [
+        "src/client/native_commerce.cpp",
+        "src/network/chat_bindings.h",
+        "src/network/chat_runtime.cpp",
+        "src/network/social_bindings.h",
+        "src/network/social_runtime.cpp"
+      ],
+      "expected_prefix": "E9 0B 92 FE FF CC CC CC CC CC CC CC CC CC CC CC"
+    },
+    {
+      "name": "native_19ce9b0",
+      "rva": "0x19ce9b0",
+      "aliases": [
+        "native_19ce9b0",
+        "frontend_bindings_19ce9b0"
+      ],
+      "sources": [
+        "src/network/frontend_backend.cpp",
+        "src/network/frontend_bindings.h"
+      ],
+      "expected_prefix": "E9 0B 8F FE FF CC CC CC CC CC CC CC CC CC CC CC"
+    },
+    {
+      "name": "kLUICoDInitRVA",
+      "rva": "0x19d1e70",
+      "aliases": [
+        "kLUICoDInitRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kLuaUIStartServerWrapperRVA",
+      "rva": "0x19e1830",
+      "aliases": [
+        "kLuaUIStartServerWrapperRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "native_1b11330",
+      "rva": "0x1b11330",
+      "aliases": [
+        "native_1b11330"
+      ],
+      "sources": [
+        "src/client/native_commerce.cpp"
+      ]
+    },
+    {
+      "name": "native_1b20f30",
+      "rva": "0x1b20f30",
+      "aliases": [
+        "native_1b20f30"
+      ],
+      "sources": [
+        "src/client/native_commerce.cpp"
+      ]
+    },
+    {
+      "name": "social_bindings_1b2f890",
+      "rva": "0x1b2f890",
+      "aliases": [
+        "social_bindings_1b2f890",
+        "native_1b2f890"
+      ],
+      "sources": [
+        "src/network/social_bindings.h",
+        "src/network/social_runtime.cpp"
+      ],
+      "expected_prefix": "8B 41 0C C3 CC CC CC CC CC CC CC CC CC CC CC CC"
+    },
+    {
+      "name": "social_bindings_1b302c0",
+      "rva": "0x1b302c0",
+      "aliases": [
+        "social_bindings_1b302c0",
+        "native_1b302c0"
+      ],
+      "sources": [
+        "src/network/social_bindings.h",
+        "src/network/social_runtime.cpp"
+      ],
+      "expected_prefix": "83 FA 65 0F 87 C4 00 00 00 48 89 74 24 20 57 48"
+    },
+    {
+      "name": "chat_bindings_1b31530",
+      "rva": "0x1b31530",
+      "aliases": [
+        "chat_bindings_1b31530",
+        "native_1b31530"
+      ],
+      "sources": [
+        "src/network/chat_bindings.h",
+        "src/network/chat_runtime.cpp"
+      ],
+      "expected_prefix": "48 89 6C 24 18 56 57 41 57 48 83 EC 30 45 0F B6"
+    },
+    {
+      "name": "chat_bindings_1b31f80",
+      "rva": "0x1b31f80",
+      "aliases": [
+        "chat_bindings_1b31f80",
+        "native_1b31f80"
+      ],
+      "sources": [
+        "src/network/chat_bindings.h",
+        "src/network/chat_runtime.cpp"
+      ],
+      "expected_prefix": "48 89 5C 24 08 57 48 83 EC 30 48 8B DA 48 8B F9"
+    },
+    {
+      "name": "chat_bindings_1b320d0",
+      "rva": "0x1b320d0",
+      "aliases": [
+        "chat_bindings_1b320d0",
+        "native_1b320d0"
+      ],
+      "sources": [
+        "src/network/chat_bindings.h",
+        "src/network/chat_runtime.cpp"
+      ],
+      "expected_prefix": "48 89 5C 24 08 57 48 83 EC 20 33 FF 48 8D 41 61"
+    },
+    {
+      "name": "native_1b32400",
+      "rva": "0x1b32400",
+      "aliases": [
+        "native_1b32400"
+      ],
+      "sources": [
+        "src/client/native_commerce.cpp"
+      ]
+    },
+    {
+      "name": "social_bindings_1b371e0",
+      "rva": "0x1b371e0",
+      "aliases": [
+        "social_bindings_1b371e0",
+        "native_1b371e0"
+      ],
+      "sources": [
+        "src/network/social_bindings.h",
+        "src/network/social_runtime.cpp"
+      ],
+      "expected_prefix": "48 8D 05 69 EE E9 03 C3 CC CC CC CC CC CC CC CC"
+    },
+    {
+      "name": "native_1b39ed0",
+      "rva": "0x1b39ed0",
+      "aliases": [
+        "native_1b39ed0"
+      ],
+      "sources": [
+        "src/client/native_commerce.cpp"
+      ]
+    },
+    {
+      "name": "frontend_bindings_1b3c350",
+      "rva": "0x1b3c350",
+      "aliases": [
+        "frontend_bindings_1b3c350"
+      ],
+      "sources": [
+        "src/network/frontend_bindings.h"
+      ],
+      "expected_prefix": "40 53 48 83 EC 20 48 8B D9 8B CA E8 C0 A8 22 FF"
+    },
+    {
+      "name": "user_list_bindings_1b3e710",
+      "rva": "0x1b3e710",
+      "aliases": [
+        "user_list_bindings_1b3e710"
+      ],
+      "sources": [
+        "src/network/user_list_bindings.h"
+      ],
+      "expected_prefix": "40 53 48 83 EC 20 8B DA 48 C7 44 24 40 00 00 00"
+    },
+    {
+      "name": "social_bindings_1b95f20",
+      "rva": "0x1b95f20",
+      "aliases": [
+        "social_bindings_1b95f20",
+        "native_1b95f20"
+      ],
+      "sources": [
+        "src/network/social_bindings.h",
+        "src/network/social_runtime.cpp"
+      ],
+      "expected_prefix": "48 89 5C 24 08 57 48 83 EC 30 48 63 C1 48 8D 3D"
+    },
+    {
+      "name": "native_1b96540",
+      "rva": "0x1b96540",
+      "aliases": [
+        "native_1b96540"
+      ],
+      "sources": [
+        "src/auth/local_playercard.cpp"
+      ]
+    },
+    {
+      "name": "native_1b992f0",
+      "rva": "0x1b992f0",
+      "aliases": [
+        "native_1b992f0"
+      ],
+      "sources": [
+        "src/auth/local_playercard.cpp"
+      ]
+    },
+    {
+      "name": "native_1b996b0",
+      "rva": "0x1b996b0",
+      "aliases": [
+        "native_1b996b0"
+      ],
+      "sources": [
+        "src/auth/local_playercard.cpp"
+      ]
+    },
+    {
+      "name": "kLUIOpenMenuRVA",
+      "rva": "0x1b9bdb0",
+      "aliases": [
+        "kLUIOpenMenuRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "native_2051750",
+      "rva": "0x2051750",
+      "aliases": [
+        "native_2051750"
+      ],
+      "sources": [
+        "src/auth/local_progression.cpp",
+        "src/auth/local_stats.cpp"
+      ]
+    },
+    {
+      "name": "native_2051bf0",
+      "rva": "0x2051bf0",
+      "aliases": [
+        "native_2051bf0"
+      ],
+      "sources": [
+        "src/auth/local_progression.cpp"
+      ]
+    },
+    {
+      "name": "native_2051c70",
+      "rva": "0x2051c70",
+      "aliases": [
+        "native_2051c70"
+      ],
+      "sources": [
+        "src/auth/local_progression.cpp"
+      ]
+    },
+    {
+      "name": "native_2052150",
+      "rva": "0x2052150",
+      "aliases": [
+        "native_2052150"
+      ],
+      "sources": [
+        "src/auth/local_stats.cpp"
+      ]
+    },
+    {
+      "name": "native_2052430",
+      "rva": "0x2052430",
+      "aliases": [
+        "native_2052430"
+      ],
+      "sources": [
+        "src/auth/local_progression.cpp"
+      ]
+    },
+    {
+      "name": "native_2052820",
+      "rva": "0x2052820",
+      "aliases": [
+        "native_2052820"
+      ],
+      "sources": [
+        "src/auth/local_progression.cpp"
+      ]
+    },
+    {
+      "name": "native_2052ee0",
+      "rva": "0x2052ee0",
+      "aliases": [
+        "native_2052ee0"
+      ],
+      "sources": [
+        "src/auth/local_stats.cpp"
+      ]
+    },
+    {
+      "name": "native_2055710",
+      "rva": "0x2055710",
+      "aliases": [
+        "native_2055710"
+      ],
+      "sources": [
+        "src/auth/local_stats.cpp"
+      ]
+    },
+    {
+      "name": "native_20833b0",
+      "rva": "0x20833b0",
+      "aliases": [
+        "native_20833b0"
+      ],
+      "sources": [
+        "src/client/native_commerce.cpp"
+      ]
+    },
+    {
+      "name": "native_20836e0",
+      "rva": "0x20836e0",
+      "aliases": [
+        "native_20836e0",
+        "kLuaGetFieldRVA"
+      ],
+      "sources": [
+        "src/client/native_commerce.cpp",
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "native_20838b0",
+      "rva": "0x20838b0",
+      "aliases": [
+        "native_20838b0",
+        "kLuaGetTopRVA",
+        "frontend_bindings_20838b0"
+      ],
+      "sources": [
+        "src/client/native_commerce.cpp",
+        "src/engine/game.h",
+        "src/network/frontend_backend.cpp",
+        "src/network/frontend_bindings.h"
+      ],
+      "expected_prefix": "48 8B 41 28 48 2B 41 20 48 C1 F8 03 C3 CC CC CC"
+    },
+    {
+      "name": "native_20839e0",
+      "rva": "0x20839e0",
+      "aliases": [
+        "native_20839e0"
+      ],
+      "sources": [
+        "src/client/native_commerce.cpp"
+      ]
+    },
+    {
+      "name": "kLuaPCallRVA",
+      "rva": "0x2083da0",
+      "aliases": [
+        "kLuaPCallRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "native_2083e80",
+      "rva": "0x2083e80",
+      "aliases": [
+        "native_2083e80",
+        "kLuaPushBooleanRVA"
+      ],
+      "sources": [
+        "src/client/native_commerce.cpp",
+        "src/engine/game.h",
+        "src/network/frontend_backend.cpp"
+      ]
+    },
+    {
+      "name": "native_2084100",
+      "rva": "0x2084100",
+      "aliases": [
+        "native_2084100",
+        "kLuaPushNumberRVA"
+      ],
+      "sources": [
+        "src/client/native_commerce.cpp",
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "native_2084120",
+      "rva": "0x2084120",
+      "aliases": [
+        "native_2084120",
+        "kLuaPushStringRVA"
+      ],
+      "sources": [
+        "src/client/native_commerce.cpp",
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "native_2084510",
+      "rva": "0x2084510",
+      "aliases": [
+        "native_2084510"
+      ],
+      "sources": [
+        "src/client/native_commerce.cpp"
+      ]
+    },
+    {
+      "name": "native_2084720",
+      "rva": "0x2084720",
+      "aliases": [
+        "native_2084720"
+      ],
+      "sources": [
+        "src/client/native_commerce.cpp"
+      ]
+    },
+    {
+      "name": "native_2084790",
+      "rva": "0x2084790",
+      "aliases": [
+        "native_2084790",
+        "kLuaSetTopRVA"
+      ],
+      "sources": [
+        "src/client/native_commerce.cpp",
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "native_2084950",
+      "rva": "0x2084950",
+      "aliases": [
+        "native_2084950"
+      ],
+      "sources": [
+        "src/client/native_commerce.cpp"
+      ]
+    },
+    {
+      "name": "native_2084a10",
+      "rva": "0x2084a10",
+      "aliases": [
+        "native_2084a10"
+      ],
+      "sources": [
+        "src/client/native_commerce.cpp"
+      ]
+    },
+    {
+      "name": "native_2084ac0",
+      "rva": "0x2084ac0",
+      "aliases": [
+        "native_2084ac0",
+        "frontend_bindings_2084ac0"
+      ],
+      "sources": [
+        "src/network/frontend_backend.cpp",
+        "src/network/frontend_bindings.h"
+      ],
+      "expected_prefix": "48 83 EC 28 4C 8B D1 E8 94 DD FF FF 4C 8B D8 48"
+    },
+    {
+      "name": "native_20885c0",
+      "rva": "0x20885c0",
+      "aliases": [
+        "native_20885c0"
+      ],
+      "sources": [
+        "src/client/native_commerce.cpp"
+      ]
+    },
+    {
+      "name": "social_bindings_20e4250",
+      "rva": "0x20e4250",
+      "aliases": [
+        "social_bindings_20e4250",
+        "native_20e4250"
+      ],
+      "sources": [
+        "src/network/social_bindings.h",
+        "src/network/social_runtime.cpp"
+      ],
+      "expected_prefix": "40 53 48 83 EC 20 48 8B D9 48 8B C2 33 C9 48 8B"
+    },
+    {
+      "name": "social_bindings_20e42b0",
+      "rva": "0x20e42b0",
+      "aliases": [
+        "social_bindings_20e42b0",
+        "native_20e42b0"
+      ],
+      "sources": [
+        "src/network/social_bindings.h",
+        "src/network/social_runtime.cpp"
+      ],
+      "expected_prefix": "33 C0 48 89 41 08 48 89 41 10 C3 CC CC CC CC CC"
+    },
+    {
+      "name": "publisher_bindings_20e73b0",
+      "rva": "0x20e73b0",
+      "aliases": [
+        "publisher_bindings_20e73b0",
+        "native_20e73b0"
+      ],
+      "sources": [
+        "src/network/publisher_bindings.h",
+        "src/network/publisher_variables.cpp"
+      ],
+      "expected_prefix": "33 C0 89 01 48 89 41 08 48 8B C1 C3 CC CC CC CC"
+    },
+    {
+      "name": "publisher_bindings_20e7470",
+      "rva": "0x20e7470",
+      "aliases": [
+        "publisher_bindings_20e7470",
+        "native_20e7470"
+      ],
+      "sources": [
+        "src/network/publisher_bindings.h",
+        "src/network/publisher_variables.cpp"
+      ],
+      "expected_prefix": "E9 BB 04 00 00 CC CC CC CC CC CC CC CC CC CC CC"
+    },
+    {
+      "name": "publisher_bindings_20e7a90",
+      "rva": "0x20e7a90",
+      "aliases": [
+        "publisher_bindings_20e7a90",
+        "native_20e7a90"
+      ],
+      "sources": [
+        "src/network/publisher_bindings.h",
+        "src/network/publisher_variables.cpp"
+      ],
+      "expected_prefix": "40 53 48 83 EC 20 48 63 11 48 8B D9 83 FA 05 74"
+    },
+    {
+      "name": "publisher_bindings_20e7c00",
+      "rva": "0x20e7c00",
+      "aliases": [
+        "publisher_bindings_20e7c00",
+        "native_20e7c00"
+      ],
+      "sources": [
+        "src/network/publisher_bindings.h",
+        "src/network/publisher_variables.cpp"
+      ],
+      "expected_prefix": "48 89 5C 24 08 57 48 83 EC 20 49 8B C0 4C 8B CA"
+    },
+    {
+      "name": "chat_bindings_20eba30",
+      "rva": "0x20eba30",
+      "aliases": [
+        "chat_bindings_20eba30",
+        "native_20eba30",
+        "frontend_bindings_20eba30",
+        "native_mm_bindings_20eba30",
+        "publisher_bindings_20eba30",
+        "social_bindings_20eba30"
+      ],
+      "sources": [
+        "src/network/chat_bindings.h",
+        "src/network/chat_runtime.cpp",
+        "src/network/frontend_backend.cpp",
+        "src/network/frontend_bindings.h",
+        "src/network/native_matchmaking.cpp",
+        "src/network/native_mm_bindings.h",
+        "src/network/publisher_bindings.h",
+        "src/network/publisher_variables.cpp",
+        "src/network/social_bindings.h",
+        "src/network/social_runtime.cpp"
+      ],
+      "expected_prefix": "48 83 EC 28 48 8B 05 3D 71 DB 10 48 85 C0 74 0D"
+    },
+    {
+      "name": "native_20eba60",
+      "rva": "0x20eba60",
+      "aliases": [
+        "native_20eba60",
+        "frontend_bindings_20eba60"
+      ],
+      "sources": [
+        "src/network/frontend_backend.cpp",
+        "src/network/frontend_bindings.h"
+      ],
+      "expected_prefix": "48 8B 05 19 71 DB 10 48 85 C0 74 03 48 FF E0 C3"
+    },
+    {
+      "name": "social_bindings_20ebb50",
+      "rva": "0x20ebb50",
+      "aliases": [
+        "social_bindings_20ebb50",
+        "native_20ebb50"
+      ],
+      "sources": [
+        "src/network/social_bindings.h",
+        "src/network/social_runtime.cpp"
+      ],
+      "expected_prefix": "48 8D 05 A9 44 30 00 48 89 01 C3 CC CC CC CC CC"
+    },
+    {
+      "name": "social_bindings_20f64a0",
+      "rva": "0x20f64a0",
+      "aliases": [
+        "social_bindings_20f64a0",
+        "native_20f64a0"
+      ],
+      "sources": [
+        "src/network/social_bindings.h",
+        "src/network/social_runtime.cpp"
+      ],
+      "expected_prefix": "40 53 48 83 EC 20 48 8D 59 D8 48 8D 05 07 6D 5A"
+    },
+    {
+      "name": "social_bindings_20fa790",
+      "rva": "0x20fa790",
+      "aliases": [
+        "social_bindings_20fa790",
+        "native_20fa790",
+        "user_list_bindings_20fa790"
+      ],
+      "sources": [
+        "src/network/social_bindings.h",
+        "src/network/social_runtime.cpp",
+        "src/network/user_list_adapter.inl",
+        "src/network/user_list_bindings.h"
+      ],
+      "expected_prefix": "40 53 48 83 EC 30 4C 8D 49 74 C6 44 24 20 00 4C"
+    },
+    {
+      "name": "social_bindings_20fcdb0",
+      "rva": "0x20fcdb0",
+      "aliases": [
+        "social_bindings_20fcdb0"
+      ],
+      "sources": [
+        "src/network/social_bindings.h"
+      ],
+      "expected_prefix": "40 57 48 83 EC 20 48 8D B9 34 01 00 00 48 C7 C0"
+    },
+    {
+      "name": "social_bindings_20fcf50",
+      "rva": "0x20fcf50",
+      "aliases": [
+        "social_bindings_20fcf50",
+        "native_20fcf50"
+      ],
+      "sources": [
+        "src/network/social_bindings.h",
+        "src/network/social_runtime.cpp"
+      ],
+      "expected_prefix": "48 89 5C 24 08 48 89 74 24 10 57 48 83 EC 60 48"
+    },
+    {
+      "name": "chat_bindings_20fdef0",
+      "rva": "0x20fdef0",
+      "aliases": [
+        "chat_bindings_20fdef0",
+        "native_20fdef0",
+        "native_mm_bindings_20fdef0",
+        "publisher_bindings_20fdef0",
+        "social_bindings_20fdef0"
+      ],
+      "sources": [
+        "src/network/chat_bindings.h",
+        "src/network/chat_runtime.cpp",
+        "src/network/native_matchmaking.cpp",
+        "src/network/native_mm_bindings.h",
+        "src/network/publisher_bindings.h",
+        "src/network/publisher_variables.cpp",
+        "src/network/social_bindings.h",
+        "src/network/social_runtime.cpp"
+      ],
+      "expected_prefix": "48 89 5C 24 08 48 89 74 24 10 57 48 83 EC 20 48"
+    },
+    {
+      "name": "native_2104940",
+      "rva": "0x2104940",
+      "aliases": [
+        "native_2104940",
+        "frontend_bindings_2104940"
+      ],
+      "sources": [
+        "src/network/frontend_backend.cpp",
+        "src/network/frontend_bindings.h"
+      ],
+      "expected_prefix": "C7 81 B0 D7 00 00 00 00 00 00 48 81 C1 B8 D7 00"
+    },
+    {
+      "name": "social_bindings_21127a0",
+      "rva": "0x21127a0",
+      "aliases": [
+        "social_bindings_21127a0"
+      ],
+      "sources": [
+        "src/network/social_bindings.h"
+      ],
+      "expected_prefix": "33 C0 89 81 88 22 00 00 89 81 08 7B 00 00 C3 CC"
+    },
+    {
+      "name": "native_2114be0",
+      "rva": "0x2114be0",
+      "aliases": [
+        "native_2114be0",
+        "frontend_bindings_2114be0"
+      ],
+      "sources": [
+        "src/network/frontend_backend.cpp",
+        "src/network/frontend_bindings.h"
+      ],
+      "expected_prefix": "48 89 5C 24 08 57 48 83 EC 20 33 FF 48 8B D9 85"
+    },
+    {
+      "name": "publisher_bindings_2115bd0",
+      "rva": "0x2115bd0",
+      "aliases": [
+        "publisher_bindings_2115bd0",
+        "native_2115bd0"
+      ],
+      "sources": [
+        "src/network/publisher_bindings.h",
+        "src/network/publisher_variables.cpp"
+      ],
+      "expected_prefix": "48 89 5C 24 08 48 89 6C 24 10 48 89 74 24 18 48"
+    },
+    {
+      "name": "publisher_bindings_2115e30",
+      "rva": "0x2115e30",
+      "aliases": [
+        "publisher_bindings_2115e30",
+        "native_2115e30"
+      ],
+      "sources": [
+        "src/network/publisher_bindings.h",
+        "src/network/publisher_variables.cpp"
+      ],
+      "expected_prefix": "48 89 5C 24 08 48 89 6C 24 10 48 89 74 24 18 57"
+    },
+    {
+      "name": "publisher_bindings_2115ee0",
+      "rva": "0x2115ee0",
+      "aliases": [
+        "publisher_bindings_2115ee0",
+        "native_2115ee0"
+      ],
+      "sources": [
+        "src/network/publisher_bindings.h",
+        "src/network/publisher_variables.cpp"
+      ],
+      "expected_prefix": "48 89 5C 24 08 48 89 6C 24 18 41 56 48 83 EC 30"
+    },
+    {
+      "name": "publisher_bindings_2116090",
+      "rva": "0x2116090",
+      "aliases": [
+        "publisher_bindings_2116090",
+        "native_2116090"
+      ],
+      "sources": [
+        "src/network/publisher_bindings.h",
+        "src/network/publisher_variables.cpp"
+      ],
+      "expected_prefix": "48 89 6C 24 10 48 89 74 24 18 48 89 7C 24 20 41"
+    },
+    {
+      "name": "social_bindings_212e330",
+      "rva": "0x212e330",
+      "aliases": [
+        "social_bindings_212e330",
+        "native_212e330"
+      ],
+      "sources": [
+        "src/network/social_bindings.h",
+        "src/network/social_runtime.cpp"
+      ],
+      "expected_prefix": "40 53 48 83 EC 20 48 8B D9 48 85 C9 74 03 C6 01"
+    },
+    {
+      "name": "social_bindings_2140450",
+      "rva": "0x2140450",
+      "aliases": [
+        "social_bindings_2140450",
+        "native_2140450"
+      ],
+      "sources": [
+        "src/network/social_bindings.h",
+        "src/network/social_runtime.cpp"
+      ],
+      "expected_prefix": "48 83 C1 20 E9 17 E5 00 00 CC CC CC CC CC CC CC"
+    },
+    {
+      "name": "social_bindings_21404f0",
+      "rva": "0x21404f0",
+      "aliases": [
+        "social_bindings_21404f0",
+        "native_21404f0"
+      ],
+      "sources": [
+        "src/network/social_bindings.h",
+        "src/network/social_runtime.cpp"
+      ],
+      "expected_prefix": "48 89 5C 24 20 55 56 57 48 8D 6C 24 B9 48 81 EC"
+    },
+    {
+      "name": "kNativePoolSizeTableRva",
+      "rva": "0x23fbba0",
+      "aliases": [
+        "kNativePoolSizeTableRva"
+      ],
+      "sources": [
+        "src/dedicated/bap.cpp"
+      ]
+    },
+    {
+      "name": "kOmnvarTotalCountRVA",
+      "rva": "0x5c48518",
+      "aliases": [
+        "kOmnvarTotalCountRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kOmnvarGameCountRVA",
+      "rva": "0x5c48520",
+      "aliases": [
+        "kOmnvarGameCountRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kOmnvarClientCountRVA",
+      "rva": "0x5c48524",
+      "aliases": [
+        "kOmnvarClientCountRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kOmnvarArchivedCountRVA",
+      "rva": "0x5c4852c",
+      "aliases": [
+        "kOmnvarArchivedCountRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kOmnvarPmoveCountRVA",
+      "rva": "0x5c48530",
+      "aliases": [
+        "kOmnvarPmoveCountRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kOmnvarArchivedBitsRVA",
+      "rva": "0x5c4853c",
+      "aliases": [
+        "kOmnvarArchivedBitsRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kCollisionStateRva",
+      "rva": "0x5cc74f0",
+      "aliases": [
+        "kCollisionStateRva"
+      ],
+      "sources": [
+        "src/dedicated/bap.cpp"
+      ]
+    },
+    {
+      "name": "kGEntitiesPtrRVA",
+      "rva": "0xbc20f00",
+      "aliases": [
+        "kGEntitiesPtrRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kGamePartyRVA",
+      "rva": "0xc73ade0",
+      "aliases": [
+        "kGamePartyRVA"
+      ],
+      "sources": [
+        "src/network/online_services.cpp"
+      ]
+    },
+    {
+      "name": "kPartyJoinStateRVA",
+      "rva": "0xc7f1870",
+      "aliases": [
+        "kPartyJoinStateRVA"
+      ],
+      "sources": [
+        "src/network/online_services.cpp"
+      ]
+    },
+    {
+      "name": "kDBAssetEntryStockPoolRVA",
+      "rva": "0xc815c60",
+      "aliases": [
+        "kDBAssetEntryStockPoolRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kConsoleBufferRVA",
+      "rva": "0xd216d70",
+      "aliases": [
+        "kConsoleBufferRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kPriorityClientCommandsRVA",
+      "rva": "0xd216d90",
+      "aliases": [
+        "kPriorityClientCommandsRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kClientCommandsRVA",
+      "rva": "0xd216d98",
+      "aliases": [
+        "kClientCommandsRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kServerCommandsRVA",
+      "rva": "0xd216da0",
+      "aliases": [
+        "kServerCommandsRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kSystemLinkDvarRVA",
+      "rva": "0xd386788",
+      "aliases": [
+        "kSystemLinkDvarRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kSystemLinkHostDvarRVA",
+      "rva": "0xd386790",
+      "aliases": [
+        "kSystemLinkHostDvarRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kLanLobbyEnabledDvarRVA",
+      "rva": "0xd386798",
+      "aliases": [
+        "kLanLobbyEnabledDvarRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kComFullyInitializedRVA",
+      "rva": "0xd386b6c",
+      "aliases": [
+        "kComFullyInitializedRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kSvGameGlobalsPtrRVA",
+      "rva": "0xe17fe00",
+      "aliases": [
+        "kSvGameGlobalsPtrRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kDWNetStateRVA",
+      "rva": "0xe6bda40",
+      "aliases": [
+        "kDWNetStateRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kDWNetErrorRVA",
+      "rva": "0xe6bda44",
+      "aliases": [
+        "kDWNetErrorRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kDWNetModeRVA",
+      "rva": "0xe6bda48",
+      "aliases": [
+        "kDWNetModeRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kDWNetAttemptsRVA",
+      "rva": "0xe6bda4c",
+      "aliases": [
+        "kDWNetAttemptsRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kClient0ConnectionRVA",
+      "rva": "0xee85570",
+      "aliases": [
+        "kClient0ConnectionRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kClient0ConnectionStateRVA",
+      "rva": "0xeef1288",
+      "aliases": [
+        "kClient0ConnectionStateRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    },
+    {
+      "name": "kLUILuaVMRVA",
+      "rva": "0x11868880",
+      "aliases": [
+        "kLUILuaVMRVA"
+      ],
+      "sources": [
+        "src/engine/game.h"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+set_project("island_quest_native_abi_tests")
+set_languages("cxx20")
+set_allowedplats("windows")
+set_allowedarchs("x64")
+
+target("island_quest_native_abi_tests")
+    set_kind("binary")
+    set_runtimes("MT")
+    add_files("main.cpp")
+    set_targetdir("build")
+target_end()
