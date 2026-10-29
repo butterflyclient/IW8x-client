@@ -40,6 +40,7 @@ namespace island_depth_quickfix
 			const std::uint8_t* technique{};
 			const void* vertex{};
 			const void* pixel{};
+			bool inner_ring{};
 			// A null PSO is an intentional negative cache entry. Failed PSO
 			// creation must never be retried on every draw of the same shader.
 			ComPtr<ID3D12PipelineState> pipeline;
@@ -49,9 +50,11 @@ namespace island_depth_quickfix
 			const std::uint8_t* technique{};
 			const void* vertex{};
 			const void* pixel{};
+			bool inner_ring{};
 			bool operator==(const cache_key& other) const noexcept
 			{
-				return technique == other.technique && vertex == other.vertex && pixel == other.pixel;
+				return technique == other.technique && vertex == other.vertex &&
+					pixel == other.pixel && inner_ring == other.inner_ring;
 			}
 		};
 		struct cache_key_hash
@@ -61,7 +64,8 @@ namespace island_depth_quickfix
 				const auto a = reinterpret_cast<std::uintptr_t>(key.technique);
 				const auto b = reinterpret_cast<std::uintptr_t>(key.vertex);
 				const auto c = reinterpret_cast<std::uintptr_t>(key.pixel);
-				return static_cast<std::size_t>((a >> 4) ^ (b << 9) ^ (c >> 7));
+				return static_cast<std::size_t>((a >> 4) ^ (b << 9) ^ (c >> 7) ^
+					(key.inner_ring ? 0xA42B38D7u : 0u));
 			}
 		};
 		std::atomic<setup_fn> original_setup{};
@@ -73,13 +77,25 @@ namespace island_depth_quickfix
 		std::unordered_map<cache_key, std::unique_ptr<cached>, cache_key_hash> variants;
 		std::uintptr_t image_base{};
 		bool enabled{};
+		// 1.64 Island arch model has no submitted prepass in Replay 1.20, despite
+		// its original EQUAL-based technique. This opt-in repairs ONLY the exact
+		// keystone material's converted GEQUAL/color technique. Its +8 depth bias
+		// was visually verified against the running Island client on 2026-10-23.
+		bool arch_bias_enabled{};
+		// Experimental second surface of the SAME arch XModel, deliberately
+		// independently selectable so a bad inner-ring trial never disables
+		// the already visually accepted outer keystone correction.
+		bool arch_inner_enabled{};
+		constexpr int arch_depth_bias = 8;
 		D3D12_COMPARISON_FUNC mode{D3D12_COMPARISON_FUNC_LESS_EQUAL};
 		std::atomic<unsigned> replaced_draws{};
 		std::atomic<bool> first_success{};
+		std::atomic<bool> first_inner_success{};
 		std::atomic<bool> first_failure{};
 		thread_local ID3D12GraphicsCommandList* active_list{};
 		thread_local ID3D12PipelineState* native_pipeline{};
 		thread_local ID3D12PipelineState* alternate_pipeline{};
+		thread_local bool active_inner_ring{};
 		// All cached objects remain alive for the process. This avoids even the
 		// cache mutex for consecutive draws using the same imported technique.
 		thread_local cached* last_variant{};
@@ -123,8 +139,29 @@ namespace island_depth_quickfix
 				(!std::memcmp(prefix.data(), "tmo/", 4) || !std::memcmp(prefix.data(), "tmco/", 5));
 		}
 
+		bool arch_keystone(const std::uint8_t* material)
+		{
+			constexpr char expected[] = "tmo/ee_wall_gulag_tower_set";
+			const char* name{};
+			std::array<char, sizeof(expected)> actual{};
+			return read(material, 0, name) && name &&
+				safemem::ReadBytes(name, actual.data(), actual.size()) &&
+				std::memcmp(actual.data(), expected, actual.size()) == 0;
+		}
+
+		bool arch_inner_ring(const std::uint8_t* material)
+		{
+			constexpr char expected[] = "tm2co/ee_archway_gulag_rampart_set";
+			const char* name{};
+			std::array<char, sizeof(expected)> actual{};
+			return read(material, 0, name) && name &&
+				safemem::ReadBytes(name, actual.data(), actual.size()) &&
+				std::memcmp(actual.data(), expected, actual.size()) == 0;
+		}
+
 		ComPtr<ID3D12PipelineState> create_variant(
-			ID3D12GraphicsCommandList* list, const std::uint8_t* technique)
+			ID3D12GraphicsCommandList* list, const std::uint8_t* technique,
+			bool inner_ring)
 		{
 			ComPtr<ID3D12Device> device;
 			if (!list || FAILED(list->GetDevice(IID_PPV_ARGS(&device)))) return {};
@@ -158,9 +195,14 @@ namespace island_depth_quickfix
 			desc.RasterizerState.FillMode = D3D12_FILL_MODE_SOLID;
 			desc.RasterizerState.CullMode = D3D12_CULL_MODE_BACK;
 			desc.RasterizerState.DepthClipEnable = TRUE;
+			desc.RasterizerState.DepthBias = arch_bias_enabled ? arch_depth_bias : 0;
 			desc.DepthStencilState.DepthEnable = TRUE;
-			desc.DepthStencilState.DepthWriteMask = D3D12_DEPTH_WRITE_MASK_ZERO;
-			desc.DepthStencilState.DepthFunc = mode;
+			// Two verified variants: outer stone writes depth; the inner ring
+			// retained no depth writes in the successful GEQUAL/Bias+8 A/B.
+			desc.DepthStencilState.DepthWriteMask = arch_bias_enabled && !inner_ring ?
+				D3D12_DEPTH_WRITE_MASK_ALL : D3D12_DEPTH_WRITE_MASK_ZERO;
+			desc.DepthStencilState.DepthFunc = arch_bias_enabled ?
+				D3D12_COMPARISON_FUNC_GREATER_EQUAL : mode;
 			const D3D12_DEPTH_STENCILOP_DESC face{
 				D3D12_STENCIL_OP_KEEP, D3D12_STENCIL_OP_KEEP,
 				D3D12_STENCIL_OP_KEEP, D3D12_COMPARISON_FUNC_NEVER
@@ -191,9 +233,12 @@ namespace island_depth_quickfix
 			if (replace)
 			{
 				list->SetPipelineState(native_pipeline);
-				if (!first_success.exchange(true))
+				if (active_inner_ring && !first_inner_success.exchange(true))
+					LOG_INFO("IslandDepthQuickfix", "first INNER RING draw translated to GEQUAL_NO_WRITE_BIAS8; native PSO restored");
+				else if (!active_inner_ring && !first_success.exchange(true))
 					LOG_INFO("IslandDepthQuickfix", "first Island draw translated to %s; native PSO restored",
-						mode == D3D12_COMPARISON_FUNC_ALWAYS ? "ALWAYS" : "LESS_EQUAL");
+						arch_bias_enabled ? "GEQUAL_BIAS8" :
+						(mode == D3D12_COMPARISON_FUNC_ALWAYS ? "ALWAYS" : "LESS_EQUAL"));
 				replaced_draws.fetch_add(1, std::memory_order_relaxed);
 			}
 		}
@@ -225,6 +270,7 @@ namespace island_depth_quickfix
 			active_list = nullptr;
 			native_pipeline = nullptr;
 			alternate_pipeline = nullptr;
+			active_inner_ring = false;
 			if (!enabled || !ctx || !ctx->state) return;
 
 			const auto* state = ctx->state;
@@ -249,9 +295,16 @@ namespace island_depth_quickfix
 			raster_state = local_field<std::uint64_t>(technique_snapshot.data(), 0xa0);
 			blend_state = local_field<std::uint64_t>(technique_snapshot.data(), 0xa8);
 			format_table = local_field<const std::uint8_t*>(technique_snapshot.data(), 0x88);
-			if (raster_state != 0x801 || blend_state ||
+			const bool keystone = arch_bias_enabled && raster_state == 0xE01 &&
+				arch_keystone(material);
+			const bool inner_ring = arch_inner_enabled && raster_state == 0x801 &&
+				arch_inner_ring(material);
+			const bool supported_material = arch_bias_enabled ?
+				(keystone || inner_ring) :
+				(raster_state == 0x801 && imported(material));
+			if (!supported_material || blend_state ||
 				technique_snapshot[0x82] != 2 || technique_snapshot[0x83] != 1 ||
-				!format_table || !imported(material))
+				!format_table)
 				return;
 			constexpr std::uint8_t expected[5]{22, 32, 1, 0, 0};
 			std::array<std::uint8_t, 5> observed{};
@@ -267,15 +320,25 @@ namespace island_depth_quickfix
 			const auto* pixel = local_field<const void*>(technique_snapshot.data(), 0x70);
 			if (!read(state, 0xc50, list) ||
 				!list || !native || !vertex || !pixel) return;
+			if (arch_bias_enabled)
+			{
+				// Serialized native Replay shader sizes for source techset root1106.
+				// Fail closed on a different game revision or shader permutation.
+				unsigned vs_size{}, ps_size{};
+				if (!read(vertex, 32, vs_size) || !read(pixel, 32, ps_size) ||
+					(keystone && (vs_size != 22316 || ps_size != 34992)) ||
+					(inner_ring && (vs_size != 24536 || ps_size != 36624))) return;
+			}
 			if (!install_indirect(list)) return;
-			const cache_key key{technique, vertex, pixel};
+			const cache_key key{technique, vertex, pixel, inner_ring};
 			if (last_variant && key == cache_key{last_variant->technique,
-				last_variant->vertex, last_variant->pixel})
+				last_variant->vertex, last_variant->pixel, last_variant->inner_ring})
 			{
 				if (!last_variant->pipeline) return;
 				active_list = list;
 				native_pipeline = native;
 				alternate_pipeline = last_variant->pipeline.Get();
+				active_inner_ring = inner_ring;
 				return;
 			}
 			std::lock_guard lock(mutex);
@@ -286,15 +349,17 @@ namespace island_depth_quickfix
 				active_list = list;
 				native_pipeline = native;
 				alternate_pipeline = last_variant->pipeline.Get();
+				active_inner_ring = inner_ring;
 				return;
 			}
 			// Never allow an unbounded PSO cache to grow as foreign zones unload.
 			if (variants.size() >= 512) return;
-			auto replacement = create_variant(list, technique);
+			auto replacement = create_variant(list, technique, inner_ring);
 			auto value = std::make_unique<cached>();
 			value->technique = technique;
 			value->vertex = vertex;
 			value->pixel = pixel;
+			value->inner_ring = inner_ring;
 			value->pipeline = std::move(replacement);
 			last_variant = value.get();
 			variants.emplace(key, std::move(value));
@@ -307,6 +372,7 @@ namespace island_depth_quickfix
 			alternate_pipeline = last_variant->pipeline.Get();
 			active_list = list;
 			native_pipeline = native;
+			active_inner_ring = inner_ring;
 		}
 	}
 
@@ -315,12 +381,17 @@ namespace island_depth_quickfix
 		if (!night_files::MapEnabled("mp_sm_island_1")) return hook::Status::Installed;
 		char setting[16]{};
 		const auto length = GetEnvironmentVariableA("IW8X_ISLAND_DEPTH_QUICKFIX", setting, sizeof(setting));
-		// Only explicit 1/always permits a live D3D12 ExecuteIndirect detour.
-		// No setting (and 0) leaves the native pipeline completely unhooked.
+		// Default to the material- and map-scoped visually proven arch8 fix.
+		// 0 disables all modifications; 1/always retain legacy diagnostics.
 		const bool always = length == 6 && !std::strcmp(setting, "always");
-		if (!(length == 1 && setting[0] == '1') && !always)
+		const bool arch8 = length == 5 && !std::strcmp(setting, "arch8");
+		const bool arch8both = length == 0 ||
+			(length == 9 && !std::strcmp(setting, "arch8both"));
+		if (!(length == 1 && setting[0] == '1') && !always && !arch8 && !arch8both)
 			return hook::Status::Installed;
 		enabled = true;
+		arch_bias_enabled = arch8 || arch8both;
+		arch_inner_enabled = arch8both;
 		if (always) mode = D3D12_COMPARISON_FUNC_ALWAYS;
 		image_base = base;
 		constexpr std::uint8_t expected[]{
@@ -329,8 +400,10 @@ namespace island_depth_quickfix
 		const auto result = hook::Install(reinterpret_cast<void*>(base + 0x1982df0),
 			&setup, expected, sizeof(expected), original_setup);
 		if (result == hook::Status::Installed)
-			LOG_INFO("IslandDepthQuickfix", "Island-only diagnostic depth preview enabled (%s); unset IW8X_ISLAND_DEPTH_QUICKFIX to disable",
-				mode == D3D12_COMPARISON_FUNC_ALWAYS ? "ALWAYS" : "LESS_EQUAL");
+			LOG_INFO("IslandDepthQuickfix", "Island-only depth compatibility active (%s); IW8X_ISLAND_DEPTH_QUICKFIX=0 disables",
+				arch_inner_enabled ? "ARCH_OUTER_AND_INNER_GEQUAL_BIAS8_TRIAL" :
+				(arch_bias_enabled ? "ARCH_KEYSTONE_GEQUAL_BIAS8" :
+				(mode == D3D12_COMPARISON_FUNC_ALWAYS ? "ALWAYS" : "LESS_EQUAL")));
 		return result;
 	}
 }

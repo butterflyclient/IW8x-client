@@ -99,9 +99,18 @@ namespace gsc::link_diagnostics
 			static std::mutex report_mutex;
 			static std::array<report, 64> reports{};
 			static std::size_t report_count{};
+			static std::array<report, 16> loot_reports{};
+			static std::size_t loot_report_count{};
+				static std::array<report, 32> killstreak_reports{};
+				static std::size_t killstreak_report_count{};
+			static std::array<report, 32> vehicle_reports{};
+			static std::size_t vehicle_report_count{};
 			char error[512]{};
 			(void)safemem::ReadString(message, error, sizeof(error));
 			bool record{};
+			bool try_loot_report{};
+				bool try_killstreak_report{};
+			bool try_vehicle_report{};
 			{
 				const std::lock_guard lock(report_mutex);
 				const auto end = reports.begin() + report_count;
@@ -109,12 +118,91 @@ namespace gsc::link_diagnostics
 				{
 					return entry.position == position && std::strcmp(entry.message.data(), error) == 0;
 				});
-				if (found == end && report_count < reports.size())
+				if (found == end)
 				{
-					auto& entry = reports[report_count++];
-					entry.position = position;
-					std::memcpy(entry.message.data(), error, sizeof(error));
-					record = true;
+					if (report_count < reports.size())
+					{
+						auto& entry = reports[report_count++];
+						entry.position = position;
+						std::memcpy(entry.message.data(), error, sizeof(error));
+						record = true;
+					}
+					else
+					{
+						try_loot_report = loot_report_count < loot_reports.size();
+							try_killstreak_report = killstreak_report_count < killstreak_reports.size();
+						try_vehicle_report = vehicle_report_count < vehicle_reports.size();
+					}
+				}
+			}
+			std::string exact_script;
+			std::size_t exact_offset{};
+			bool source_resolved{};
+			if (try_loot_report || try_killstreak_report || try_vehicle_report)
+			{
+					// Startup can exhaust the general budget before item use. Resolve
+				// the compiler-owned identity without holding the report mutex.
+				source_resolved = gsc::DescribeIslandCodeSite(position, exact_script, exact_offset);
+					if (try_loot_report && source_resolved && (exact_script == "scripts/mp/gametypes/br_lootcache.gsc" ||
+					exact_script == "scripts/mp/gametypes/br_pickups.gsc"))
+				{
+					const std::lock_guard lock(report_mutex);
+					const auto end = loot_reports.begin() + loot_report_count;
+					const auto found = std::find_if(loot_reports.begin(), end, [&](const auto& entry)
+					{
+						return entry.position == position && std::strcmp(entry.message.data(), error) == 0;
+					});
+					if (found == end && loot_report_count < loot_reports.size())
+					{
+						auto& entry = loot_reports[loot_report_count++];
+						entry.position = position;
+						std::memcpy(entry.message.data(), error, sizeof(error));
+						record = true;
+					}
+				}
+					// Verified installed shared/deployment utilities and BR airstrike,
+					// cluster/UAV modules need a budget after unrelated startup errors.
+					const bool killstreak_module = exact_script == "2356" || exact_script == "2235" ||
+						exact_script == "2245" || exact_script == "2246" || exact_script == "2404" || exact_script == "2225" ||
+						exact_script == "2238" || exact_script == "2239" ||
+						exact_script == "scripts/mp/gametypes/br_killstreaks.gsc";
+					if (try_killstreak_report && source_resolved && killstreak_module)
+					{
+						const std::lock_guard lock(report_mutex);
+						const auto end = killstreak_reports.begin() + killstreak_report_count;
+						const auto found = std::find_if(killstreak_reports.begin(), end, [&](const auto& entry)
+						{
+							return entry.position == position && std::strcmp(entry.message.data(), error) == 0;
+						});
+						if (found == end && killstreak_report_count < killstreak_reports.size())
+						{
+							auto& entry = killstreak_reports[killstreak_report_count++];
+							entry.position = position;
+							std::memcpy(entry.message.data(), error, sizeof(error));
+							record = true;
+						}
+					}
+				// Entry and driving can start after the general startup budget fills.
+				// These are the verified Island class, interaction and occupancy owners.
+				const bool vehicle_module = exact_script == "2253" || exact_script == "2259" ||
+					exact_script == "2262" || exact_script == "2265" || exact_script == "2268" || exact_script == "2269" ||
+					exact_script == "2271" || exact_script == "2273" || exact_script == "2274" ||
+					exact_script == "2275" || exact_script == "2438" || exact_script == "2441";
+				if (try_vehicle_report && source_resolved && vehicle_module)
+				{
+					const std::lock_guard lock(report_mutex);
+					const auto end = vehicle_reports.begin() + vehicle_report_count;
+					const auto found = std::find_if(vehicle_reports.begin(), end, [&](const auto& entry)
+					{
+						return entry.position == position && std::strcmp(entry.message.data(), error) == 0;
+					});
+					if (found == end && vehicle_report_count < vehicle_reports.size())
+					{
+						auto& entry = vehicle_reports[vehicle_report_count++];
+						entry.position = position;
+						std::memcpy(entry.message.data(), error, sizeof(error));
+						record = true;
+					}
 				}
 			}
 			if (!record)
@@ -123,10 +211,10 @@ namespace gsc::link_diagnostics
 				return;
 			}
 			LOG_ERR("GSCRuntime", "native error position=%p index=%u context=%p message='%s'", reinterpret_cast<void*>(position), index, context, error);
-				std::string exact_script;
-				std::size_t exact_offset{};
-				if (gsc::DescribeIslandCodeSite(position, exact_script, exact_offset))
-					LOG_ERR("GSCRuntime", "linked Island ScriptFile=%s bytecode_offset=%zu", exact_script.c_str(), exact_offset);
+			if (!source_resolved)
+				source_resolved = gsc::DescribeIslandCodeSite(position, exact_script, exact_offset);
+			if (source_resolved)
+				LOG_ERR("GSCRuntime", "linked Island ScriptFile=%s bytecode_offset=%zu", exact_script.c_str(), exact_offset);
 			std::uint8_t bytes[128]{};
 			if (position >= 64 && safemem::ReadBytes(reinterpret_cast<void*>(position - 64), bytes, sizeof(bytes)))
 			{

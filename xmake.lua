@@ -261,7 +261,9 @@ target(variant)
     add_files("src/network/*.cpp", "src/network/services/*.cpp")
     add_files("src/diagnostics/*.cpp")
     if has_config("island_port_probe") then
-        add_files("src/diagnostics/island/*.cpp")
+        -- Preserve native Island file/asset handling, but do not compile the
+        -- experimental DX12 SetupPass/ExecuteIndirect hooks into the proxy.
+        add_files("src/diagnostics/island/*.cpp|island_depth_quickfix.cpp|island_render_formats.cpp|island_renderer_adapter.cpp")
     end
     add_files("src/proxy/*.cpp")
     add_files("src/client/frontend/*.cpp|frontend_animtree128.cpp|frontend_materials.cpp|frontend_render128.cpp",
@@ -309,6 +311,17 @@ target("island_original_spawn_tests")
     set_runtimes("MT")
     add_includedirs("src")
     add_files("src/dedicated/runtime/tests/island_original_prematch_spawn.cpp")
+    add_cxflags("/permissive-", "/W3", {tools = "cl"})
+target_end()
+
+target("island_plunder_loadout_tests")
+    set_kind("binary")
+    set_default(false)
+    island_test_output_dirs("island-plunder-loadout-tests", path.join(os.projectdir(), "xmake-out", "tests"),
+                            path.join(os.projectdir(), ".xmake", "obj", "island-plunder-loadout-tests"))
+    set_runtimes("MT")
+    add_includedirs("src")
+    add_files("src/dedicated/runtime/tests/island_plunder_loadout_policy.cpp")
     add_cxflags("/permissive-", "/W3", {tools = "cl"})
 target_end()
 
@@ -454,6 +467,13 @@ target(test_name)
     if test_name == "gsc_island_loader_tests" then
         add_defines("IW8X_ISLAND_PORT_PROBE")
         add_files("src/diagnostics/island/island_loot.cpp")
+		add_files("src/gsc/compiled/island_armor_native_abi.cpp", "src/gsc/compiled/island_armor_switch_native_abi.cpp")
+		add_files("src/gsc/compiled/island_damage_native_abi.cpp")
+        add_files("src/gsc/compiled/island_plunder_validation_native_abi.cpp")
+		add_files("src/gsc/compiled/island_plunder_menus_native_abi.cpp")
+		add_files("src/gsc/compiled/island_plunder_class_native_abi.cpp")
+        add_files("src/gsc/compiled/island_killstreak_native_abi.cpp")
+        add_files("src/gsc/compiled/island_vehicle_native_abi.cpp")
     else
         add_undefines("IW8X_ISLAND_PORT_PROBE")
     end
@@ -580,6 +600,19 @@ target("production_runtime_tests")
     add_files("src/client/tests/runtime.cpp", "src/client/loader/component_loader.cpp",
               "src/client/component/scheduler.cpp", "src/common/utils/thread_pool.cpp", "src/engine/runtime_signatures.cpp")
     add_syslinks("kernel32", "bcrypt")
+    add_cxxflags("/utf-8", "/W3", "/bigobj", {tools = "cl"})
+target_end()
+
+
+target("client_match_capacity_tests")
+    set_kind("binary")
+    set_default(false)
+    set_runtimes("MT")
+    island_test_output_dirs("client-match-capacity-tests", "xmake-out/tests", ".xmake/obj/client-match-capacity-tests")
+    add_defines("NOMINMAX", "WIN32_LEAN_AND_MEAN")
+    add_includedirs(".", "src")
+    add_files("src/client/tests/match_client_capacity.cpp", "src/client/match_client_capacity.cpp")
+    add_syslinks("kernel32")
     add_cxxflags("/utf-8", "/W3", "/bigobj", {tools = "cl"})
 target_end()
 

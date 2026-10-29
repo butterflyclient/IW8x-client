@@ -5,7 +5,9 @@
 #include "engine/safemem.h"
 #include <array>
 #include <atomic>
+#include <cstddef>
 #include <cstring>
+#include <intrin.h>
 #ifdef IW8X_ISLAND_PORT_PROBE
 #include <cstdio>
 #include <filesystem>
@@ -26,9 +28,55 @@ namespace night_animtrees
 		constexpr uintptr_t FrontendStateRva = 0xC4EBEB0;
 		constexpr std::array<std::uint8_t, 16> ReaderBytes{ 0x48, 0x89, 0x5C, 0x24, 0x08, 0x48, 0x89, 0x74, 0x24, 0x10, 0x57, 0x48, 0x83,
 			0xEC, 0x20, 0x48 };
+		constexpr uintptr_t asset_info_rva = 0x11AA010;
+		constexpr uintptr_t optional_leaf_call_rva = 0x13151FA;
+		constexpr std::array<std::uint8_t, 21> asset_info_bytes{ 0x48, 0x89, 0x5C, 0x24, 0x08, 0x48, 0x89, 0x74, 0x24, 0x10,
+			0x48, 0x89, 0x7C, 0x24, 0x18, 0x41, 0x56, 0x48, 0x83, 0xEC, 0x20 };
+		constexpr std::array<std::uint8_t, 5> optional_leaf_call_bytes{ 0xE8, 0x11, 0x4E, 0xE9, 0xFF };
+
+		struct asset_info
+		{
+			void* header{};
+			std::uint16_t zone_index{};
+			bool is_default{};
+			bool is_transient{};
+			std::array<std::uint8_t, 4> reserved{};
+		};
+
+		static_assert(sizeof(asset_info) == 16 && offsetof(asset_info, zone_index) == 8 &&
+			offsetof(asset_info, is_default) == 10 && offsetof(asset_info, is_transient) == 11);
 		using Reader = const char* (*)(void*, const char*);
+		using get_asset_info_fn = bool (*)(unsigned int, const char*, asset_info*);
 		std::atomic<Reader> original{};
+		std::atomic<get_asset_info_fn> original_asset_info{};
+		std::atomic<bool> installed{};
+		std::atomic<unsigned> optional_prune_records{};
 		uintptr_t imageBase{};
+
+		bool get_asset_info_impl(unsigned int type, const char* name, asset_info* info, uintptr_t caller)
+		{
+			const bool found = original_asset_info.load(std::memory_order_acquire)(type, name, info);
+			if (!found || type != 7 || caller != imageBase + optional_leaf_call_rva + optional_leaf_call_bytes.size() || !info ||
+				!info->is_default || !info->is_transient || !night_files::MapEnabled("mp_sm_island_1")) return found;
+			int frontend_state{};
+			if (!safemem::ReadBytes(reinterpret_cast<void*>(imageBase + FrontendStateRva), &frontend_state, sizeof(frontend_state)) ||
+				frontend_state < 5) return found;
+
+			// Replay's optional-leaf lookup keeps registered transients even when their
+			// DB head is a default. Island preload registers these before the real XAnim
+			// becomes resident, so a rebuilt frontend tree would fail sync validation.
+			// Required/referenced/forced leaves bypass this call. Change only its local
+			// result so the native parser prunes the unavailable optional frontend leaf.
+			info->is_transient = false;
+			if (optional_prune_records.fetch_add(1, std::memory_order_relaxed) < 8)
+				LOG_INFO("NightAnimTrees", "pruned unavailable optional frontend animation '%s' (transient default)", name ? name : "");
+			return found;
+		}
+
+		__declspec(noinline) bool get_asset_info(unsigned int type, const char* name, asset_info* info)
+		{
+			return get_asset_info_impl(type, name, info, reinterpret_cast<uintptr_t>(_ReturnAddress()));
+		}
 
 		bool map_impl(std::array<char, 128>& name)
 		{
@@ -88,10 +136,14 @@ namespace night_animtrees
 	hook::Status Install(uintptr_t base)
 	{
 		if (!night_files::Enabled()) return hook::Status::Installed;
-		if (original.load(std::memory_order_acquire)) return imageBase == base ? hook::Status::Installed : hook::Status::Failed;
+		if (installed.load(std::memory_order_acquire)) return imageBase == base ? hook::Status::Installed : hook::Status::Failed;
+		if (original.load(std::memory_order_acquire) || original_asset_info.load(std::memory_order_acquire)) return hook::Status::Failed;
 		std::array<std::uint8_t, sizeof(game::kIsFrontEndPrologue)> frontend_bytes{};
 		if (!safemem::ReadBytes(reinterpret_cast<void*>(base + game::kIsFrontEndRVA), frontend_bytes.data(), frontend_bytes.size()) ||
 			std::memcmp(frontend_bytes.data(), game::kIsFrontEndPrologue, frontend_bytes.size())) return hook::Status::Failed;
+		std::array<std::uint8_t, optional_leaf_call_bytes.size()> call_bytes{};
+		if (!safemem::ReadBytes(reinterpret_cast<void*>(base + optional_leaf_call_rva), call_bytes.data(), call_bytes.size()) ||
+			call_bytes != optional_leaf_call_bytes) return hook::Status::Failed;
 
 		// Pin both the native registration write and unload clear of the scope slot.
 		struct Guard
@@ -111,10 +163,16 @@ namespace night_animtrees
 				return hook::Status::Failed;
 		}
 		imageBase = base;
-		const auto status =
-			hook::Install(reinterpret_cast<void*>(base + ReaderRva), &read, ReaderBytes.data(), ReaderBytes.size(), original);
+		hook::Batch batch;
+		batch.Add(reinterpret_cast<void*>(base + ReaderRva), &read, ReaderBytes.data(), ReaderBytes.size(), original);
+		batch.Add(reinterpret_cast<void*>(base + asset_info_rva), &get_asset_info, asset_info_bytes.data(), asset_info_bytes.size(),
+			original_asset_info);
+		const auto status = batch.Commit();
 		if (status == hook::Status::Installed)
-			LOG_INFO("NightAnimTrees", "private original trees selected for registered, admitted gameplay maps; stock frontend trees retained");
+		{
+			installed.store(true, std::memory_order_release);
+			LOG_INFO("NightAnimTrees", "private gameplay trees and unavailable optional frontend animation pruning installed");
+		}
 		return status;
 	}
 }

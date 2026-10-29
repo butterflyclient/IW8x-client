@@ -97,7 +97,51 @@ namespace
 		}
 	}
 
-	bool UnwindFrames(const CONTEXT* source, DWORD threadId = GetCurrentThreadId())
+	void InspectReplayNativeDbError(const CONTEXT& context, uintptr_t base, DWORD exceptionCode)
+	{
+		// Original signed Replay 1.20.4 DB_LoadFastfile RVA 0x11A7B71:
+		//   mov ecx,1 ; lea r8,[rsp+670h] ; lea r9,[rsp+570h]
+		//   lea rdx,[rip+...] ; call Com_Error_impl
+		// The format at RVA 0x2459280 is "\x1F%s [%s]". RVA 0x11A7B76
+		// is the exact return address seen in a native 0x1338 stack trace.
+		// At that frame RSP still addresses the original DB loader's 0x780B
+		// local allocation. Capture both original message buffers and the
+		// callee-saved R14 zone-name pointer while the thread is alive.
+		// Only the isolated signed Replay frame admits these precise offsets.
+		if (exceptionCode != 0x1338 || !base || context.Rip != base + 0x11A7B76) return;
+		auto read = [](uintptr_t address, void* output, SIZE_T size)
+		{
+			SIZE_T transferred = 0;
+			return address && ReadProcessMemory(GetCurrentProcess(), reinterpret_cast<const void*>(address),
+				output, size, &transferred) && transferred == size;
+		};
+		char first[257]{}, second[257]{}, zone[129]{};
+		const bool firstValid = read(context.Rsp + 0x670, first, 256);
+		const bool secondValid = read(context.Rsp + 0x570, second, 256);
+		const bool zoneValid = read(context.R14, zone, 128);
+		auto safe = [](char* value, size_t size)
+		{
+			value[size - 1] = 0;
+			for (size_t i = 0; value[i] && i < size; ++i)
+				if (static_cast<unsigned char>(value[i]) < 32 ||
+					static_cast<unsigned char>(value[i]) == 127)
+					value[i] = ' ';
+		};
+		safe(first, sizeof(first));
+		safe(second, sizeof(second));
+		safe(zone, sizeof(zone));
+		char message[1024]{};
+		const int n = _snprintf_s(message, sizeof(message), _TRUNCATE,
+			"REPLAY_NATIVE_DB_ERROR at DB_LoadFastfile+0x186 zone='%s' zone_read=%u "
+			"first='%s' first_read=%u reason='%s' reason_read=%u original_rsp=%016llX\r\n",
+			zoneValid ? zone : "<unreadable>", unsigned(zoneValid),
+			firstValid ? first : "<unreadable>", unsigned(firstValid),
+			secondValid ? second : "<unreadable>", unsigned(secondValid),
+			static_cast<unsigned long long>(context.Rsp));
+		if (n > 0) WriteCapture(message, n);
+	}
+
+	bool UnwindFrames(const CONTEXT* source, DWORD threadId = GetCurrentThreadId(), DWORD exceptionCode = 0)
 	{
 		bool capturedOtherThread = false;
 		// A bad stack must not cause this diagnostic to consume the game exception.
@@ -111,6 +155,7 @@ namespace
 				// the saved context, avoiding stale globals from another exception.
 				if (context.Rip == state::moduleBase.load() + 0xD85D0F) capturedOtherThread = true;
 				WriteFrame(frame, context.Rip, context.Rsp, threadId);
+				InspectReplayNativeDbError(context, state::moduleBase.load(), exceptionCode);
 				const DWORD64 previousSp = context.Rsp;
 				DWORD64 imageBase = 0;
 				const PRUNTIME_FUNCTION function = context.Rip ? RtlLookupFunctionEntry(context.Rip, &imageBase, nullptr) : nullptr;
@@ -292,7 +337,7 @@ namespace
 			pos += sprintf_s(line + pos, sizeof(line) - pos, "\r\n");
 			WriteCapture(line, pos);
 		}
-		const bool capturedOtherThread = UnwindFrames(c);
+		const bool capturedOtherThread = UnwindFrames(c, GetCurrentThreadId(), code);
 		if (code == 0x1337 && capturedOtherThread) InspectWatchdogContext(base);
 		InspectStartupCallback(c);
 		unsigned long long stack[32]{};

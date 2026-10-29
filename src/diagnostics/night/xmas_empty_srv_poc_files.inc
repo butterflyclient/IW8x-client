@@ -1,0 +1,5 @@
+	{ "mp_jup_shipment_xmas.ff", 71084ULL, "f1bce883b240f60518a7e3bc5b3e77721befdb2b741ccb314255bf7ca90a1744" },
+	{ "srv_mp_jup_shipment_xmas.ff", 192ULL, "95013b77c421a33586255d2129fce96e76a9cf4e0b30bb696d5c7dd8f6224611" },
+	{ "techsets_mp_jup_shipment_xmas.ff", 192ULL, "95013b77c421a33586255d2129fce96e76a9cf4e0b30bb696d5c7dd8f6224611" },
+	{ "eng_mp_jup_shipment_xmas.ff", 192ULL, "95013b77c421a33586255d2129fce96e76a9cf4e0b30bb696d5c7dd8f6224611" },
+	{ "ww_mp_jup_shipment_xmas.ff", 192ULL, "95013b77c421a33586255d2129fce96e76a9cf4e0b30bb696d5c7dd8f6224611" },

@@ -450,7 +450,30 @@ namespace game
 }
 
 #ifdef IW8X_ISLAND_PORT_PROBE
+namespace night_files
+{
+	bool DedicatedIslandBR()
+	{
+		return false;
+	}
+}
+
 #include "island_reservation.hpp"
+#include "island_trace.hpp"
+#include "island_loot.hpp"
+#include "island_damage.hpp"
+#include "island_damage_link.hpp"
+#include "island_armor.hpp"
+#include "island_armor_switch.hpp"
+#include "island_armor_link.hpp"
+#include "island_plunder_validation.hpp"
+#include "island_plunder_validation_link.hpp"
+#include "island_plunder_menus.hpp"
+#include "island_plunder_menus_link.hpp"
+#include "island_plunder_class.hpp"
+#include "island_plunder_class_link.hpp"
+#include "island_killstreak.hpp"
+#include "island_vehicle.hpp"
 #endif
 
 int main()
@@ -510,6 +533,52 @@ int main()
 		Check(gsc::Install(image_base) == hook::Status::NotReady, "unverified hook bytes accepted");
 #ifdef IW8X_ISLAND_PORT_PROBE
 		IslandReservationChecks();
+		island_trace_translation_checks();
+		island_trace_link_checks();
+		island_loot_translation_checks();
+		island_loot_link_checks();
+			island_damage_translation_checks();
+			island_damage_link_checks();
+			island_armor_translation_checks();
+			island_armor_switch_translation_checks();
+			island_armor_link_checks();
+			island_plunder_validation_translation_checks();
+			island_plunder_menus_translation_checks();
+			{
+				// Native Replay tableLookup returns an empty column18 for every
+				// original 1.20 weapon. Source1.64 class.gsc must see its real
+				// five-attachment cap without altering any native table asset.
+				using gsc::island_attachment_caps::missing_column_limit;
+				using gsc::island_attachment_caps::original_weapons;
+				Check(original_weapons.size() == 57, "MW19 Source attachment compatibility list changed");
+				for (size_t i = 0; i < original_weapons.size(); ++i)
+				{
+					Check(missing_column_limit("mp/statstable.csv", 4, original_weapons[i], 18, "") ==
+						std::string_view("5"), "Source 1.64 five-attachment budget absent for native weapon");
+					for (size_t j = i + 1; j < original_weapons.size(); ++j)
+						Check(original_weapons[i] != original_weapons[j], "duplicate MW19 attachment cap weapon");
+				}
+				for (const auto name : {"iw8_ar_mcharlie", "iw8_sn_hdromeo", "iw8_me_riotshield"})
+				{
+					Check(!missing_column_limit("mp/statstable.csv", 4, name, 18, "10"),
+						"Island capped a real nonempty source table cell");
+					Check(!missing_column_limit("mp/statstable.csv", 3, name, 18, "") &&
+						!missing_column_limit("mp/statstable.csv", 4, name, 17, "") &&
+						!missing_column_limit("mp/weaponstats.csv", 4, name, 18, ""),
+						"Island attachment lookup escaped exact source column/table scope");
+				}
+				for (const auto name : {"iw8_ar_t9soviet", "s4_sh_lindia98", "s4_ar_emike1", "briefcase_bomb_mp", "none", "iw8_ar_nonexistent"})
+					Check(!missing_column_limit("mp/statstable.csv", 4, name, 18, ""),
+						"Island attachment lookup accepted unsupported or alternate-cap weapons");
+			}
+			island_plunder_menus_link_checks();
+			island_plunder_class_translation_checks();
+			island_plunder_class_link_checks();
+			island_plunder_validation_link_checks();
+			island_killstreak_translation_checks();
+			island_killstreak_link_checks();
+		island_vehicle_abi_checks();
+		island_vehicle_link_checks();
 #endif
 		gsc::installed.store(true);
 		gsc::original_load_file = NativeLoad;

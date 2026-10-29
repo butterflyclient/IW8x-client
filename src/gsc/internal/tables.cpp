@@ -420,8 +420,17 @@ namespace iw8x::gsc::internal
 		}
 		static_assert(invocation_builtin_id == stock_functions + capacity + 1);
 		functions.back() = &invocation_trampoline;
-		for (size_t i = 0; i < capacity; ++i)
-			if (!port_tables::is_reserved(true, static_cast<uint32_t>(i))) methods[stock_methods + i] = native_methods[i];
+			for (size_t i = 0; i < capacity; ++i)
+			{
+				const auto provider = port_tables::method_at_slot ? port_tables::method_at_slot(static_cast<uint32_t>(i)) : 0;
+				if (provider)
+				{
+					if (!native_name(true, static_cast<uint32_t>(i)).empty())
+						throw std::runtime_error("port builtin conflicts with a registered plugin method");
+					methods[stock_methods + i] = reinterpret_cast<method>(provider);
+				}
+				else if (!port_tables::is_reserved(true, static_cast<uint32_t>(i))) methods[stock_methods + i] = native_methods[i];
+			}
 		put(ctx, native::layout::functions, functions.data());
 		put(ctx, native::layout::methods, methods.data());
 		put<uint32_t>(ctx, native::layout::function_count, static_cast<uint32_t>(functions.size()));

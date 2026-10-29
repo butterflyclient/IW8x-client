@@ -178,6 +178,17 @@ namespace island_render_formats
 	hook::Status install(std::uintptr_t base)
 	{
 		if (!night_files::MapEnabled("mp_sm_island_1")) return hook::Status::Installed;
+		// The verified Island-only keystone repair is independent of the old,
+		// global smoke/depth experiments. Enable only the exact-material PSO
+		// replacement by default. Set IW8X_ISLAND_DEPTH_QUICKFIX=0 to opt out;
+		// other maps still cannot install this hook.
+		char repair_setting[16]{};
+		const auto repair_length = GetEnvironmentVariableA("IW8X_ISLAND_DEPTH_QUICKFIX",
+			repair_setting, static_cast<DWORD>(sizeof(repair_setting)));
+		if (repair_length == 0 || (repair_length == 5 &&
+			!std::strcmp(repair_setting, "arch8")) ||
+			(repair_length == 9 && !std::strcmp(repair_setting, "arch8both")))
+			return island_depth_quickfix::install(base);
 		// Production/default Island loads must not intercept the renderer every
 		// frame. These legacy shader/depth probes are diagnostic-only until a
 		// verified asset-side conversion replaces their temporary PSO changes.

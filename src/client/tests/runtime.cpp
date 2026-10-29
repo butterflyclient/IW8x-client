@@ -4,6 +4,7 @@
 #include "engine/runtime_signatures.hpp"
 #include "engine/imports.hpp"
 #include "network/backend/join_cleanup_gate.hpp"
+#include "client/mp_dvar_registration.hpp"
 #include "dedicated/runtime/map_restart_request.hpp"
 #include "dedicated/runtime/island_playlist_override.hpp"
 #include "common/utils/completion_budget.hpp"
@@ -32,6 +33,25 @@ namespace
 	{
 		++checks;
 		if (!condition) { std::fprintf(stderr, "FAIL: %s\n", label); std::exit(1); }
+	}
+	void test_mp_dvar_registration()
+	{
+		bool registered = true;
+		unsigned registrations = 0;
+		const auto ready = [&] { return registered; };
+		const auto restore = [&] { ++registrations; registered = true; };
+		require(client::mp_dvar_registration::ensure(ready, restore) && registrations == 0,
+			"healthy MP allocation preserves registered dvars");
+		registered = false;
+		require(client::mp_dvar_registration::ensure(ready, restore) && registrations == 1,
+			"join after MP shutdown restores registration before allocation");
+		require(client::mp_dvar_registration::ensure(ready, restore) && registrations == 1,
+			"repeated allocation does not re-register live dvars");
+		registered = false;
+		require(!client::mp_dvar_registration::ensure(ready, [&] { ++registrations; }) && registrations == 2,
+			"failed native registration cannot proceed to allocation");
+		require(client::mp_dvar_registration::ensure(ready, restore) && registrations == 3,
+			"later mode teardown permits another native registration");
 	}
 	void test_join_cleanup_gate()
 	{
@@ -336,6 +356,7 @@ namespace
 
 int main(int argc, char** argv)
 {
+	test_mp_dvar_registration();
 	test_join_cleanup_gate();
 	test_dedicated_map_restart_request();
 	test_island_playlist_override();

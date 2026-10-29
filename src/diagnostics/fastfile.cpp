@@ -261,6 +261,11 @@ namespace fastfile
 			const auto opener = g_openPath.load(std::memory_order_acquire);
 			const auto handle = opener ? opener(path.c_str(), open_flags) : INVALID_HANDLE_VALUE;
 			LOG_INFO("FrontendFiles120", "loose %s flags=%X handle=%p", key.c_str(), open_flags, handle);
+				if (night_files::ChristmasEmptySrvPoC() &&
+					std::string_view(alias ? std::string_view(key).substr(kAlias.size()) : std::string_view(key)) ==
+						"srv_mp_jup_shipment_xmas.ff")
+					LOG_INFO("XmasSrvPoC", "native loose-file resolution: zone=srv_mp_jup_shipment_xmas path=%s flags=0x%X handle=%p",
+						path.c_str(), open_flags, handle);
 			return handle;
 		}
 
@@ -543,6 +548,24 @@ namespace fastfile
 			safemem::ReadString(name, zone, sizeof(zone));
 			for (char* p = zone; *p; ++p)
 				if (static_cast<unsigned char>(*p) < 32 || *p == 127) *p = ' ';
+			const bool xmasSrv = night_files::ChristmasEmptySrvPoC() &&
+				std::string_view(zone) == "srv_mp_jup_shipment_xmas";
+			if (xmasSrv)
+			{
+				const int index = night_files::Find("srv_mp_jup_shipment_xmas.ff");
+				if (index < 0)
+					LOG_ERR("XmasSrvPoC", "native DB_LoadFastfile entry without a verified Christmas srv registry entry");
+				else
+				{
+					const auto& path = night_files::Path(static_cast<unsigned>(index));
+					std::error_code error;
+					const auto size = std::filesystem::file_size(path, error);
+					const auto sha = error ? std::string{} : image_identity::Digest(path.c_str());
+					LOG_INFO("XmasSrvPoC", "native DB_LoadFastfile ENTRY zone=%s path=%ls bytes=%llu sha256=%s flags=0x%X paused=%u failure_mode=%d",
+						zone, path.c_str(), error ? 0ULL : static_cast<unsigned long long>(size),
+						sha.empty() ? "UNAVAILABLE" : sha.c_str(), flags, unsigned(wasPaused), failureMode);
+				}
+			}
 			LOG_INFO("Fastfile", "%s %s.ff", wasPaused ? "Resuming" : "Loading", zone);
 			const ULONGLONG started = GetTickCount64();
 			SetLastError(entryError);
@@ -555,6 +578,9 @@ namespace fastfile
 				: result == 3 ? "Unavailable"
 				: "Returned";
 			LOG_INFO("Fastfile", "%s %s.ff | %llu ms | result=%u", state, zone, GetTickCount64() - started, result);
+			if (xmasSrv)
+				LOG_INFO("XmasSrvPoC", "native DB_LoadFastfile RETURN zone=%s result=%u (%s) win32_error=%lu",
+					zone, result, state, static_cast<unsigned long>(exitError));
 			if (menu_art1645::Enabled() && std::strcmp(zone, menu_art1645::kZone) == 0) menu_art1645::ObserveLoad(result == 0);
 			SetLastError(exitError);
 			return result;

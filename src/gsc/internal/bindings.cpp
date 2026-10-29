@@ -51,6 +51,48 @@ namespace iw8x::gsc::internal
 		using client_spawn_fn = void (*)(void*, const float*, const float*);
 		using player_die_fn = void (*)(void*, const void*, void*, int, int, int, const void*, bool, const float*, int, int);
 		using end_scripts_fn = void (*)(void*);
+#if defined(IW8X_ISLAND_PORT_PROBE) && defined(IW8X_NATIVE_ISLAND_PREMATCH_SPAWN_BRIDGE)
+			// Observe the real native health commit without changing damage,
+			// GSC callbacks, or any game-owned state. Only an explicitly enabled
+			// Island dedicated diagnostic installs this detour.
+			using finish_damage_fn = void (*)(void*, std::uint64_t);
+			finish_damage_fn original_finish_damage{};
+			std::atomic<unsigned> island_damage_observations{};
+			bool island_damage_trace_enabled{};
+			void finish_damage_trace(void* context, std::uint64_t packed_self)
+			{
+				const bool owned = island_damage_trace_enabled && dedicated::Enabled() &&
+					std::strcmp(dedicated::detail::g_mapName, "mp_sm_island_1") == 0 &&
+					std::strcmp(dedicated::detail::g_gameType, "br") == 0;
+				const auto slot = static_cast<std::uint32_t>(packed_self);
+				const auto entity_class = static_cast<std::uint8_t>(packed_self >> 32);
+				void* entity{};
+				int before{};
+				bool before_read{};
+				if (owned && entity_class == 0 && slot < 200)
+				{
+					std::uintptr_t pool{};
+					if (safemem::ReadBytes(game::at(0xBC20F00), &pool, sizeof(pool)) && pool)
+					{
+						entity = reinterpret_cast<void*>(pool + 0x5A0ull * slot);
+						before_read = safemem::ReadBytes(static_cast<const uint8_t*>(entity) + 0x1B8, &before, sizeof(before));
+					}
+				}
+				original_finish_damage(context, packed_self);
+				if (!owned) return;
+				const auto sequence = island_damage_observations.fetch_add(1, std::memory_order_relaxed);
+				if (sequence >= 64) return;
+				int after{};
+				const bool after_read = before_read && entity &&
+					safemem::ReadBytes(static_cast<const uint8_t*>(entity) + 0x1B8, &after, sizeof(after));
+				char line[256]{};
+				std::snprintf(line, sizeof(line),
+					"IslandDamageTrace native_finishplayerdamage call=%u slot=%u class=%u hp_before=%d hp_after=%d hp_valid=%u packed=0x%llx",
+					sequence + 1, slot, unsigned(entity_class), before, after, unsigned(after_read),
+					static_cast<unsigned long long>(packed_self));
+				report(nullptr, line);
+			}
+#endif
 		frame_fn original_frame{};
 #ifdef IW8X_ISLAND_PORT_PROBE
 			using vm_execute_fn = uint32_t (*)(void*, uint32_t, const uint8_t*, uint32_t);
@@ -900,6 +942,40 @@ namespace iw8x::gsc::internal
 		}
 		configure_bindings(runtime);
 		if (!hook::detail::EnableBatch(targets)) return hook::Status::Failed;
+#if defined(IW8X_ISLAND_PORT_PROBE) && defined(IW8X_NATIVE_ISLAND_PREMATCH_SPAWN_BRIDGE)
+			{
+				char setting[4]{};
+				island_damage_trace_enabled = dedicated::Enabled() &&
+					GetEnvironmentVariableA("IW8X_ISLAND_DAMAGE_TRACE", setting, sizeof(setting)) == 1 && setting[0] == '1';
+				if (island_damage_trace_enabled)
+				{
+					// Verified Replay 1.20.4 native finishplayerdamage, GSC
+					// method 0x80F2, RVA 0x1201490 (IDA, 2026-10-22).
+					constexpr std::uint8_t prologue[]{
+						0x40, 0x55, 0x53, 0x56, 0x57, 0x41, 0x55, 0x41, 0x57, 0x48, 0x8D, 0x6C,
+						0x24, 0xB8, 0x48, 0x81, 0xEC, 0x48, 0x01, 0x00, 0x00, 0x48, 0x8B, 0x05
+					};
+					void* trampoline{};
+					auto* target = game::at(0x1201490);
+					if (hook::detail::Prepare(target, reinterpret_cast<void*>(&finish_damage_trace),
+						prologue, sizeof(prologue), &trampoline) != hook::Status::Installed)
+					{
+						island_damage_trace_enabled = false;
+						report(nullptr, "IslandDamageTrace unavailable: Replay native method signature changed");
+					}
+					else
+					{
+						original_finish_damage = reinterpret_cast<finish_damage_fn>(trampoline);
+						if (!hook::detail::Enable(target))
+						{
+							island_damage_trace_enabled = false;
+							report(nullptr, "IslandDamageTrace native hook enable failed");
+						}
+						else report(nullptr, "IslandDamageTrace enabled on Island dedicated: logging first 64 native health commits");
+					}
+				}
+			}
+#endif
 #ifdef IW8X_ISLAND_PORT_PROBE
 			char enable[2]{};
 				char heartbeat[2]{};

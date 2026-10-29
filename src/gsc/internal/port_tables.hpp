@@ -15,9 +15,11 @@ namespace iw8x::gsc::internal::port_tables
 	inline bool (*inspect)(const void*, view&){};
 	inline bool (*reserved)(bool, std::uint32_t){};
 	inline std::uintptr_t (*function_at_slot)(std::uint32_t){};
+	inline std::uintptr_t (*method_at_slot)(std::uint32_t){};
 
 	inline bool is_reserved(bool method, std::uint32_t slot)
 	{
-		return (!method && function_at_slot && function_at_slot(slot)) || (reserved && reserved(method, slot));
+		return (method ? (method_at_slot && method_at_slot(slot)) : (function_at_slot && function_at_slot(slot))) ||
+			(reserved && reserved(method, slot));
 	}
 }

@@ -18,7 +18,18 @@
 #include "diagnostics/island/island_loot.hpp"
 #include "diagnostics/island/island_operator_table.hpp"
 #include "diagnostics/night/night_files.h"
+#include "island_attachment_caps.hpp"
+#include "island_armor_native_abi.hpp"
+#include "island_armor_switch_native_abi.hpp"
+#include "island_damage_native_abi.hpp"
+#include "island_plunder_validation_native_abi.hpp"
+#include "island_plunder_menus_native_abi.hpp"
+#include "island_plunder_class_native_abi.hpp"
+#include "island_killstreak_native_abi.hpp"
+#include "island_loot_native_abi.hpp"
 #include "island_quest_native_abi.hpp"
+#include "island_trace_native_abi.hpp"
+#include "island_vehicle_native_abi.hpp"
 #endif
 
 #include <algorithm>
@@ -51,7 +62,7 @@ namespace gsc
 		using AllocZoneMemoryFn = void (*)(const std::uint64_t*, void*, void*, void*);
 		using GetScriptProgramRangeFn = std::uint8_t* (*)(std::uint32_t*);
 #ifdef IW8X_ISLAND_PORT_PROBE
-		constexpr std::size_t hook_count = 13;
+			constexpr std::size_t hook_count = 14;
 		using fixup_preload_fn = void (*)(void*, const char*);
 		using free_zone_fn = void (*)(void*);
 		fixup_preload_fn original_fixup_preload{};
@@ -65,12 +76,33 @@ namespace gsc
 		std::uint32_t canonical_delta{};
 		bool source_script_memory{};
 			std::unordered_set<std::uintptr_t> island_quest_rebound_code{};
+		std::unordered_set<std::uintptr_t> island_trace_rebound_code{};
+		std::unordered_set<std::uintptr_t> island_loot_rebound_code{};
+			std::unordered_set<std::uintptr_t> island_killstreak_rebound_code{};
+		std::unordered_set<std::uintptr_t> island_vehicle_rebound_code{};
+			std::unordered_set<std::uintptr_t> island_damage_rebound_code{};
+			std::unordered_set<std::uintptr_t> island_plunder_validation_rebound_code{};
+			std::unordered_set<std::uintptr_t> island_plunder_menus_rebound_code{};
+			std::unordered_set<std::uintptr_t> island_plunder_class_rebound_code{};
+				std::unordered_set<std::uintptr_t> island_armor_rebound_code{};
+				std::unordered_set<std::uintptr_t> island_armor_switch_rebound_code{};
 		using asset_exists_fn = int (*)(int, const char*);
 		using find_asset_fn = void* (*)(int, const char*, int);
+			using script_table_lookup_fn = const char* (*)(void*, const char*, int, const char*, int);
 		asset_exists_fn original_asset_exists{};
 		find_asset_fn original_find_asset{};
+			script_table_lookup_fn original_script_table_lookup{};
 		constexpr std::uint8_t asset_exists_entry[]{ 0x48, 0x89, 0x5c, 0x24, 0x08, 0x57, 0x48, 0x83, 0xec, 0x20 };
 		constexpr std::uint8_t find_asset_entry[]{ 0x48, 0x89, 0x5c, 0x24, 0x10, 0x48, 0x89, 0x74, 0x24, 0x18 };
+			// Replay1.20.4 tableLookup GSC builtin 0x212 (RVA 0xCE2580)
+			// marshals ctx, filename, searchCol, searchValue, resultCol into this
+			// verified native helper at 0xCE36C0. The helper returns its stock
+			// StringTable_Lookup result; no asset or native table is modified.
+			constexpr std::uint8_t script_table_lookup_entry[]{
+				0x48, 0x89, 0x5c, 0x24, 0x08, 0x48, 0x89, 0x6c, 0x24, 0x18,
+				0x48, 0x89, 0x74, 0x24, 0x20, 0x57, 0x48, 0x83, 0xec, 0x20,
+				0x49, 0x8b, 0xf1, 0x41, 0x8b, 0xe8
+			};
 #include "diagnostics/island/island_script_memory.inc"
 		struct memory_rawfile
 		{
@@ -123,6 +155,27 @@ namespace gsc
 			const auto* table = island_table(type, name);
 			return original_find_asset(type, table, allow_default);
 		}
+			const char* script_table_lookup(void* context, const char* table, int search_column,
+				const char* key, int result_column)
+			{
+				// Always execute the engine's exact native table query first.
+				// The Source1.64 BR custom-class validation reads column18, which
+				// Replay TU19 leaves empty for its 57 native IW8 weapon rows. An
+				// empty cap makes class.gsc clear every chosen attachment and ID,
+				// while cosmetics and camo remain. Restore only the verified MW19
+				// 5-attachment cap for this Island dedicated script query.
+				const auto* actual = original_script_table_lookup(context, table, search_column, key, result_column);
+				if (!canonical_delta || !night_files::DedicatedIslandBR() || !actual || *actual || !table || !key)
+					return actual;
+				const auto* fallback = island_attachment_caps::missing_column_limit(
+					table, search_column, key, result_column, actual);
+				if (!fallback) return actual;
+				static std::atomic<unsigned> reported{};
+				if (reported.fetch_add(1, std::memory_order_relaxed) < 8)
+					LOG_INFO("IslandLoadout", "restored Source MW19 statstable max attachments=%s for %s (native column18 empty)",
+						fallback, key);
+				return fallback;
+			}
 		constexpr std::uint8_t canonical_name_entry[]{ 0x48, 0x89, 0x5c, 0x24, 0x08, 0x48, 0x89, 0x6c, 0x24, 0x10 };
 
 		std::uint32_t canonical_name(const char* name)
@@ -455,6 +508,16 @@ namespace gsc
 			probe_code_views.clear();
 				probe_code_names.clear();
 				island_quest_rebound_code.clear();
+			island_trace_rebound_code.clear();
+			island_loot_rebound_code.clear();
+				island_killstreak_rebound_code.clear();
+			island_vehicle_rebound_code.clear();
+			island_damage_rebound_code.clear();
+				island_plunder_validation_rebound_code.clear();
+				island_plunder_menus_rebound_code.clear();
+				island_plunder_class_rebound_code.clear();
+						island_armor_rebound_code.clear();
+						island_armor_switch_rebound_code.clear();
 		}
 
 		bool PublishCompactCode(void* owner, void* layouts, const char* phase)
@@ -558,6 +621,16 @@ namespace gsc
 				probe_code_views.clear();
 				probe_code_names.clear();
 					island_quest_rebound_code.clear();
+				island_trace_rebound_code.clear();
+				island_loot_rebound_code.clear();
+					island_killstreak_rebound_code.clear();
+				island_vehicle_rebound_code.clear();
+					island_damage_rebound_code.clear();
+					island_plunder_validation_rebound_code.clear();
+					island_plunder_menus_rebound_code.clear();
+					island_plunder_class_rebound_code.clear();
+					island_armor_rebound_code.clear();
+					island_armor_switch_rebound_code.clear();
 			}
 			const auto identity = reinterpret_cast<std::uintptr_t>(script.bytecode_);
 			const auto size = static_cast<std::size_t>(script.bytecode_len_);
@@ -1050,6 +1123,179 @@ namespace gsc
 					{
 						const auto first = reinterpret_cast<std::uintptr_t>(probe_view.bytecode_);
 						const auto size = static_cast<std::size_t>(probe_view.bytecode_len_);
+							if (selected_name == island_armor_switch_native_abi::source_module)
+							{
+								bool incompatible = false;
+								bool newly_translated = false;
+								{
+									std::lock_guard lock(saved_mutex);
+									if (!island_armor_switch_rebound_code.contains(first))
+									{
+										if (!island_armor_switch_native_abi::translate_private_compiler_copy(
+											selected_name, std::span(probe_view.bytecode_, size)))
+										incompatible = true;
+										else
+										{
+											island_armor_switch_rebound_code.insert(first);
+											newly_translated = true;
+										}
+									}
+								}
+								if (incompatible)
+								{
+									reinterpret_cast<void (*)(int, const char*, ...)>(game::base() + kComErrorRva)(1,
+										"Island armor weapon switch native ABI: selected numeric 2245 differs from verified Source 1.64 bytecode");
+									return;
+								}
+								if (newly_translated)
+									LOG_INFO("GSC", "Island armor weapon switch native ABI: restored iscurrentweapon 3-argument IsSameWeapon 0x364 -> 0x363 in private 2245 compiler copy at %p",
+										probe_view.bytecode_);
+							}
+							if (selected_name == island_armor_native_abi::source_module)
+							{
+								bool incompatible = false;
+								bool newly_translated = false;
+								{
+									std::lock_guard lock(saved_mutex);
+									if (!island_armor_rebound_code.contains(first))
+									{
+										if (!island_armor_native_abi::translate_private_compiler_copy(
+											selected_name, std::span(probe_view.bytecode_, size)))
+										incompatible = true;
+										else
+										{
+											island_armor_rebound_code.insert(first);
+											newly_translated = true;
+										}
+									}
+								}
+								if (incompatible)
+								{
+									reinterpret_cast<void (*)(int, const char*, ...)>(game::base() + kComErrorRva)(1,
+										"Island armor native ABI: selected numeric 2300 differs from verified Source 1.64 bytecode");
+									return;
+								}
+								if (newly_translated)
+									LOG_INFO("GSC", "Island armor native ABI: restored repeat-plate input method 0x8746 -> 0x8743 in private 2300 compiler copy at %p",
+										probe_view.bytecode_);
+							}
+							if (selected_name == island_plunder_class_native_abi::source_module)
+							{
+								bool incompatible = false;
+								bool newly_translated = false;
+								{
+									std::lock_guard lock(saved_mutex);
+									if (!island_plunder_class_rebound_code.contains(first))
+									{
+										if (!island_plunder_class_native_abi::translate_private_compiler_copy(
+											selected_name, std::span(probe_view.bytecode_, size)))
+											incompatible = true;
+										else
+										{
+											island_plunder_class_rebound_code.insert(first);
+											newly_translated = true;
+										}
+									}
+								}
+								if (incompatible)
+								{
+									reinterpret_cast<void (*)(int, const char*, ...)>(game::base() + kComErrorRva)(1,
+										"Island Plunder class ABI: selected 1827 differs from verified Source 1.64");
+									return;
+								}
+								if (newly_translated)
+									LOG_INFO("GSC", "Island Plunder class ABI: reduced 2 ranked-DDL attachment read loops from 10 to 5 in 1827 private compiler copy at %p",
+										probe_view.bytecode_);
+							}
+							if (selected_name == island_plunder_menus_native_abi::source_module)
+							{
+								bool incompatible = false;
+								bool newly_translated = false;
+								{
+									std::lock_guard lock(saved_mutex);
+									if (!island_plunder_menus_rebound_code.contains(first))
+									{
+										if (!island_plunder_menus_native_abi::translate_private_compiler_copy(
+											selected_name, std::span(probe_view.bytecode_, size)))
+											incompatible = true;
+										else
+										{
+											island_plunder_menus_rebound_code.insert(first);
+											newly_translated = true;
+										}
+									}
+								}
+								if (incompatible)
+								{
+									// A native loader error can unwind GSC, so release saved_mutex
+									// first rather than holding it through Com_Error.
+									reinterpret_cast<void (*)(int, const char*, ...)>(game::base() + kComErrorRva)(1,
+										"Island Plunder menus ABI: selected 1877 script differs from verified Source 1.64");
+									return;
+								}
+								if (newly_translated)
+									LOG_INFO("GSC", "Island Plunder menus ABI: translated 2 human/test-client predicate calls in 1877 private compiler copy at %p",
+										probe_view.bytecode_);
+							}
+							if (const auto* validation_profile = island_plunder_validation_native_abi::find_profile(selected_name))
+							{
+								bool incompatible = false;
+								bool newly_translated = false;
+								{
+									std::lock_guard lock(saved_mutex);
+									if (!island_plunder_validation_rebound_code.contains(first))
+									{
+										if (!island_plunder_validation_native_abi::translate_private_compiler_copy(
+											selected_name, std::span(probe_view.bytecode_, size)))
+											incompatible = true;
+										else
+										{
+											island_plunder_validation_rebound_code.insert(first);
+											newly_translated = true;
+										}
+									}
+								}
+								if (incompatible)
+								{
+									// Never invoke native Com_Error while holding saved_mutex;
+									// it can abort the native script loader's VM frame.
+									reinterpret_cast<void (*)(int, const char*, ...)>(game::base() + kComErrorRva)(1,
+										"Island Plunder validation ABI: selected numeric %s script differs from verified Source 1.64",
+										selected_name.c_str());
+									return;
+								}
+								if (newly_translated)
+									LOG_INFO("GSC", "Island Plunder validation ABI: translated %zu restriction calls in %s private compiler copy at %p",
+										validation_profile->calls.size(), selected_name.c_str(), probe_view.bytecode_);
+							}
+							if (selected_name == island_damage_native_abi::source_module)
+							{
+								bool incompatible = false;
+								bool newly_translated = false;
+								{
+									std::lock_guard lock(saved_mutex);
+									if (!island_damage_rebound_code.contains(first))
+									{
+										if (!island_damage_native_abi::translate_private_compiler_copy(
+											selected_name, std::span(probe_view.bytecode_, size)))
+											incompatible = true;
+										else
+										{
+											island_damage_rebound_code.insert(first);
+											newly_translated = true;
+										}
+									}
+								}
+								if (incompatible)
+								{
+									reinterpret_cast<void (*)(int, const char*, ...)>(game::base() + kComErrorRva)(1,
+										"Island damage native ABI: selected BR script differs from the verified source");
+									return;
+								}
+								if (newly_translated)
+									LOG_INFO("GSC", "Island BR damage ABI: translated 3 weapon-range calls in private compiler copy at %p",
+										probe_view.bytecode_);
+							}
 						// The registered stock BR quest header is only 15,661 bytes,
 						// whereas the genuine Island companion supplies 20,617 bytes.
 						// Translate ONLY its verified private compiler copy, never the
@@ -1087,6 +1333,124 @@ namespace gsc
 									if (newly_translated)
 										LOG_INFO("GSC", "Island quest native ABI: translated 7 original selected compiler-view calls at %p, original assets untouched", probe_view.bytecode_);
 							}
+						}
+						if (selected_name == island_trace_native_abi::source_module)
+						{
+							bool incompatible = false;
+							bool newly_translated = false;
+							{
+								std::lock_guard lock(saved_mutex);
+								if (!island_trace_rebound_code.contains(first))
+								{
+									if (!island_trace_native_abi::translate_private_compiler_copy(
+										selected_name, std::span(probe_view.bytecode_, size)))
+										incompatible = true;
+									else
+									{
+										island_trace_rebound_code.insert(first);
+										newly_translated = true;
+									}
+								}
+							}
+							// Com_Error may unwind the native loader; release our mutex first.
+							if (incompatible)
+							{
+								reinterpret_cast<void (*)(int, const char*, ...)>(game::base() + kComErrorRva)(1,
+									"Island trace native ABI: selected 1805 bytecode differs from the verified source");
+								return;
+							}
+							if (newly_translated)
+								LOG_INFO("GSC", "Island trace native ABI: translated ray_trace_ents 0x389 -> 0x388 in private compiler copy at %p",
+									probe_view.bytecode_);
+						}
+						if (const auto* loot_profile = island_loot_native_abi::find_profile(selected_name))
+						{
+							bool incompatible = false;
+							bool newly_translated = false;
+							{
+								std::lock_guard lock(saved_mutex);
+								if (!island_loot_rebound_code.contains(first))
+								{
+									if (!island_loot_native_abi::translate_private_compiler_copy(
+										selected_name, std::span(probe_view.bytecode_, size)))
+										incompatible = true;
+									else
+									{
+										island_loot_rebound_code.insert(first);
+										newly_translated = true;
+									}
+								}
+							}
+							// Com_Error may unwind the native loader; release our mutex first.
+							if (incompatible)
+							{
+								reinterpret_cast<void (*)(int, const char*, ...)>(game::base() + kComErrorRva)(1,
+									"Island loot native ABI: selected %s bytecode differs from the verified installed source",
+									selected_name.c_str());
+								return;
+							}
+							if (newly_translated)
+								LOG_INFO("GSC", "Island loot native ABI: translated %zu calls in %s private compiler copy at %p",
+									loot_profile->calls.size(), selected_name.c_str(), probe_view.bytecode_);
+						}
+							if (selected_name == island_killstreak_native_abi::source_module)
+							{
+								bool incompatible = false;
+								bool newly_translated = false;
+								{
+									std::lock_guard lock(saved_mutex);
+									if (!island_killstreak_rebound_code.contains(first))
+									{
+										if (!island_killstreak_native_abi::translate_private_compiler_copy(
+											selected_name, std::span(probe_view.bytecode_, size)))
+											incompatible = true;
+										else
+										{
+											island_killstreak_rebound_code.insert(first);
+											newly_translated = true;
+										}
+									}
+								}
+								// Com_Error may unwind the native loader; release our mutex first.
+								if (incompatible)
+								{
+									reinterpret_cast<void (*)(int, const char*, ...)>(game::base() + kComErrorRva)(1,
+										"Island killstreak native ABI: selected 2356 bytecode differs from the verified installed source");
+									return;
+								}
+								if (newly_translated)
+									LOG_INFO("GSC", "Island killstreak native ABI: translated 3 client slot reset/index/availability calls in private compiler copy at %p",
+										probe_view.bytecode_);
+							}
+						if (const auto* vehicle_profile = island_vehicle_native_abi::find_profile(selected_name))
+						{
+							bool incompatible = false;
+							bool newly_translated = false;
+							{
+								std::lock_guard lock(saved_mutex);
+								if (!island_vehicle_rebound_code.contains(first))
+								{
+									if (!island_vehicle_native_abi::translate_private_compiler_copy(
+										selected_name, std::span(probe_view.bytecode_, size)))
+										incompatible = true;
+									else
+									{
+										island_vehicle_rebound_code.insert(first);
+										newly_translated = true;
+									}
+								}
+							}
+							// Com_Error may unwind the native loader; release our mutex first.
+							if (incompatible)
+							{
+								reinterpret_cast<void (*)(int, const char*, ...)>(game::base() + kComErrorRva)(1,
+									"Island vehicle native ABI: selected %s bytecode differs from the verified installed source",
+									selected_name.c_str());
+								return;
+							}
+							if (newly_translated)
+								LOG_INFO("GSC", "Island vehicle native ABI: translated %zu calls and %zu compatibility statements in %s private compiler copy at %p",
+									vehicle_profile->calls.size(), vehicle_profile->rewrites.size(), selected_name.c_str(), probe_view.bytecode_);
 						}
 						const std::lock_guard lock(saved_mutex);
 						probe_code_names.try_emplace(first, size, std::move(selected_name));
@@ -1366,11 +1730,20 @@ namespace gsc
 			, Binding{ 0x11aa890, find_asset_entry, reinterpret_cast<void*>(&find_asset) }
 			, Binding{ 0x11a9160, fixup_preload_entry, reinterpret_cast<void*>(&FixupPreloadScriptMemory) }
 			, Binding{ 0x11a9240, free_zone_entry, reinterpret_cast<void*>(&FreeZoneMemory) }
+				, Binding{ 0xce36c0, script_table_lookup_entry, reinterpret_cast<void*>(&script_table_lookup) }
 #endif
 		};
 #undef SITE
+			// This new GSC helper is needed only by dedicated Island source
+			// classes, not by the client frontend or ordinary MP/BR playlists.
+			const size_t active_hooks =
+#ifdef IW8X_ISLAND_PORT_PROBE
+				night_files::DedicatedIslandBR() ? hook_count : hook_count - 1;
+#else
+				hook_count;
+#endif
 		std::lock_guard hook_lock(hook::detail::Mutex());
-		for (size_t i = 0; i < std::size(entries); ++i)
+			for (size_t i = 0; i < active_hooks; ++i)
 		{
 			if (trampolines[i]) continue;
 			const auto& entry = entries[i];
@@ -1393,6 +1766,8 @@ namespace gsc
 		original_find_asset = reinterpret_cast<find_asset_fn>(trampolines[10]);
 		original_fixup_preload = reinterpret_cast<fixup_preload_fn>(trampolines[11]);
 		original_free_zone = reinterpret_cast<free_zone_fn>(trampolines[12]);
+			if (active_hooks == hook_count)
+				original_script_table_lookup = reinterpret_cast<script_table_lookup_fn>(trampolines[13]);
 		char numeric_namespace[2]{};
 		canonical_delta = GetEnvironmentVariableA("IW8X_ISLAND_NUMERIC_CANONICAL", numeric_namespace, sizeof(numeric_namespace)) == 1 &&
 			numeric_namespace[0] == '1' ? 0x1472f - 0xe2c0 : 0;
@@ -1404,7 +1779,11 @@ namespace gsc
 		if (source_script_memory) LOG_INFO("GSC", "isolated original script_memory.json dependency available before native memory initialization");
 #endif
 		get_script_program_range = reinterpret_cast<GetScriptProgramRangeFn>(game::at(kGetScriptProgramRangeRva));
-		if (!hook::detail::EnableBatch(targets)) return hook::Status::Failed;
+			if (!hook::detail::EnableBatch(std::span(targets.data(), active_hooks))) return hook::Status::Failed;
+			#ifdef IW8X_ISLAND_PORT_PROBE
+			if (active_hooks == hook_count)
+				LOG_INFO("IslandLoadout", "Source MW19 custom-class attachment limit compatibility installed (stock table unchanged)");
+			#endif
 		installed.store(true, std::memory_order_release);
 		release_installed.store(true, std::memory_order_release);
 		LOG_INFO("GSC", "Replay native DB load/postload, linker, release and full reload installed: %ls", override_root.c_str());

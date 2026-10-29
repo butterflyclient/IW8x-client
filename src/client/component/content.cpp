@@ -11,9 +11,6 @@
 #include "diagnostics/night/night_entry_pool.h"
 #include "diagnostics/night/night_animtrees.h"
 #include "diagnostics/night/night_loot.h"
-#ifdef IW8X_ISLAND_PORT_PROBE
-#include "diagnostics/island/island_render_formats.hpp"
-#endif
 #ifndef REPLAY_DISABLE_CUSTOM_CONTENT
 #include "diagnostics/night/night_geometry.h"
 #include "diagnostics/night/night_light_bits.h"
@@ -66,7 +63,11 @@ namespace content
 #endif
 				case 12: if (!dedicated::Enabled()) status = custom_map_names::install(base); break;
 #ifdef IW8X_ISLAND_PORT_PROBE
-				case 13: if (!dedicated::Enabled()) status = island_render_formats::install(base); break;
+				case 13:
+					// The experimental Island DX12 pipeline hooks significantly
+					// degrade client performance. Keep the normal custom-content
+					// loader, but never install those renderer detours.
+					break;
 #endif
 					case 14:
 							// Progression independently verifies stock StringTable_Lookup

@@ -8,6 +8,7 @@
 #include <atomic>
 #include <cstring>
 #include <fstream>
+#include <intrin.h>
 #include <mutex>
 #include <vector>
 namespace menu_art1645
@@ -23,6 +24,18 @@ namespace menu_art1645
 		constexpr uintptr_t kLoadFastfilesRva = 0x11ACD30;
 		constexpr uint8_t kLoadFastfilesBytes[] = { 0x40, 0x55, 0x48, 0x83, 0xEC, 0x40, 0x48, 0x89, 0x5C, 0x24, 0x50, 0x48, 0x89, 0x74,
 			0x24, 0x58 };
+		// Original signed Replay F64CE0 expands one native map descriptor into
+		// server/localized/main FF requests. Its internal owned pending-row
+		// producer is RVA F65870, called at F64F6C/F64FAF/F64FED/F65026/F65042.
+		// DB_LoadFastfiles does not receive "srv_mp_backlot2" directly: it
+		// receives "mp_backlot2". Hooking only the upper batch therefore misses
+		// legitimate stock server-zone loads. This is the genuine engine-thread
+		// admission boundary, not the seven-argument DB worker loader.
+		constexpr uintptr_t kNativeEnqueueRva = 0xF65870;
+		constexpr uintptr_t kNativePendingCountRva = 0xB991000;
+		constexpr uint8_t kNativeEnqueueBytes[] = {
+			0x48, 0x8B, 0xC4, 0x48, 0x89, 0x58, 0x18, 0x55, 0x56, 0x57, 0x48, 0x81, 0xEC, 0xF0, 0x00, 0x00, 0x00
+		};
 
 		struct ZoneInfo
 		{
@@ -35,8 +48,13 @@ namespace menu_art1645
 
 		static_assert(sizeof(ZoneInfo) == 24);
 		using LoadFastfilesFn = uint64_t(__fastcall*)(const ZoneInfo*, unsigned, uint8_t, uint8_t);
+		using NativeEnqueueFn = void(__fastcall*)(const char*, const char*, uint32_t, uint8_t, uint32_t, uint32_t);
 		std::atomic<LoadFastfilesFn> g_original{ nullptr };
+		std::atomic<NativeEnqueueFn> g_native_enqueue_original{ nullptr };
 		std::atomic<bool> g_loaded{ false };
+		std::atomic<bool> g_xmas_srv_poc_scheduled{ false };
+		std::atomic<unsigned> g_xmas_srv_native_batches_observed{ 0 };
+		std::atomic<unsigned> g_xmas_srv_native_enqueue_observations{ 0 };
 		bool g_enabled = false;
 		std::filesystem::path g_zonePath, g_cachePath;
 		std::array<std::filesystem::path, 3> g_companionPaths;
@@ -64,9 +82,125 @@ namespace menu_art1645
 			return std::filesystem::file_size(path, error) == size && !error && image_identity::Digest(path.c_str()) == sha;
 		}
 
+		bool xmas_srv_poc_native_load_requested()
+		{
+			if (!night_files::ChristmasEmptySrvPoC()) return false;
+			char enabled[8]{};
+			return GetEnvironmentVariableA("IW8X_XMAS_EMPTY_SRV_LOAD", enabled,
+				DWORD(std::size(enabled))) == 1 && enabled[0] == '1';
+		}
+
+		bool authentic_native_srv_companion(std::string_view base, std::string_view filename) noexcept
+		{
+			// Native engine passes two separate C strings (each copied into an
+			// owned 64-byte row). The derived server name must *exactly*
+			// match the base map, not just contain an arbitrary srv_ prefix.
+			// Refuse path separators, traversal and punctuation even if a
+			// future source-provided map name has a matching srv_ alias.
+			const auto safe = [](std::string_view name)
+			{
+				return std::all_of(name.begin(), name.end(), [](char c)
+				{
+					return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') ||
+						(c >= '0' && c <= '9') || c == '_';
+				});
+			};
+			return base.starts_with("mp_") && base.size() >= 4 && base.size() < 60 &&
+				filename.size() == base.size() + 4 && filename.starts_with("srv_") &&
+				filename.substr(4) == base && safe(base);
+		}
+
+		bool xmas_native_enqueue_eligible(std::string_view base, std::string_view actual,
+			uint64_t currentPendingRows, bool explicitlyEnabled, bool alreadyScheduled) noexcept
+		{
+			// A future genuine Christmas map load must never enqueue its own
+			// server zone twice. The smoke-test applies only to another
+			// authenticated stock MP base/srv pair, with a spare native slot.
+			return explicitlyEnabled && !alreadyScheduled && currentPendingRows < 0x788 &&
+				base != "mp_jup_shipment_xmas" && actual != "srv_mp_jup_shipment_xmas" &&
+				authentic_native_srv_companion(base, actual);
+		}
+
+		void __fastcall native_pending_enqueue(const char* baseName, const char* actualFilename,
+			uint32_t flags, uint8_t allowMissing, uint32_t failureMode, uint32_t priority)
+		{
+			const auto original = g_native_enqueue_original.load(std::memory_order_acquire);
+			// Always forward the native original first. The original owns the
+			// DB pending row and canonical string copies; do not reimplement
+			// those allocators, indexes, authentication, or queue locks.
+			original(baseName, actualFilename, flags, allowMissing, failureMode, priority);
+			if (!night_files::ChristmasEmptySrvPoC()) return;
+
+			char base[64]{}, actual[64]{};
+			if (!safemem::ReadString(baseName, base, sizeof(base)) ||
+				!safemem::ReadString(actualFilename, actual, sizeof(actual))) return;
+			if (!authentic_native_srv_companion(base, actual)) return;
+
+			const auto count = g_xmas_srv_native_enqueue_observations.fetch_add(1, std::memory_order_relaxed);
+			if (count < 128)
+				LOG_INFO("XmasSrvPoC", "V48 NATIVE pending server-zone pair base=%s actual=%s flags=0x%X failure=%u priority=%u allowMissing=%u",
+					base, actual, flags, failureMode, priority, unsigned(allowMissing));
+
+			const bool requested = xmas_srv_poc_native_load_requested();
+			if (!requested || g_xmas_srv_poc_scheduled.load(std::memory_order_acquire) ||
+				std::string_view(base) == "mp_jup_shipment_xmas") return;
+			const auto imageBase = reinterpret_cast<std::uintptr_t>(GetModuleHandleW(nullptr));
+			std::uint64_t queued = 0;
+			if (!imageBase ||
+				!safemem::ReadBytes(reinterpret_cast<const void*>(imageBase + kNativePendingCountRva),
+					&queued, sizeof(queued)))
+			{
+				LOG_WARN("XmasSrvPoC", "native Christmas srv pending-row insertion declined: original DB count unreadable");
+				return;
+			}
+			if (!xmas_native_enqueue_eligible(base, actual, queued, requested,
+				g_xmas_srv_poc_scheduled.load(std::memory_order_acquire)))
+			{
+				if (queued >= 0x788)
+					LOG_WARN("XmasSrvPoC", "native Christmas srv pending-row insertion declined: original DB queue full (%llu)",
+						static_cast<unsigned long long>(queued));
+				return;
+			}
+			bool expected = false;
+			if (!g_xmas_srv_poc_scheduled.compare_exchange_strong(expected, true, std::memory_order_acq_rel))
+				return;
+
+			// Both local names live for this synchronous call. Signed native
+			// F65870 copies them into two owned 64B pending-row fields before
+			// returning. Same-native-lock/same-batch/validated descriptor
+			// flags as the real srv_mp_* row, before F64CE0 unlocks at F65060.
+			constexpr char christmasBase[] = "mp_jup_shipment_xmas";
+			constexpr char christmasActual[] = "srv_mp_jup_shipment_xmas";
+			LOG_INFO("XmasSrvPoC", "V48 NATIVE scheduling empty srv_mp_jup_shipment_xmas after %s: original srv flags=0x%X failure=%u priority=%u allowMissing=%u queued=%llu",
+				actual, flags, failureMode, priority, unsigned(allowMissing),
+				static_cast<unsigned long long>(queued));
+			original(christmasBase, christmasActual, flags, allowMissing, failureMode, priority);
+		}
+
 		uint64_t __fastcall load_fastfiles(const ZoneInfo* zones, unsigned count, uint8_t mode, uint8_t allowMissing)
 		{
 			auto original = g_original.load(std::memory_order_acquire);
+			// Independent native V48 gate: the signed Replay batch entrypoint
+			// is hook-installed at RVA 0x11ACD30, but original stock server
+			// companion loads could be queued through another native entry.
+			// Emit a bounded observation BEFORE any copied descriptor guards.
+			// Absence of a matching srv_* row is not evidence of a failed
+			// Christmas fastfile: distinguish high scheduler from DB worker.
+			const bool christmasRegistryReady = night_files::ChristmasEmptySrvPoC();
+			bool boundedHighTrace = false;
+			if (christmasRegistryReady)
+			{
+				const unsigned ordinal = g_xmas_srv_native_batches_observed.fetch_add(1, std::memory_order_relaxed);
+				boundedHighTrace = ordinal < 256;
+				if (boundedHighTrace)
+				{
+					const auto caller = reinterpret_cast<std::uintptr_t>(_ReturnAddress());
+					const auto base = reinterpret_cast<std::uintptr_t>(GetModuleHandleW(nullptr));
+					LOG_INFO("XmasSrvPoC", "V48 native DB_LoadFastfiles HIGH entry ordinal=%u caller_RVA=0x%llX count=%u mode=%u allowMissing=%u native_zones=%p",
+						ordinal, static_cast<unsigned long long>(caller >= base ? caller - base : 0),
+						count, unsigned(mode), unsigned(allowMissing), zones);
+				}
+			}
 			if ((!g_enabled && !night_files::Enabled() && !weapon_files::Enabled()) || !zones || !count || count > 256)
 				return original(zones, count, mode, allowMissing);
 			std::vector<ZoneInfo> expanded;
@@ -82,11 +216,22 @@ namespace menu_art1645
 				ZoneInfo zone{};
 				char name[128]{};
 				if (!safemem::ReadBytes(zones + i, &zone, sizeof(zone)) || !safemem::ReadString(zone.name, name, sizeof(name)))
+				{
+					if (boundedHighTrace)
+						LOG_WARN("XmasSrvPoC", "V48 native HIGH descriptor could not be read, index=%u count=%u; untouched original forwarding", i, count);
 					return original(zones, count, mode, allowMissing);
+				}
 				requested.push_back(zone);
 				names.emplace_back(name);
+				if (boundedHighTrace && i < 128)
+					LOG_INFO("XmasSrvPoC", "V48 native HIGH descriptor index=%u zone=%s flags=0x%X failure=%u priority=%u reserved=%u",
+						i, name, zone.flags, zone.failureMode, zone.priority, zone.reserved);
 			}
 			std::vector<std::string_view> inserted;
+			const bool xmasSrvRequested = xmas_srv_poc_native_load_requested();
+			const bool xmasRegistryReady = night_files::ChristmasEmptySrvPoC();
+			const bool xmasAlreadyInBatch = std::find(names.begin(), names.end(), "srv_mp_jup_shipment_xmas") != names.end();
+			bool xmasScheduled = false;
 			auto dependencies = [&](const ZoneInfo& owner, std::span<const char* const> list)
 			{
 				for (const char* name : list)
@@ -106,6 +251,15 @@ namespace menu_art1645
 			for (unsigned i = 0; i < count; ++i)
 			{
 				auto zone = requested[i];
+				if (xmasRegistryReady && names[i].starts_with("srv_"))
+				{
+					const auto caller = reinterpret_cast<std::uintptr_t>(_ReturnAddress());
+					const auto base = reinterpret_cast<std::uintptr_t>(GetModuleHandleW(nullptr));
+					LOG_INFO("XmasSrvPoC", "OBSERVED native DB_LoadFastfiles srv zone=%s caller_RVA=0x%llX flags=0x%X failure=%u priority=%u reserved=%u batch_count=%u mode=%u allowMissing=%u",
+						names[i].c_str(), static_cast<unsigned long long>(caller >= base ? caller - base : 0),
+						zone.flags, zone.failureMode, zone.priority, zone.reserved,
+						count, unsigned(mode), unsigned(allowMissing));
+				}
 				if (const auto replacement = night_files::NativeSharedZone(names[i]))
 				{
 					zone.name = replacement;
@@ -115,6 +269,27 @@ namespace menu_art1645
 				expanded.push_back(zone);
 				dependencies(zone, night_files::After(names[i]));
 				dependencies(zone, weapon_files::After(names[i]));
+				// A separate, explicit PoC switch schedules the empty Christmas
+				// srv on the *engine's own* DB_LoadFastfiles thread, cloning the
+				// exact flags/lifetime of a real native server-side companion.
+				// If no genuine srv_* request occurs, do not invent a phase or
+				// call DB_LoadFastfile from a detached thread.
+				if (xmasSrvRequested && !g_native_enqueue_original.load(std::memory_order_acquire) &&
+					!xmasAlreadyInBatch && !g_xmas_srv_poc_scheduled.load(std::memory_order_acquire) &&
+					names[i].starts_with("srv_") && names[i] != "srv_mp_jup_shipment_xmas")
+				{
+					bool expected = false;
+					if (g_xmas_srv_poc_scheduled.compare_exchange_strong(expected, true, std::memory_order_acq_rel))
+					{
+						ZoneInfo probe = zone;
+						probe.name = "srv_mp_jup_shipment_xmas";
+						expanded.push_back(probe);
+						xmasScheduled = true;
+						LOG_INFO("XmasSrvPoC", "native DB_LoadFastfiles scheduling empty srv_mp_jup_shipment_xmas after native %s: flags=0x%X failure=%u priority=%u reserved=%u mode=%u allowMissing=%u",
+							names[i].c_str(), zone.flags, zone.failureMode, zone.priority, zone.reserved,
+							unsigned(mode), unsigned(allowMissing));
+					}
+				}
 				if (g_enabled && !found && names[i] == "code_post_gfx")
 				{
 					ZoneInfo art = zone;
@@ -124,7 +299,8 @@ namespace menu_art1645
 					found = true;
 				}
 			}
-			if (!found && inserted.empty() && !native_br_substitution) return original(zones, count, mode, allowMissing);
+			if (!found && inserted.empty() && !native_br_substitution && !xmasScheduled)
+				return original(zones, count, mode, allowMissing);
 			if (native_br_substitution)
 				LOG_INFO("NightFiles", "substituted native common_br_mp in Island dedicated BR shared load (mode=%u)", mode);
 			if (found)
@@ -188,9 +364,20 @@ namespace menu_art1645
 	hook::Status Install(uintptr_t moduleBase)
 	{
 		if (!g_enabled && !night_files::Enabled() && !weapon_files::Enabled()) return hook::Status::Installed;
-		if (g_original.load(std::memory_order_acquire)) return hook::Status::Installed;
-		return hook::Install(reinterpret_cast<void*>(moduleBase + kLoadFastfilesRva), &load_fastfiles, kLoadFastfilesBytes,
-			sizeof(kLoadFastfilesBytes), g_original);
+			if (g_original.load(std::memory_order_acquire))
+				return night_files::ChristmasEmptySrvPoC() && !g_native_enqueue_original.load(std::memory_order_acquire)
+					? hook::Status::Failed : hook::Status::Installed;
+			hook::Batch batch;
+			batch.Add(reinterpret_cast<void*>(moduleBase + kLoadFastfilesRva), &load_fastfiles, kLoadFastfilesBytes,
+				sizeof(kLoadFastfilesBytes), g_original);
+			if (night_files::ChristmasEmptySrvPoC())
+				batch.Add(reinterpret_cast<void*>(moduleBase + kNativeEnqueueRva), &native_pending_enqueue,
+					kNativeEnqueueBytes, sizeof(kNativeEnqueueBytes), g_native_enqueue_original);
+			const auto result = batch.Commit();
+			if (result == hook::Status::Installed && night_files::ChristmasEmptySrvPoC())
+				LOG_INFO("XmasSrvPoC", "V48 signed Replay F65870 native server-companion pending-row observer installed; armed=%u",
+					unsigned(xmas_srv_poc_native_load_requested()));
+			return result;
 	}
 
 	bool Enabled()

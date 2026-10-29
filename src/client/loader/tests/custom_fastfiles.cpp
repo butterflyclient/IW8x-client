@@ -24,10 +24,31 @@ namespace
 	unsigned opened_flags{};
 	const menu_art1645::ZoneInfo* received{};
 	std::vector<menu_art1645::ZoneInfo> scheduled;
+	struct pending_zone
+	{
+		std::string base, actual;
+		uint32_t flags, failure_mode, priority;
+		uint8_t allow_missing;
+	};
+	std::vector<pending_zone> pending_zones;
 	std::vector<std::string> packages;
 	unsigned collision_forwarded{}, collision_loaded{}, collision_setup{};
 	const char* tree_name{};
 	void* tree_context{};
+	unsigned asset_lookup_calls{}, asset_lookup_type{};
+	const char* asset_lookup_name{};
+	night_animtrees::asset_info* asset_lookup_output{};
+	night_animtrees::asset_info asset_lookup_value{};
+	bool asset_lookup_found{ true };
+	bool read_asset_info(unsigned int type, const char* name, night_animtrees::asset_info* info)
+	{
+		++asset_lookup_calls;
+		asset_lookup_type = type;
+		asset_lookup_name = name;
+		asset_lookup_output = info;
+		if (asset_lookup_found && info) *info = asset_lookup_value;
+		return asset_lookup_found;
+	}
 	const char* read_tree(void* context, const char* name)
 	{
 		tree_context = context;
@@ -105,6 +126,11 @@ namespace
 		expect(mode == 7 && missing == 9, "native scheduling parameters changed");
 		return 42;
 	}
+	void __fastcall pending_enqueue(const char* base, const char* actual,
+		uint32_t flags, uint8_t allowMissing, uint32_t failureMode, uint32_t priority)
+	{
+		pending_zones.push_back({ base, actual, flags, failureMode, priority, allowMissing });
+	}
 
 	struct temporary_directory
 	{
@@ -121,6 +147,157 @@ int main(int argc, char** argv)
 {
 	try
 	{
+		if (argc == 3 && std::string_view(argv[1]) == "--verify-xmas-empty-srv")
+		{
+			// Validate the exact five user-installed files through the real
+			// production registry and intercepted loose-file path. This test
+			// never launches Replay or changes the installed files.
+			using namespace custom_fastfiles;
+			const std::filesystem::path root(argv[2]);
+			const auto& spec = night_files::xmas_empty_srv_poc_files;
+			const auto& bundle = night_files::xmas_empty_srv_poc_bundle;
+			const auto installed = root / bundle.folder;
+			expect(std::size(spec) == 5 && std::string_view(bundle.zone) == "mp_jup_shipment_xmas" &&
+				std::string_view(bundle.folder) == "magma/maps/mp_jup_shipment_xmas", "Christmas PoC bundle identity changed");
+			expect(night_files::xmas_empty_srv_poc_dedicated_command_line(
+				L"\"C:\\Game Folder\\game_dx12_ship_replay.exe\" --dedi --map mp_shipment --mode war") &&
+				!night_files::xmas_empty_srv_poc_dedicated_command_line(L"server.exe --dedicated --map mp_jup_shipment_xmas") &&
+				!night_files::xmas_empty_srv_poc_dedicated_command_line(L"server.exe \"--dedi\"oops") &&
+				!night_files::xmas_empty_srv_poc_dedicated_command_line(L"server.exe --dedi \"unclosed"),
+				"Christmas PoC CLI opt-in failed dedicated exact-token guard");
+			registry original;
+			expect(original.initialize(root, { &bundle, 1 }), "installed Christmas PoC bytes do not match production hash/header gate");
+			expect(original.map_enabled("mp_jup_shipment_xmas") && !original.map_enabled("mp_shipment") &&
+				original.before("mp_jup_shipment_xmas").empty() && original.cache_packages("mp_jup_shipment_xmas").empty(),
+				"Christmas PoC leaked dependencies/caches or stock map registration");
+			for (const auto& item : spec)
+			{
+				const int index = original.find(item.name);
+				expect(index >= 0 && original.header(unsigned(index)) &&
+					std::memcmp(original.header(unsigned(index))->data(), "IWffc100", 8) == 0 &&
+					std::filesystem::equivalent(original.path(unsigned(index)), installed / item.name),
+					"exact physical Christmas PoC FF was not mapped to native file registry");
+			}
+			for (const char* unknown : { "mp_shipment.ff", "../srv_mp_jup_shipment_xmas.ff", "srv_mp_jup_shipment_xmas.ff.extra" })
+				expect(original.find(unknown) < 0, "unrelated/traversal native FF lookup incorrectly admitted");
+			night_files::files = std::move(original);
+			fastfile::g_open.store(&open);
+			fastfile::g_exists.store(&exists);
+			fastfile::g_loose.store(&loose);
+			fastfile::g_openPath.store(&open_path);
+			const char* srv = "srv_mp_jup_shipment_xmas.ff";
+			expect(fastfile::Find(srv) >= fastfile::kNightFileBase && fastfile::Exists(nullptr, 5, srv),
+				"native custom provider does not recognize hash-pinned Christmas srv");
+			fastfile::Open(nullptr, 5, srv, 0x21);
+			expect(opened == std::string(fastfile::kAlias) + srv, "native CASC custom-file alias missing");
+			expect(read_header(fastfile::Loose(5, srv, 0)) &&
+				std::filesystem::equivalent(std::filesystem::path(opened), installed / srv),
+				"native loose-file provider failed to open user-installed Christmas srv");
+			expect(read_header(fastfile::Loose(5, "__magma120_converted_srv_mp_jup_shipment_xmas.ff", 0x19)),
+				"native CASC alias failed to open user-installed Christmas srv");
+			// Unit-control the existing DB_LoadFastfiles hook with a fake native
+			// queue; the real game loader is *not* called by this test.
+			char priorLoadEnv[8]{};
+			const DWORD priorLoadEnvLength = GetEnvironmentVariableA("IW8X_XMAS_EMPTY_SRV_LOAD", priorLoadEnv,
+				DWORD(std::size(priorLoadEnv)));
+			SetEnvironmentVariableA("IW8X_XMAS_EMPTY_SRV_LOAD", "1");
+			night_files::xmas_empty_srv_poc_ready = true;
+			menu_art1645::g_original.store(&schedule);
+			menu_art1645::g_xmas_srv_poc_scheduled.store(false);
+			const menu_art1645::ZoneInfo ordinary[]{ { "mp_shipment", 0x21, 1, 3, 5 } };
+			expect(menu_art1645::load_fastfiles(ordinary, 1, 7, 9) == 42 && received == ordinary &&
+				scheduled.size() == 1, "empty Christmas srv injected into an unrelated native map batch");
+			const menu_art1645::ZoneInfo realServer[]{ { "srv_mp_shipment", 0x88, 2, 5, 17 } };
+			expect(menu_art1645::load_fastfiles(realServer, 1, 7, 9) == 42 && scheduled.size() == 2 &&
+				std::string_view(scheduled[0].name) == "srv_mp_shipment" &&
+				std::string_view(scheduled[1].name) == "srv_mp_jup_shipment_xmas" &&
+				scheduled[1].flags == realServer[0].flags &&
+				scheduled[1].failureMode == realServer[0].failureMode &&
+				scheduled[1].priority == realServer[0].priority && scheduled[1].reserved == realServer[0].reserved,
+				"one-shot Christmas srv scheduling changed native server descriptor flags, lifetime, or order");
+			expect(menu_art1645::load_fastfiles(realServer, 1, 7, 9) == 42 && received == realServer &&
+				scheduled.size() == 1, "one-shot Christmas srv request repeated on a native restart");
+			menu_art1645::g_xmas_srv_poc_scheduled.store(false);
+			expect(menu_art1645::authentic_native_srv_companion("mp_backlot2", "srv_mp_backlot2") &&
+				menu_art1645::authentic_native_srv_companion("mp_shipment", "srv_mp_shipment") &&
+				menu_art1645::authentic_native_srv_companion("mp_jup_shipment_xmas", "srv_mp_jup_shipment_xmas"),
+				"native signed F65870 actual base/derived server-zone relationship rejected");
+			expect(menu_art1645::xmas_native_enqueue_eligible("mp_backlot2", "srv_mp_backlot2", 4, true, false) &&
+				menu_art1645::xmas_native_enqueue_eligible("mp_shipment", "srv_mp_shipment", 0x787, true, false),
+				"authenticated stock srv pair with spare native DB capacity incorrectly blocked");
+			expect(!menu_art1645::xmas_native_enqueue_eligible("mp_backlot2", "srv_mp_backlot2", 0x788, true, false) &&
+				!menu_art1645::xmas_native_enqueue_eligible("mp_backlot2", "srv_mp_backlot2", 0x789, true, false) &&
+				!menu_art1645::xmas_native_enqueue_eligible("mp_backlot2", "srv_mp_backlot2", 4, false, false) &&
+				!menu_art1645::xmas_native_enqueue_eligible("mp_backlot2", "srv_mp_backlot2", 4, true, true) &&
+				!menu_art1645::xmas_native_enqueue_eligible("mp_jup_shipment_xmas", "srv_mp_jup_shipment_xmas", 4, true, false) &&
+				!menu_art1645::xmas_native_enqueue_eligible("mp_backlot2", "srv_mp_shipment", 4, true, false),
+				"Christmas native pending-row probe admitted self-injection, duplicate, capacity overflow or wrong source");
+			for (const auto& pair : {
+				std::pair{ "mp_backlot2", "ww_mp_backlot2" },
+				std::pair{ "mp_backlot2", "srv_mp_shipment" },
+				std::pair{ "mp_backlot2", "srv_mp_backlot2.ff" },
+				std::pair{ "srv_mp_backlot2", "srv_srv_mp_backlot2" },
+				std::pair{ "mp_", "srv_mp_" },
+				std::pair{ "mp_jup_shipment_xmas", "srv_mp_jup_shipment_xmas_suffix" },
+				std::pair{ "mp_backlot2", "srv_mp_backlot2\\evil" },
+					std::pair{ "mp_../evil", "srv_mp_../evil" },
+					std::pair{ "mp_backlot2;evil", "srv_mp_backlot2;evil" },
+					std::pair{ "mp_backlot2-sub", "srv_mp_backlot2-sub" },
+			})
+				expect(!menu_art1645::authentic_native_srv_companion(pair.first, pair.second),
+					"native server row gate accepted wrong family/zone/traversal");
+			menu_art1645::g_native_enqueue_original.store(&pending_enqueue);
+			pending_zones.clear();
+			expect(menu_art1645::load_fastfiles(realServer, 1, 7, 9) == 42 && received == realServer &&
+				scheduled.size() == 1, "upper scheduler still forged srv_srv_* after genuine pending row hook became active");
+			SetEnvironmentVariableA("IW8X_XMAS_EMPTY_SRV_LOAD", "0");
+			menu_art1645::native_pending_enqueue("mp_backlot2", "srv_mp_backlot2", 0x88, 9, 2, 5);
+			expect(pending_zones.size() == 1 && pending_zones.front().base == "mp_backlot2" &&
+				pending_zones.front().actual == "srv_mp_backlot2" && pending_zones.front().flags == 0x88 &&
+				pending_zones.front().allow_missing == 9 && pending_zones.front().failure_mode == 2 &&
+				pending_zones.front().priority == 5 && !menu_art1645::g_xmas_srv_poc_scheduled.load(),
+				"disabled pending-zone hook changed native stock request arguments");
+			SetEnvironmentVariableA("IW8X_XMAS_EMPTY_SRV_LOAD", "0");
+			expect(menu_art1645::load_fastfiles(realServer, 1, 7, 9) == 42 && received == realServer &&
+				scheduled.size() == 1, "disabled Christmas srv load trigger still injected a zone");
+			SetEnvironmentVariableA("IW8X_XMAS_EMPTY_SRV_LOAD", "1");
+			night_files::xmas_empty_srv_poc_ready = false;
+			expect(menu_art1645::load_fastfiles(realServer, 1, 7, 9) == 42 && received == realServer &&
+				scheduled.size() == 1, "unverified Christmas srv could be scheduled without fivezone registry");
+			menu_art1645::g_xmas_srv_poc_scheduled.store(false);
+			if (priorLoadEnvLength > 0 && priorLoadEnvLength < std::size(priorLoadEnv))
+				SetEnvironmentVariableA("IW8X_XMAS_EMPTY_SRV_LOAD", priorLoadEnv);
+			else SetEnvironmentVariableA("IW8X_XMAS_EMPTY_SRV_LOAD", nullptr);
+			night_files::files = {};
+
+			temporary_directory temp;
+			const auto staged = temp.path / bundle.folder;
+			std::filesystem::create_directories(staged);
+			for (const auto& item : spec)
+				std::filesystem::copy_file(installed / item.name, staged / item.name);
+			registry hostile;
+			expect(hostile.initialize(temp.path, { &bundle, 1 }), "isolated copied PoC fixture failed legitimate hashes");
+			const auto srv_path = staged / srv;
+			{
+				std::fstream mutated(srv_path, std::ios::binary | std::ios::in | std::ios::out);
+				char byte{};
+				mutated.seekg(160);
+				mutated.get(byte);
+				mutated.seekp(160);
+				mutated.put(static_cast<char>(byte ^ 0x80));
+			}
+			expect(!hostile.initialize(temp.path, { &bundle, 1 }) && !hostile.enabled(),
+				"same-size mutated Christmas srv passed production SHA gate");
+			std::filesystem::copy_file(installed / srv, srv_path, std::filesystem::copy_options::overwrite_existing);
+			expect(hostile.initialize(temp.path, { &bundle, 1 }), "Christmas PoC failed to recover after restoring original srv");
+			std::filesystem::remove(staged / "ww_mp_jup_shipment_xmas.ff");
+			expect(!hostile.initialize(temp.path, { &bundle, 1 }) && !hostile.enabled(),
+				"missing Christmas worldwide sidecar passed registry admission");
+			std::filesystem::copy_file(installed / "ww_mp_jup_shipment_xmas.ff", staged / "ww_mp_jup_shipment_xmas.ff");
+			expect(hostile.initialize(temp.path, { &bundle, 1 }), "restored fivezone PoC did not recover");
+			std::cout << checks << " checks passed: installed Christmas fivezone native registry/loose provider and hostile failures; not DB_LoadFastfile\n";
+			return 0;
+		}
 #ifdef IW8X_ISLAND_PORT_PROBE
 		if (argc == 3 && std::string_view(argv[1]) == "--verify-island-image-overlay")
 		{
@@ -398,15 +575,41 @@ int main(int argc, char** argv)
 				"could not exercise animation frontend binding guard");
 			const auto frontend_byte = *frontend_test;
 			*frontend_test ^= 1;
-			expect(night_animtrees::Install(replay_base) == hook::Status::Failed && !night_animtrees::original.load(),
+			expect(night_animtrees::Install(replay_base) == hook::Status::Failed && !night_animtrees::original.load() &&
+				!night_animtrees::original_asset_info.load(),
 				"animation hook accepted an unsupported frontend binding");
 			*frontend_test = frontend_byte;
 			DWORD ignored{};
 			expect(VirtualProtect(frontend_test, sizeof(game::kIsFrontEndPrologue), frontend_protection, &ignored),
 				"could not restore mapped frontend binding protection");
-			expect(night_animtrees::Install(replay_base) == hook::Status::Installed && night_animtrees::original.load(),
-				"Replay animation reader/frontend/collision guards failed");
+			const auto reject_animation_binding = [&](uintptr_t rva, std::size_t length, hook::Status expected_status, const char* message)
+			{
+				auto* site = reinterpret_cast<uint8_t*>(replay_base + rva);
+				DWORD protection{};
+				expect(VirtualProtect(site, length, PAGE_EXECUTE_READWRITE, &protection), "could not alter optional-animation binding");
+				const auto byte = *site;
+				*site ^= 1;
+				expect(night_animtrees::Install(replay_base) == expected_status && !night_animtrees::original.load() &&
+					!night_animtrees::original_asset_info.load() && !night_animtrees::installed.load(), message);
+				*site = byte;
+				DWORD previous{};
+				expect(VirtualProtect(site, length, protection, &previous), "could not restore optional-animation binding protection");
+			};
+			reject_animation_binding(night_animtrees::optional_leaf_call_rva, night_animtrees::optional_leaf_call_bytes.size(),
+				hook::Status::Failed, "animation hook accepted an unsupported optional-leaf caller");
+			reject_animation_binding(night_animtrees::asset_info_rva, night_animtrees::asset_info_bytes.size(),
+				hook::Status::NotReady, "asset-info guard failure left a partial animation hook batch");
+			night_animtrees::original.store(&read_tree);
+			night_animtrees::original_asset_info.store(&read_asset_info);
+			expect(night_animtrees::Install(replay_base) == hook::Status::Failed && !night_animtrees::installed.load(),
+				"retained animation trampolines were mistaken for an installed batch");
+			night_animtrees::original.store(nullptr);
+			night_animtrees::original_asset_info.store(nullptr);
+			expect(night_animtrees::Install(replay_base) == hook::Status::Installed && night_animtrees::original.load() &&
+				night_animtrees::original_asset_info.load() && night_animtrees::installed.load(),
+				"Replay animation reader/frontend/collision/optional-leaf guards failed");
 			expect(night_animtrees::Install(replay_base) == hook::Status::Installed, "animation hook installation not idempotent");
+			expect(night_animtrees::Install(replay_base + 0x1000) == hook::Status::Failed, "animation hook accepted a different image after installation");
 			asset_pools::prepared.store(0);
 			asset_pools::ports_ready.store(false);
 			expect(asset_pools::prepare(replay_base, true), "Replay pool table guard failed");
@@ -420,8 +623,11 @@ int main(int argc, char** argv)
 			expect(bap::InstallNightCollision(replay_base) == hook::Status::Installed &&
 				bap::detail::g_collisionReady.load(), "ordinary client collision installation returned without installing");
 			expect(bap::ShouldUseFullCollision("map_fixture") && !bap::ShouldUseFullCollision("mp_shipment"), "collision map scope leaked");
-			std::cout << "Mapped Replay: pools, entry relocation, collision and animation reader/frontend guards verified\n";
+			std::cout << "Mapped Replay: pools, entry relocation, collision and animation reader/frontend/optional-leaf guards verified\n";
 			MH_Uninitialize();
+			night_animtrees::installed.store(false);
+			night_animtrees::original.store(nullptr);
+			night_animtrees::original_asset_info.store(nullptr);
 			FreeLibrary(replay);
 		}
 		bap::detail::g_collisionReady.store(true);
@@ -544,6 +750,81 @@ int main(int argc, char** argv)
 		expect(std::string_view(tree_name) == "animtrees/other.atr", "unrelated animation source changed");
 		night_animtrees::read(context, nullptr);
 		expect(!tree_name && tree_context == context, "null animation request changed");
+
+		night_animtrees::original_asset_info.store(&read_asset_info);
+		const auto optional_caller = night_animtrees::imageBase + 0x13151FF;
+		const char* optional_name = "hm_grnd_org_walk_cqb_reload";
+		const night_animtrees::asset_info default_transient{ reinterpret_cast<void*>(0x1234), 0, true, true, { 0x12, 0x34, 0x56, 0x78 } };
+		const auto verify_optional_lookup = [&](unsigned int type, uintptr_t caller, const night_animtrees::asset_info& native_info,
+			bool found, bool prune, const char* message)
+		{
+			asset_lookup_value = native_info;
+			asset_lookup_found = found;
+			night_animtrees::asset_info output{ reinterpret_cast<void*>(0x5678), 91, false, true, { 9, 8, 7, 6 } };
+			auto expected = found ? native_info : output;
+			if (prune) expected.is_transient = false;
+			const auto previous_calls = asset_lookup_calls;
+			const bool result = night_animtrees::get_asset_info_impl(type, optional_name, &output, caller);
+			expect(result == found && asset_lookup_calls == previous_calls + 1 && asset_lookup_type == type &&
+				asset_lookup_name == optional_name && asset_lookup_output == &output &&
+				std::memcmp(&output, &expected, sizeof(output)) == 0, message);
+		};
+		frontend_state = 5;
+		verify_optional_lookup(7, optional_caller, default_transient, true, false,
+			"optional animation lookup changed without an admitted Island bundle");
+		expect(night_files::files.initialize({}, {}), "optional animation fixture could not disable custom maps");
+		verify_optional_lookup(7, optional_caller, default_transient, true, false,
+			"disabled custom maps changed an optional animation lookup");
+		std::filesystem::copy_file(temporary.path / names[0], tree_directory.path / "mp_sm_island_1.ff");
+		const auto optional_map_hash = image_identity::Digest((tree_directory.path / "mp_sm_island_1.ff").c_str());
+		const file_spec optional_map_file{ "mp_sm_island_1.ff", specs[0].size, optional_map_hash.c_str() };
+		const bundle optional_map_bundle{ "mp_sm_island_1", ".", { &optional_map_file, 1 }, {}, {}, {} };
+		expect(night_files::files.initialize(tree_directory.path, { &optional_map_bundle, 1 }), "optional Island animation fixture failed admission");
+		for (const auto state : { 5, 8 })
+		{
+			frontend_state = state;
+			for (const char* name : { "hm_grnd_org_walk_cqb_reload", "hm_grnd_org_run_reload01_ar", "hm_grnd_org_run_reload02_ar" })
+			{
+				optional_name = name;
+				verify_optional_lookup(7, optional_caller, default_transient, true, true,
+					"unavailable optional frontend animation was retained or native output fields changed");
+			}
+		}
+		for (const auto state : { 0, 4 })
+		{
+			frontend_state = state;
+			verify_optional_lookup(7, optional_caller, default_transient, true, false, "gameplay optional animation lookup changed");
+		}
+		frontend_state = 5;
+		verify_optional_lookup(7, optional_caller + 1, default_transient, true, false, "unrelated asset-info caller changed");
+		verify_optional_lookup(6, optional_caller, default_transient, true, false, "non-XAnim asset-info lookup changed");
+		auto resident_transient = default_transient;
+		resident_transient.zone_index = 27;
+		resident_transient.is_default = false;
+		verify_optional_lookup(7, optional_caller, resident_transient, true, false, "resident transient animation was pruned");
+		auto ordinary_default = default_transient;
+		ordinary_default.is_transient = false;
+		verify_optional_lookup(7, optional_caller, ordinary_default, true, false, "ordinary default animation lookup changed");
+		verify_optional_lookup(7, optional_caller, default_transient, false, false, "failed native lookup changed its untouched output");
+		asset_lookup_found = true;
+		asset_lookup_value = default_transient;
+		night_animtrees::asset_info wrapper_output{};
+		expect(night_animtrees::get_asset_info(7, optional_name, &wrapper_output) &&
+			std::memcmp(&wrapper_output, &default_transient, sizeof(wrapper_output)) == 0,
+			"asset-info entry wrapper treated a test caller as the optional native caller");
+		const auto null_calls = asset_lookup_calls;
+		expect(night_animtrees::get_asset_info_impl(7, optional_name, nullptr, optional_caller) &&
+			asset_lookup_calls == null_calls + 1 && !asset_lookup_output, "null native output was changed or dereferenced");
+		DWORD optional_state_protection{};
+		expect(VirtualProtect(tree_image + (frontend_state_rva & ~uintptr_t(0xFFF)), 0x1000, PAGE_NOACCESS, &optional_state_protection),
+			"could not make optional animation frontend state unreadable");
+		verify_optional_lookup(7, optional_caller, default_transient, true, false, "unreadable frontend state pruned an optional animation");
+		DWORD optional_ignored{};
+		expect(VirtualProtect(tree_image + (frontend_state_rva & ~uintptr_t(0xFFF)), 0x1000, optional_state_protection, &optional_ignored),
+			"could not restore optional animation frontend state");
+		night_animtrees::original_asset_info.store(nullptr);
+		expect(night_files::files.initialize(tree_directory.path, tree_bundles), "animation tree profiles did not recover after optional lookup tests");
+		frontend_state = 0;
 		collision_map = nullptr;
 		night_animtrees::read(context, "animtrees/script_model.atr");
 		expect(std::string_view(tree_name) == "animtrees/script_model.atr", "collision unload retained tree override");

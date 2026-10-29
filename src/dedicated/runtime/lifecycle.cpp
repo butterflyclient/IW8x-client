@@ -37,6 +37,7 @@
 
 #include "dedicated/runtime/internal.hpp"
 #include "dedicated/runtime/island_playlist_override.hpp"
+#include "dedicated/runtime/island_plunder_loadout_policy.hpp"
 #include "network/backend/native_matchmaking.h"
 #include "dedicated/assets/infil_transients.h"
 #include "auth/profile/local_progression.h"
@@ -446,6 +447,14 @@ namespace dedicated::detail
 				if (g_playlistId >= 0)
 				{
 					startup = L"--playlist " + std::to_wstring(g_playlistId) + L" --playlist-entry " + std::to_wstring(g_playlistEntry);
+						#ifdef IW8X_ISLAND_PORT_PROBE
+						if (island_plunder_loadout_policy::preserve_explicit_island_recycle(
+							g_playlistId, g_mapName, NativeGameType(), g_explicitMap, g_rotatePlaylist))
+						{
+							startup += L" --map mp_sm_island_1 --mode br";
+							LOG_INFO("Dedicated", "preserved explicit Island/BR override for playlist 104 BAP recycle");
+						}
+						#endif
 					if (g_rotatePlaylist)
 					{
 						startup += L" --playlist-rotate";
@@ -569,6 +578,21 @@ namespace dedicated::detail
 				#endif
 				if ((g_explicitMap && g_playlistPlan.map != g_mapName) || (g_explicitMode && g_playlistPlan.gametype != NativeGameType()))
 				{
+						#ifdef IW8X_ISLAND_PORT_PROBE
+						if (g_explicitMap && std::strcmp(g_mapName, "mp_sm_island_1") == 0 &&
+							g_playlistPlan.gametype == "br" && !islandCompatEnabled)
+						{
+							LOG_ERR("Dedicated", "Island BR playlist override not enabled: playlist=%d entry=%d selected_map=%s selected_mode=%s requested_map=%s requested_mode=%s. Set IW8X_ISLAND_NUMERIC_CANONICAL=1 before launching the Island-dedicated compatibility test.",
+								g_playlistId, g_playlistPlan.entry, g_playlistPlan.map.c_str(),
+								g_playlistPlan.gametype.c_str(), g_mapName, NativeGameType());
+							}
+						else
+						#endif
+						{
+							LOG_ERR("Dedicated", "Playlist selection mismatch: playlist=%d entry=%d selected_map=%s selected_mode=%s requested_map=%s requested_mode=%s",
+								g_playlistId, g_playlistPlan.entry, g_playlistPlan.map.c_str(),
+								g_playlistPlan.gametype.c_str(), g_mapName, NativeGameType());
+						}
 					Fail("explicit --map/--mode conflicts with the selected playlist entry");
 					return;
 				}
@@ -603,8 +627,7 @@ namespace dedicated::detail
 					"set MOLPOSLOMO br\n"
 					"set LPSPMQSNPQ 0\n"
 					"set LLPNKKORPT 1\n"
-					"set LPNMMPKRL 1\n"
-					"iw8_ds_config_ready\n",
+						"set LPNMMPKRL 1\n",
 					g_mapName);
 			}
 			else if (_stricmp(g_gameType, "br") == 0)
@@ -622,8 +645,7 @@ namespace dedicated::detail
 					"set MOLPOSLOMO br\n"
 					"set LPSPMQSNPQ 0\n"
 					"set LLPNKKORPT 1\n"
-					"set LPNMMPKRL 1\n"
-					"iw8_ds_config_ready\n",
+						"set LPNMMPKRL 1\n",
 					g_mapName);
 			}
 			else
@@ -634,8 +656,7 @@ namespace dedicated::detail
 					"set MOLPOSLOMO %s\n"
 					"set LPSPMQSNPQ 0\n"
 					"set LLPNKKORPT 1\n"
-					"set LPNMMPKRL 1\n"
-					"iw8_ds_config_ready\n",
+						"set LPNMMPKRL 1\n",
 					g_mapName, g_gameType);
 			}
 			std::string config = batch;
@@ -657,8 +678,34 @@ namespace dedicated::detail
 					// The native stats-group hook only validates incoming deltas;
 					// force_ranking makes the scripts read the same rankedloadouts
 					// bank without changing the dedicated private-party transport.
-					"set OSPNSPSKL 1\niw8_ds_config_ready\n";
+						"set OSPNSPSKL 1\n";
 			}
+#ifdef IW8X_ISLAND_PORT_PROBE
+				if (std::strcmp(g_mapName, "mp_sm_island_1") == 0 && std::strcmp(NativeGameType(), "br") == 0)
+				{
+						if (island_plunder_loadout_policy::early_class_loadout_required(g_playlistId,
+							g_mapName, NativeGameType()))
+						{
+							// Source 1.64 br.gsc::main caches allowLoadout before its
+							// br_gametypes::init invokes br_gametype_dmz::init, where
+							// Plunder sets it too late. Native Replay still owns class
+							// selection and weapons; just expose the intended setting
+							// before the original BR GSC startup reads it.
+							config += island_plunder_loadout_policy::early_class_loadout_commands;
+							LOG_INFO("Dedicated", "Island Plunder class loadouts enabled before BR script init: playlist=%d", g_playlistId);
+						}
+					// Source 1.64 defaults BR to WWII devices/models absent from Replay.
+					// Select Replay's original assets before killstreak init caches them.
+					config += "set scr_br_use_ww2_killstreak_call_in_device 0\n"
+						"set scr_br_use_ww2_model_swaps 0\n";
+					LOG_INFO("Dedicated", "Island killstreak content: selected Replay call-in devices and aircraft");
+					// Island otherwise converts 40% of SUV spawns to a later armored
+					// variant whose model and definition do not exist in this profile.
+					config += "set scr_percent_convert_jeeps_into_armored_suvs 0\n";
+					LOG_INFO("Dedicated", "Island vehicle content: retained original SUV spawns");
+				}
+#endif
+				config += "iw8_ds_config_ready\n";
 			commands::QueueStatus queueStatus{};
 			if (commands::Queue(g_base, config.c_str(), &queueStatus))
 			{

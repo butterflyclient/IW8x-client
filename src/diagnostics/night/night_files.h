@@ -11,6 +11,9 @@ namespace night_files
 	bool preserve_settings(const std::filesystem::path& local, const std::filesystem::path& download);
 	bool Initialize(const std::filesystem::path& gameRoot, const std::filesystem::path& config);
 	bool Enabled();
+	// Explicit --dedi plus IW8X_XMAS_EMPTY_SRV_POC=1 and [ports] custom_maps=1;
+	// true only after all five original PoC files pass the production SHA gate.
+	bool ChristmasEmptySrvPoC();
 	bool MapEnabled(std::string_view name);
 	// True only for an actual --dedi --map mp_sm_island_1 --mode br
 	// process, not for a normal client viewing/joining the Island lobby.
@@ -39,6 +42,7 @@ namespace night_files
 	// changes map strings, skips NetConstString checks, or admits other maps.
 	bool SelectAuthenticatedIslandClientMatch(std::string_view map, std::string_view mode, int playlist) noexcept;
 	void ClearAuthenticatedIslandClientMatch() noexcept;
+	bool authenticated_island_client_match() noexcept;
 	// The native mp/levelZoneParents.csv lookup chooses the parent *before*
 	// DB_LoadFastfiles. Install a narrowly scoped Island row at that boundary
 	// so the Devmap waiter and the later four-zone loader agree on BR.

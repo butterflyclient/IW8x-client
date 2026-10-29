@@ -39,6 +39,44 @@ namespace night_files
 		};
 		constexpr bundle escape_bundle{ "mp_escape2", "magma/maps/mp_escape2", escape_files,
 			escape_packages, escape_dependencies, escape_aliases, "Rebirth Island", escape_trees };
+			// These contain one original Christmas SurfaceFx and four empty
+			// sidecars, NOT a converted world. Register only in the explicit PoC.
+			constexpr file_spec xmas_empty_srv_poc_files[]{
+#include "diagnostics/night/xmas_empty_srv_poc_files.inc"
+			};
+			static_assert(std::size(xmas_empty_srv_poc_files) == 5);
+			constexpr bundle xmas_empty_srv_poc_bundle{ "mp_jup_shipment_xmas",
+				"magma/maps/mp_jup_shipment_xmas", xmas_empty_srv_poc_files,
+				{}, {}, {}, "Christmas Shipment (empty-srv transport PoC)" };
+			bool xmas_empty_srv_poc_ready{};
+
+			bool xmas_empty_srv_poc_dedicated_command_line(std::wstring_view line)
+			{
+				std::vector<std::wstring> args;
+				std::wstring current;
+				bool quoted = false;
+				for (const wchar_t ch : line)
+				{
+					if (ch == L'"') { quoted = !quoted; continue; }
+					if (!quoted && iswspace(ch))
+					{
+						if (!current.empty()) { args.push_back(std::move(current)); current.clear(); }
+						continue;
+					}
+					current += static_cast<wchar_t>(towlower(ch));
+				}
+				if (!current.empty()) args.push_back(std::move(current));
+				return !quoted && std::find(args.begin(), args.end(), L"--dedi") != args.end();
+			}
+
+			bool xmas_empty_srv_poc_requested()
+			{
+				char enabled[8]{};
+				if (GetEnvironmentVariableA("IW8X_XMAS_EMPTY_SRV_POC", enabled,
+					DWORD(std::size(enabled))) != 1 || enabled[0] != '1') return false;
+				const wchar_t* commandLine = GetCommandLineW();
+				return commandLine && xmas_empty_srv_poc_dedicated_command_line(commandLine);
+			}
 #ifdef IW8X_ISLAND_PORT_PROBE
 		constexpr file_spec island_probe_files[]{
 #include "diagnostics/island/island_probe_files.inc"
@@ -57,8 +95,10 @@ namespace night_files
 		// original stock-loot probe until explicitly selected and verified.
 		constexpr std::uintmax_t island_image_ff_bytes = 22952;
 			constexpr const char* island_image_ff_sha = "11a6a54319d353dc09b37e68336704b1936850ae383c0028f29c115995e6aeda";
-		constexpr std::uintmax_t island_image_cache_bytes = 44859392;
-		constexpr const char* island_image_cache_sha = "036a7d995186370da1ed3438d2cbab06a7622dd4ea1b11233017de278c48d7cd";
+		// The vehicle dependency adds 56 exact image parts while retaining
+		// all 136 existing source-image parts and the parachute geometry.
+		constexpr std::uintmax_t island_image_cache_bytes = 71368704;
+		constexpr const char* island_image_cache_sha = "25ce890859dd1864846a842af279ccd0f4f7d937e8a944b3733992b31015529b";
 		// Real stock Replay custom zones request world-wide, local-language and
 		// server companions in addition to the principal nonlocalized data FF.
 		// Each has zero localized/server assets for this GfxImage-only zone.
@@ -293,6 +333,13 @@ namespace night_files
 	bool Initialize(const std::filesystem::path& gameRoot, const std::filesystem::path& config)
 	{
 		files = {};
+			xmas_empty_srv_poc_ready = false;
+			const bool xmasPoc = xmas_empty_srv_poc_requested();
+			if (xmasPoc && !requested(config))
+			{
+				LOG_ERR("CustomFastfiles", "Christmas empty-srv PoC requires [ports] custom_maps=1; refusing unregistered fastfile experiment");
+				return false;
+			}
 	#ifdef IW8X_ISLAND_PORT_PROBE
 		island_native_br_ready = false;
 		const bool native_island_br = island_br_dedicated_command_line();
@@ -388,13 +435,26 @@ namespace night_files
 #endif
 			if (installed(escape_bundle))
 			bundles.push_back(escape_bundle);
+			if (xmasPoc)
+			{
+				if (!installed(xmas_empty_srv_poc_bundle))
+				{
+					LOG_ERR("CustomFastfiles", "explicit Christmas PoC requested but its primary FF is missing");
+					return false;
+				}
+				bundles.push_back(xmas_empty_srv_poc_bundle);
+			}
 #ifndef REPLAY_DISABLE_CUSTOM_CONTENT
 			if (installed(night_bundle))
 			bundles.push_back(night_bundle);
 #endif
 			if (bundles.empty())
 				LOG_WARN("CustomFastfiles", "custom_maps=1 but no converted map FF was found under magma/maps");
-		return files.initialize(gameRoot, bundles);
+			const bool valid = files.initialize(gameRoot, bundles);
+			xmas_empty_srv_poc_ready = valid && xmasPoc && files.map_enabled("mp_jup_shipment_xmas");
+			if (xmas_empty_srv_poc_ready)
+				LOG_INFO("CustomFastfiles", "Christmas empty-srv PoC registered all five hash-pinned transport files; no Christmas world or gameplay claim");
+			return valid;
 	}
 
 	bool preserve_settings(const std::filesystem::path& local, const std::filesystem::path& download)
@@ -413,6 +473,10 @@ namespace night_files
 	{
 		return files.enabled();
 	}
+		bool ChristmasEmptySrvPoC()
+		{
+			return xmas_empty_srv_poc_ready;
+		}
 	bool MapEnabled(std::string_view name)
 	{
 		return files.map_enabled(name);
@@ -516,6 +580,14 @@ namespace night_files
 				island_client_br_parent_selected.store(false, std::memory_order_release);
 #endif
 		}
+	bool authenticated_island_client_match() noexcept
+	{
+#ifdef IW8X_ISLAND_PORT_PROBE
+		return island_native_match_assigned.load(std::memory_order_acquire);
+#else
+		return false;
+#endif
+	}
 	hook::Status InstallIslandNativeZoneParent(uintptr_t moduleBase)
 	{
 #ifdef IW8X_ISLAND_PORT_PROBE
